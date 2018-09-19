@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1537377271732.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "CBD9B42B",
+    "lastKnownWriteTime" : 14918311212089445,
+    "last_content_update" : 1537377271732,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "C0BBC7D5",
+        "caption" : "country_codes_survey_three",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=country_codes_survey_three&cache_key=C0BBC7D5",
+        "displayedObservations" : "192",
+        "environment" : "",
+        "object" : "country_codes_survey_three",
+        "preview" : "0",
+        "totalObservations" : "192",
+        "variables" : "4"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

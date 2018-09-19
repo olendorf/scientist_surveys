@@ -5,14 +5,14 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "0",
+    "hash" : "1485455337",
     "id" : "BF922654",
-    "lastKnownWriteTime" : 1537369642,
-    "last_content_update" : 1537369642306,
+    "lastKnownWriteTime" : 1537379168,
+    "last_content_update" : 1537379168626,
     "path" : "~/third_scientists_survey/main.R",
     "project_path" : "main.R",
     "properties" : {
-        "cursorPosition" : "11,45",
+        "cursorPosition" : "28,1",
         "scrollLine" : "0",
         "tempName" : "Untitled1"
     },

@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1537377315454.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "AEBF8727",
+    "lastKnownWriteTime" : 14918311204618242,
+    "last_content_update" : 1537377315454,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "7A44B41A",
+        "caption" : "survey_three",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=survey_three&cache_key=7A44B41A",
+        "displayedObservations" : "2184",
+        "environment" : "",
+        "object" : "survey_three",
+        "preview" : "0",
+        "totalObservations" : "2184",
+        "variables" : "172"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
