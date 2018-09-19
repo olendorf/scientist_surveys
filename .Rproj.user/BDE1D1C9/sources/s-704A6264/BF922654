@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1537366864245.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "BF922654",
+    "lastKnownWriteTime" : 1537369642,
+    "last_content_update" : 1537369642306,
+    "path" : "~/third_scientists_survey/main.R",
+    "project_path" : "main.R",
+    "properties" : {
+        "cursorPosition" : "11,45",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
