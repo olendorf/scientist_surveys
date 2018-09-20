@@ -23,13 +23,14 @@ install_packages(c("ggplot2", "reshape"))
 
 
 # Load the data, survey three are from the third scientist survey, 
-# the original two surveys from Tenopir 2015 are in survey_one_two
-survey_three <- read.csv("data/third_scientist_survey.csv", header = TRUE)
-survey_two <- read.csv('data/second_scientists_survey.csv', header = TRUE)
+# the original two surveys from Tenopir 2015 are
+survey_one <- read.csv('data/first_scientists_survey.csv', header = TRUE, stringsAsFactors = FALSE)
+survey_two <- read.csv('data/second_scientists_survey.csv', header = TRUE, stringsAsFactors = FALSE)
+survey_three <- read.csv("data/third_scientist_survey.csv", header = TRUE, stringsAsFactors = FALSE)
 
 # Renaming some columns for clarity of code and other various adjustments
-colnames(survey_three)[colnames(survey_three)=="Q5"] <- "country_code"
 colnames(survey_two)[colnames(survey_two)=="Q6"] <- "country_code"
+colnames(survey_three)[colnames(survey_three)=="Q5"] <- "country_code"
 
 survey_three$survey <- 3
 
@@ -75,7 +76,10 @@ region_df <- as.data.frame.matrix(region_table)
 region_df$total <- region_df$`1` + region_df$`2` + region_df$`3`
 region_df_ordered <- region_df[rev(order(region_df$total)),]
 
+c_vec <- c()
 
-
-
-
+for(i in 1:length(survey_one$Q20)) {
+  country <- survey_one[i,]$Q20
+  code <- country_codes_one_two[which(country_codes_one_two$country == country)[[1]],]$code
+  c_vec <- c(code, c_vec)
+}
