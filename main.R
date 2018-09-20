@@ -24,7 +24,7 @@ install_packages(c("ggplot2", "reshape"))
 
 # Load the data, survey three are from the third scientist survey, 
 # the original two surveys from Tenopir 2015 are in survey_one_two
-survey_three <- read.csv("data/third_scientist_survey_20180919.csv", header = TRUE)
+survey_three <- read.csv("data/third_scientist_survey.csv", header = TRUE)
 survey_two <- read.csv('data/second_scientists_survey.csv', header = TRUE)
 
 # Renaming some columns for clarity of code and other various adjustments
@@ -37,8 +37,8 @@ survey_three$survey <- 3
 
 # Read in look up tables for country codes
 
-country_codes_three <- read.csv("data/country_codes/survey_three.csv", header = TRUE, stringsAsFactors = FALSE)
-country_codes_one_two <- read.csv("data/country_codes/survey_one_and_two.csv", header = TRUE, stringsAsFactors = FALSE)
+country_codes_three <- read.csv("data/service/country_codes/survey_three.csv", header = TRUE, stringsAsFactors = FALSE)
+country_codes_one_two <- read.csv("data/service/country_codes/survey_one_and_two.csv", header = TRUE, stringsAsFactors = FALSE)
 
 
 # Generate country and region names from the numerical codes in the data

@@ -10,10 +10,13 @@ Questions from the three surveys varied in question number. Additionally, questi
 
 Run the `main.R` to run the analysis.
 
+Any individual R files in `scripts` can also be run individual as desired.
+
 ## File Structure
 
 ```
 project
+|
 │   README.md
 │   main.r # Main analysis script 
 │
