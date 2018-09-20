@@ -1,10 +1,10 @@
-# Analysis Of Combined Scientist Surveys One - Three
+# Analysis Of Combined Scientist Surveys One, Two & Three
 
 ## Description
 
 ## Provenance Notes
 
-Questions from the three surveys varied in question number. Additionally, questions were added and subtracted on follow-up surveys. Choices for answers also varied slightly across surveys. For this analysis we only used questions that remained substantially unchanged across surveys. Because question numbers varied across surveys we manually matched questions across surveys. The questions and and answers are found in the `documentation/instruments` directory.
+Questions from the three surveys varied in question identifier number. Additionally, some questions were modified, added, and/or deleted on follow-up surveys. Choices for answers also varied slightly across surveys. For this analysis we only used questions that remained substantially unchanged across surveys, although all of the data from all questions are included in these survey files (see additional comments below). Because question numbers varied across surveys, we manually re-aligned questions across surveys. The survey instruments  and answer choices are found in the `documentation/instruments` directory.
 
 ## Usage
 
