@@ -29,3 +29,4 @@ project
     │   file022.txt
 ```
 
+foo
