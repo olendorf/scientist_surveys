@@ -2,6 +2,10 @@
 
 ## Description
 
+## Provenance Notes
+
+Questions from the three surveys varied in question number. Additionally, questions were added and subtracted on follow-up surveys. Choices for answers also varied slightly across surveys. For this analysis we only used questions that remained substantially unchanged across surveys. Because question numbers varied across surveys we manually matched questions across surveys. The questions and and answers are found in the `documentation/instruments` directory.
+
 ## Usage
 
 Run the `main.R` to run the analysis.
@@ -24,9 +28,9 @@ project
 │        │   survey_three.csv
 │        │   survey_one_two.csv
 │   
-└───folder2
-    │   file021.txt
-    │   file022.txt
+└───documentation 
+    │
+    └─── instruments # Raw files of survey instruments
 ```
 
 foo

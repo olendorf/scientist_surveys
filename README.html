@@ -314,9 +314,13 @@ $(document).ready(function () {
 <div id="description" class="section level2">
 <h2>Description</h2>
 </div>
+<div id="provenance-notes" class="section level2">
+<h2>Provenance Notes</h2>
+<p>Questions from the three surveys varied in question number. Additionally, questions were added and subtracted on follow-up surveys. Choices for answers also varied slightly across surveys. For this analysis we only used questions that remained substantially unchanged across surveys. Because question numbers varied across surveys we manually matched questions across surveys. The questions and and answers are found in the <code>documentation/instruments</code> directory.</p>
+</div>
 <div id="usage" class="section level2">
 <h2>Usage</h2>
-<p>Run the <code>main.R</code> to run the analysi.</p>
+<p>Run the <code>main.R</code> to run the analysis.</p>
 </div>
 <div id="file-structure" class="section level2">
 <h2>File Structure</h2>
@@ -324,19 +328,21 @@ $(document).ready(function () {
 │   README.md
 │   main.r # Main analysis script 
 │
-└───data
+└───data  # Data files. See main.R to see where they are used.
 │   │   
-│   │   first_second_scientist_survey_20180919.csv
-|   |   third_scientist_survey_20180919.csv
+|   |   first_scientist_survey.csv
+|   |   second_scientist_survey.csv
+|   |   third_scientist_survey.csv
 │   │
 │   └───country_codes  # Look up tables to map numeric country codes to countries and
 |        |              # geographic regions
-│       │   survey_three.csv
-│       │   ...
+│        │   survey_three.csv
+│        │   survey_one_two.csv
 │   
-└───folder2
-    │   file021.txt
-    │   file022.txt</code></pre>
+└───documentation 
+    │
+    └─── instruments # Raw files of survey instruments</code></pre>
+<p>foo</p>
 </div>
 </div>
 
