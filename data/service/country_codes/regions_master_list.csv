@@ -1,0 +1,196 @@
+region_code,region_name,survey1_2_code,survey3_code,country_name
+5,AsiaSEAsia,3,1,Afghanistan
+3,EuroRussia,4,2,Albania
+6,AfricaMENA,5,3,Algeria
+3,EuroRussia,6,4,Andorra
+6,AfricaMENA,7,5,Angola
+2,Latin America,8,6,Antigua and Barbuda
+2,Latin America,9,7,Argentina
+3,EuroRussia,10,8,Armenia
+4,AustraliaNZO,11,9,Australia
+3,EuroRussia,12,10,Austria
+3,EuroRussia,13,11,Azerbaijan
+2,Latin America,14,12,Bahamas
+6,AfricaMENA,15,13,Bahrain
+5,AsiaSEAsia,16,14,Bangladesh
+2,Latin America,17,15,Barbados
+3,EuroRussia,18,16,Belarus
+3,EuroRussia,19,17,Belgium
+2,Latin America,20,18,Belize
+6,AfricaMENA,21,19,Benin
+5,AsiaSEAsia,22,20,Bhutan
+2,Latin America,23,21,Bolivia
+3,EuroRussia,24,22,Bosnia and Herzegovina
+6,AfricaMENA,25,23,Botswana
+2,Latin America,26,24,Brazil
+6,AfricaMENA,27,25,Brunei Darussalam
+3,EuroRussia,28,26,Bulgaria
+6,AfricaMENA,29,27,Burkina Faso
+6,AfricaMENA,30,28,Burundi
+5,AsiaSEAsia,31,29,Cambodia
+6,AfricaMENA,32,30,Cameroon
+1,USACanada,33,31,Canada
+6,AfricaMENA,34,32,Cape Verde
+6,AfricaMENA,35,33,Central African Republic
+6,AfricaMENA,36,34,Chad
+2,Latin America,37,35,Chile
+5,AsiaSEAsia,38,36,China
+2,Latin America,39,37,Colombia
+6,AfricaMENA,40,38,Comoros
+6,AfricaMENA,41,39,Congo
+2,Latin America,42,40,Costa Rica
+6,AfricaMENA,43,41,Cote d Ivoire
+3,EuroRussia,44,42,Croatia
+2,Latin America,45,43,Cuba
+3,EuroRussia,46,44,Cyprus
+3,EuroRussia,47,45,Czech Republic
+5,AsiaSEAsia,48,46,Democratic Peoples Republic of Korea
+6,AfricaMENA,49,47,Democratic Republic of the Congo
+3,EuroRussia,50,48,Denmark
+6,AfricaMENA,51,49,Djibouti
+2,Latin America,52,50,Dominica
+2,Latin America,53,51,Dominican Republic
+2,Latin America,54,52,Ecuador
+6,AfricaMENA,55,53,Egypt
+2,Latin America,56,54,El Salvador
+6,AfricaMENA,57,55,Equatorial Guinea
+6,AfricaMENA,58,56,Eritrea
+3,EuroRussia,59,57,Estonia
+6,AfricaMENA,60,58,Ethiopia
+5,AsiaSEAsia,61,59,Fiji
+3,EuroRussia,62,60,Finland
+3,EuroRussia,999,61,Macedonia
+3,EuroRussia,64,62,France
+6,AfricaMENA,65,63,Gabon
+6,AfricaMENA,66,64,Gambia
+3,EuroRussia,67,65,Georgia
+3,EuroRussia,68,66,Germany
+6,AfricaMENA,69,67,Ghana
+3,EuroRussia,70,68,Greece
+2,Latin America,71,69,Grenada
+2,Latin America,72,70,Guatemala
+6,AfricaMENA,73,71,Guinea
+6,AfricaMENA,74,72,GuineaBissau
+2,Latin America,75,73,Guyana
+2,Latin America,76,74,Haiti
+2,Latin America,77,75,Honduras
+3,EuroRussia,78,76,Hungary
+3,EuroRussia,79,77,Iceland
+5,AsiaSEAsia,80,78,India
+5,AsiaSEAsia,81,79,Indonesia
+6,AfricaMENA,82,80,Iran
+6,AfricaMENA,83,81,Iraq
+3,EuroRussia,84,82,Ireland
+6,AfricaMENA,85,83,Israel
+3,EuroRussia,86,84,Italy
+2,Latin America,87,85,Jamaica
+5,AsiaSEAsia,88,86,Japan
+6,AfricaMENA,89,87,Jordan
+5,AsiaSEAsia,90,88,Kazakhstan
+6,AfricaMENA,91,89,Kenya
+6,AfricaMENA,92,90,Kuwait
+5,AsiaSEAsia,93,91,Kyrgyzstan
+5,AsiaSEAsia,94,92,Laos
+3,EuroRussia,95,93,Latvia
+6,AfricaMENA,96,94,Lebanon
+6,AfricaMENA,97,95,Lesotho
+6,AfricaMENA,98,96,Liberia
+6,AfricaMENA,99,97,Libya
+3,EuroRussia,100,98,Liechtenstein
+3,EuroRussia,101,99,Lithuania
+3,EuroRussia,102,100,Luxembourg
+3,EuroRussia,63,195,Macedonia
+6,AfricaMENA,103,101,Madagascar
+6,AfricaMENA,104,102,Malawi
+5,AsiaSEAsia,105,104,Malaysia
+5,AsiaSEAsia,106,105,Maldives
+5,AsiaSEAsia,107,106,Mali
+3,EuroRussia,108,107,Malta
+5,AsiaSEAsia,109,108,Marshall Islands
+6,AfricaMENA,110,109,Mauritania
+2,Latin America,112,111,Mexico
+5,AsiaSEAsia,113,112,Micronesia
+3,EuroRussia,114,113,Monaco
+5,AsiaSEAsia,115,114,Mongolia
+3,EuroRussia,116,115,Montenegro
+6,AfricaMENA,117,116,Morocco
+6,AfricaMENA,118,117,Mozambique
+5,AsiaSEAsia,119,118,Myanmar
+6,AfricaMENA,120,119,Namibia
+5,AsiaSEAsia,121,120,Nepal
+3,EuroRussia,122,121,Netherlands
+4,AustraliaNZO,123,122,New Zealand
+2,Latin America,124,123,Nicaragua
+6,AfricaMENA,125,124,Niger
+6,AfricaMENA,126,125,Nigeria
+3,EuroRussia,127,126,Norway
+6,AfricaMENA,128,127,Oman
+5,AsiaSEAsia,129,128,Pakistan
+5,AsiaSEAsia,130,129,Palau
+2,Latin America,131,130,Panama
+5,AsiaSEAsia,132,131,Papua New Guinea
+2,Latin America,133,132,Paraguay
+2,Latin America,134,133,Peru
+5,AsiaSEAsia,135,134,Philippines
+3,EuroRussia,136,135,Poland
+3,EuroRussia,137,136,Portugal
+6,AfricaMENA,138,137,Qatar
+5,AsiaSEAsia,139,138,Republic of Korea
+3,EuroRussia,140,139,Republic of Moldova
+3,EuroRussia,141,140,Romania
+3,EuroRussia,142,141,Russian Federation
+6,AfricaMENA,143,142,Rwanda
+2,Latin America,144,143,Saint Kitts and Nevis
+2,Latin America,145,144,Saint Lucia
+2,Latin America,146,145,Saint Vincent and the Grenadines
+5,AsiaSEAsia,147,146,Samoa
+3,EuroRussia,148,147,San Marino
+6,AfricaMENA,149,148,Sao Tome and Principe
+6,AfricaMENA,150,149,Saudi Arabia
+6,AfricaMENA,151,150,Senegal
+3,EuroRussia,152,151,Serbia
+6,AfricaMENA,153,152,Seychelles
+6,AfricaMENA,154,153,Sierra Leone
+5,AsiaSEAsia,155,154,Singapore
+3,EuroRussia,156,155,Slovakia
+3,EuroRussia,157,156,Slovenia
+5,AsiaSEAsia,158,157,Solomon Islands
+6,AfricaMENA,159,158,Somalia
+6,AfricaMENA,160,159,South Africa
+3,EuroRussia,161,160,Spain
+5,AsiaSEAsia,162,161,Sri Lanka
+6,AfricaMENA,163,162,Sudan
+6,AfricaMENA,164,163,South Sudan
+2,Latin America,165,164,Suriname
+6,AfricaMENA,166,165,Swaziland
+3,EuroRussia,167,166,Sweden
+3,EuroRussia,168,167,Switzerland
+6,AfricaMENA,169,168,Syrian Arab Republic
+5,AsiaSEAsia,170,169,Taiwan
+5,AsiaSEAsia,171,170,Tajikistan
+5,AsiaSEAsia,172,171,Thailand
+6,AfricaMENA,173,172,Togo
+2,Latin America,174,173,Trinidad and Tobago
+6,AfricaMENA,175,174,Tunisia
+6,AfricaMENA,176,175,Turkey
+5,AsiaSEAsia,177,176,Turkmenistan
+6,AfricaMENA,178,177,Uganda
+3,EuroRussia,179,178,Ukraine
+6,AfricaMENA,180,179,United Arab Emirates
+3,EuroRussia,181,180,United Kingdom
+3,EuroRussia,192,180,United Kingdom of Great Britain and Northern Ireland
+6,AfricaMENA,182,181,United Republic of Tanzania
+1,USACanada,2,182,United States of America
+1,USACanada,183,182,United States of America
+2,Latin America,184,183,Uruguay
+5,AsiaSEAsia,185,184,Uzbekistan
+5,AsiaSEAsia,186,185,Vanuatu
+2,Latin America,187,186,Venezuela
+5,AsiaSEAsia,188,187,Vietnam
+6,AfricaMENA,189,188,Yemen
+6,AfricaMENA,190,189,Zambia
+6,AfricaMENA,191,190,Zimbabwe
+5,AsiaSEAsia,999,191,Kiribati
+3,EuroRussia,999,192,Gibraltar
+3,EuroRussia,999,193,Kosovo
+6,AfricaMENA,999,194,Eswatini formerly Swaziland
