@@ -17,7 +17,7 @@ install_packages <- function(packages) {
   }
 }
 
-install_packages(c("ggplot2", "reshape"))
+install_packages(c("ggplot2", "plyr", "gridExtra"))
 
 
 
@@ -26,61 +26,30 @@ install_packages(c("ggplot2", "reshape"))
 # the original two surveys from Tenopir 2015 are
 survey_one <- read.csv('data/first_scientists_survey.csv', header = TRUE, stringsAsFactors = FALSE)
 survey_two <- read.csv('data/second_scientists_survey.csv', header = TRUE, stringsAsFactors = FALSE)
-survey_three <- read.csv("data/third_scientist_survey.csv", header = TRUE, stringsAsFactors = FALSE)
+survey_three <- read.csv("data/third_scientists_survey.csv", header = TRUE, stringsAsFactors = FALSE)
 
 # Renaming some columns for clarity of code and other various adjustments
-coln
+# coln
+colnames(survey_one)[colnames(survey_one)=="Q20"] <- "country_code" 
 colnames(survey_two)[colnames(survey_two)=="Q6"] <- "country_code"
 colnames(survey_three)[colnames(survey_three)=="Q5"] <- "country_code"
 
+
+survey_one$survey <- 1
+survey_two$survey <- 2
 survey_three$survey <- 3
 
+# Recode the three sureys to get the general regions 
+# based on the country
+source("country_codes.R")
+
+# code to generate this figure pulled off to its own file 
+source("region_count_figure.R")  
+
+# Print the figure generated above
+png("figures/region_plot.png")
+print(region_plot)
+dev.off()
+region_plot + coord_flip()
 
 
-# Read in look up tables for country codes
-
-country_codes_three <- read.csv("data/service/country_codes/survey_three.csv", header = TRUE, stringsAsFactors = FALSE)
-country_codes_one_two <- read.csv("data/service/country_codes/survey_one_and_two.csv", header = TRUE, stringsAsFactors = FALSE)
-
-
-# Generate country and region names from the numerical codes in the data
-survey_three$country <- NA
-survey_three$region <- NA
-for(i in 1:length(survey_three$country_code)) {
-  code <- survey_three[i,]$country_code
-  if(!is.na(code)) {
-    survey_three[i,]$country <- country_codes_three[ which(country_codes_three$code == code), ]$country
-    survey_three[i,]$region <- country_codes_three[ which(country_codes_three$code == code), ]$region
-  }
-}
-
-
-survey_two$country <- NA
-survey_two$region <- NA
-for(i in 1:length(survey_two$country_code)) {
-  code <- survey_two[i,]$country_code
-  if(!is.na(code)) {
-    survey_two[i,]$country <- country_codes_one_two[ which(country_codes_one_two$code == code), ]$country
-    survey_two[i,]$region <- country_codes_one_two[ which(country_codes_one_two$code == code), ]$region
-  }
-}
-
-
-
-# Region Frequency plot by survey
-geo_rows <- c("survey", "region", "country")
-temp1 <- survey_one_two[geo_rows]
-temp2 <- survey_three[geo_rows]
-temp3 <- rbind(temp1, temp2)
-region_table <- table(temp3$region, temp3$survey)
-region_df <- as.data.frame.matrix(region_table)
-region_df$total <- region_df$`1` + region_df$`2` + region_df$`3`
-region_df_ordered <- region_df[rev(order(region_df$total)),]
-
-c_vec <- c()
-
-for(i in 1:length(survey_one$Q20)) {
-  country <- survey_one[i,]$Q20
-  code <- country_codes_one_two[which(country_codes_one_two$country == country)[[1]],]$code
-  c_vec <- c(code, c_vec)
-}
