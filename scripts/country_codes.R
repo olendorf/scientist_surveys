@@ -2,7 +2,7 @@
 # uses the countries reported by the respondents 
 # to assign them to a broad geographical region
 #
-# AfriceMena = Africa, Middle East
+# AfricaMena = Africa, Middle East
 # AsiaSeAsia = Asia, SouthEast Asia
 # AustraliaNZ = Australia, New Zealand
 # EuroRussia = Europe, Russia
