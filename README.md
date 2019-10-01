@@ -1,39 +1,54 @@
-# Analysis Of Combined Scientist Surveys One, Two & Three
+# Combined Scientist Survey Factor Analysis
+### Papers and data used in this work
+Data from the [1st scientists survey paper](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0021101)
 
-## Description
+  * Survey data used in this paper is available on [Dryad](https://datadryad.org/stash/dataset/doi:10.5061/dryad.6t94p)
 
-## Provenance Notes
+Data from the [2nd scientists survey paper](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0134826)
 
-Questions from the three surveys varied in question identifier number. Additionally, some questions were modified, added, and/or deleted on follow-up surveys. Choices for answers also varied slightly across surveys. For this analysis we only used questions that remained substantially unchanged across surveys, although all of the data from all questions are included in these survey files (see additional comments below). Because question numbers varied across surveys, we manually re-aligned questions across surveys. The survey instruments  and answer choices are found in the `documentation/instruments` directory.
+  * Survey data used in this paper is available on [Dryad](https://datadryad.org/stash/dataset/doi:10.5061/dryad.1ph92)
 
-## Usage
+Data from the [3rd scientists survey paper](https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2018EA000461)
 
-Run the `main.R` to run the analysis.
+  * Survey data used in this paper is available on [Dryad](https://datadryad.org/stash/dataset/doi:10.5061/dryad.sv6t740)
 
-Any individual R files in `scripts` can also be run individual as desired.
 
-## File Structure
+### Correspondence analysis of selection of likert type questions from all three surveys
+  * ca_likert_qs_v20190823.R
 
-```
-project
-|
-│   README.md
-│   main.r # Main analysis script 
-│
-└───data  # Data files. See main.R to see where they are used.
-│   │   
-|   |   first_scientist_survey.csv
-|   |   second_scientist_survey.csv
-|   |   third_scientist_survey.csv
-│   │
-│   └───country_codes  # Look up tables to map numeric country codes to countries and
-|        |              # geographic regions
-│        │   survey_three.csv
-│        │   survey_one_two.csv
-│   
-└───documentation 
-    │
-    └─── instruments # Raw files of survey instruments
-```
+### Survey data from all three surveys and related questions
+  * first_scientists_survey.csv
+  * second_scientists_survey.csv
+  * third_scientists_survey.csv
+  * first_scientists_survey_questions.csv
+  * second_scientists_survey_questions.csv
+  * third_scientists_survey_questions.csv
+  
 
-foo
+### Multiple factor analysis script of questions from survey 1 grouped by question type (yes/no, likert, multiple choice)
+  * mfa_survey1_grouped_v20190926.R
+  
+### Multiple Factor analysis scripts for each Survey without grouping
+  * mfa_survey1_v20190927.R
+  
+  * mfa_survey2_v20190927.R
+  
+  * mfa_survey3_v20190927.R
+
+### Plots
+#### Folder containing graphs resulting from the above R scripts (pptx, pdf, png)
+**Old correspondence analysis Plots**. 
+  * ca_*_biplot.png
+  * ca_*_contrib_all.png
+  * ca_*_scree.png
+
+**Correspondence analysis of likert questions from 3 surveys**
+  * ca_likert_*.png
+
+**Multiple factor analysis of all relevant questions from each survey**
+  * mfa_survey1_plots.pdf :: PDF with all plots of survey 1 data in low resolution
+  * mfa_survey1_plots00*.png :: High resolution versions of these plots (scree, biplot, dimensions, loadings)
+mfa_survey2_plots.pdf :: PDF with all plots of survey 2 data in low resolution
+  * mfa_survey2_plots00*.png :: High resolution versions of these plots (scree, biplot, dimensions, loadings)
+mfa_survey3_plots.pdf :: PDF with all plots of survey 3 data in low resolution
+  * mfa_survey3_plots00*.png :: High resolution versions of these plots (scree, biplot, dimensions, loadings)
