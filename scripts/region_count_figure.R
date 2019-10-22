@@ -11,7 +11,7 @@ region_counts <- rbind(rbind(survey_one_region_counts, survey_two_region_counts)
 
 region_plot <- ggplot(region_counts, aes(survey, freq, fill = region))
 region_plot <- region_plot + geom_bar(position = "fill", stat = "identity")
-region_plot <- region_plot + theme_bw() + scale_fill_brewer(palette="Set2")
+region_plot <- region_plot + theme_bw() + scale_fill_brewer(palette="Reds")
 region_plot <- region_plot + theme(panel.grid.major = element_blank(), 
                                    panel.grid.minor = element_blank(), 
                                    panel.border = element_blank())
