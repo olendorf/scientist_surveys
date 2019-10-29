@@ -35,6 +35,10 @@ source("scripts/country_codes.R")
 # of respondents by survey
 source("scripts/region_count_figure.R")  
 
+# Recode the respondent's domain so that the three 
+# surveys' data is comparable.
+source("scripts/domain_recode.R")
+
 
 
 
