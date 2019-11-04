@@ -35,6 +35,7 @@ Data from the [3rd scientists survey paper](https://agupubs.onlinelibrary.wiley.
   * mfa_surveys23_combined_plots.pdf
   
 ### Scripts
+#### Folder containing common scripts for all the analysis and recoding of each survey
   * country_codes.R :: countries recoded in data.frame
   * domain_recode.R :: domains recoded in data.frame
   * load_date.R :: header script that loads csv data
