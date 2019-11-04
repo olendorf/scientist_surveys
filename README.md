@@ -12,11 +12,13 @@ Data from the [3rd scientists survey paper](https://agupubs.onlinelibrary.wiley.
 
   * Survey data used in this paper is available on [Dryad](https://datadryad.org/stash/dataset/doi:10.5061/dryad.sv6t740)
 
+### Multiple factor analysis script for all common survey questions combined
+  * mfa_surveys_combined_v001.R 
+  
+### Multiple factor analysis script for all survey questions common to surveys 2 & 3 combined
+  * mfa_surveys23_combined_v001.R 
 
-### Correspondence analysis of selection of likert type questions from all three surveys
-  * ca_likert_qs_v20190823.R
-
-### Plots
+### Data
 #### Folder containing survey data from all three surveys and related questions
   * first_scientists_survey.csv
   * second_scientists_survey.csv
@@ -26,13 +28,6 @@ Data from the [3rd scientists survey paper](https://agupubs.onlinelibrary.wiley.
   * third_scientists_survey_questions.csv
   * regions_master_list.csv :: location of origin recoding for all 3 surveys
   * survey_one_domain_code.csv :: domain/discipline recoding for all 3 surveys
-  
-
-### Multiple factor analysis script for all common survey questions combined
-  * mfa_surveys_combined_v001.R 
-  
-### Multiple factor analysis script for all survey questions common to surveys 2 & 3 combined
-  * mfa_surveys23_combined_v001.R 
   
 ### Plots
 #### Folder containing graphs resulting from the above R scripts (pptx, pdf, png)
