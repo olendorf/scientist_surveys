@@ -200,18 +200,38 @@ domain_name_from_code <- function(domain_code) {
   domain_map[which(domain_map$domain_code == domain_code), ]$domain_name
 }
 
-# Creates a new column "domain_name" and gets the name  from the domain code.
-df_domain_name_from_code <- function(data_frame) {
+super_domain_from_code <- function(domain_code) {
+  domain_map[which(domain_map$domain_code == domain_code), ]$super_domain
+}
+
+
+
+# Creates new columns "domain_name" and "super_domain" and gets the names  from the domain code.
+# Returns the new data_frame
+df_domain_names_from_code <- function(data_frame, domain_text) {
   data_frame$domain_name <- NA
+  data_frame$super_domain <- NA
   for(row in 1:nrow(data_frame)) {
     if(!is.na(data_frame[row, ]$domain_code)) {
       domain_name <- domain_name_from_code(data_frame[row, ]$domain_code)
       data_frame[row, ]$domain_name <- domain_name
+      
+      super_domain <- super_domain_from_code(data_frame[row, ]$domain_code)
+      if(data_frame[row, ]$domain_code == 22 || data_frame[row, ]$domain_code == 18) {
+        if(grepl("geography", data_frame[row, domain_text], ignore.case = TRUE)) {
+          super_domain <- "Social science"
+        }
+      }
+      data_frame[row, ]$super_domain <- super_domain
     }
   }
   return(data_frame)
 }
 
-survey_one <- df_domain_name_from_code(survey_one)
-survey_two <- df_domain_name_from_code(survey_two)
-survey_three <- df_domain_name_from_code(survey_three)
+survey_one <- df_domain_names_from_code(survey_one, "Q3_text")
+survey_two <- df_domain_names_from_code(survey_two, "Q4_TEXT")
+survey_three <- df_domain_names_from_code(survey_three, "Q3_Other_text")
+
+
+
+
