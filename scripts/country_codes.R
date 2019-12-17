@@ -1,4 +1,3 @@
-
 # Does some normalizing of country codes, then
 # uses the countries reported by the respondents 
 # to assign them to a broad geographical region
@@ -10,7 +9,7 @@
 # LatinAmerica = South America, Central America, Mexico
 # USACanada = United States of America, Canada
 
-country_codes <- read.csv("regions_master_list.csv")
+country_codes <- read.csv("data/country_codes/regions_master_list.csv")
 
 survey_one$region <- NA
 # Go through and look up regions from the country codes table

@@ -1,0 +1,26 @@
+domain_name,domain_code,super_domain
+Agriculture,1,Natural science
+Atmospheric science,2,Physical science
+Biology,3,Natural science
+Business,4,Social science
+Computer science,5,Information science
+Ecology,6,Natural science
+Education,7,Social science
+Engineering,8,Physical science
+Environmental science,9,Natural science
+Natural Resources,21,Natural science
+Geography,22,
+Geology,10,Physical science
+Hydrology,11,Physical science
+Information science,12,Information science
+Law,13,Law
+Mathematics,23,Physical science
+Medicine,14,Natural science
+Physical sciences,15,Physical science
+Psychology,16,Social science
+Social sciences,17,Social science
+Other,18,Other
+Marine Science,19,Physical science
+Space and Planetary Science,20,Physical science
+Chemistry,24,Physical science
+Health Sciences,25,Natural science
