@@ -12,7 +12,7 @@ Data from the [3rd scientists survey paper](https://agupubs.onlinelibrary.wiley.
 
   * Survey data used in this paper is available on [Dryad](https://datadryad.org/stash/dataset/doi:10.5061/dryad.sv6t740)
 
-### Multiple factor analysis script for all common survey questions combined
+### Main multiple factor analysis script for all common survey questions combined
   * mfa_surveys_combined_v001.R 
   
 ### Multiple factor analysis script for all survey questions common to surveys 2 & 3 combined
@@ -32,7 +32,6 @@ Data from the [3rd scientists survey paper](https://agupubs.onlinelibrary.wiley.
 ### Plots
 #### Folder containing graphs resulting from the above R scripts (pptx, pdf, png)
   * mfa_surveys_combined_plots.pdf
-  * mfa_surveys23_combined_plots.pdf
   
 ### Scripts
 #### Folder containing common scripts for all the analysis and recoding of each survey
