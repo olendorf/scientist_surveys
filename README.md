@@ -12,43 +12,30 @@ Data from the [3rd scientists survey paper](https://agupubs.onlinelibrary.wiley.
 
   * Survey data used in this paper is available on [Dryad](https://datadryad.org/stash/dataset/doi:10.5061/dryad.sv6t740)
 
+### Multiple factor analysis script for all common survey questions combined
+  * mfa_surveys_combined_v001.R 
+  
+### Multiple factor analysis script for all survey questions common to surveys 2 & 3 combined
+  * mfa_surveys23_combined_v001.R 
 
-### Correspondence analysis of selection of likert type questions from all three surveys
-  * ca_likert_qs_v20190823.R
-
-### Survey data from all three surveys and related questions
+### Data
+#### Folder containing survey data from all three surveys and related questions
   * first_scientists_survey.csv
   * second_scientists_survey.csv
   * third_scientists_survey.csv
   * first_scientists_survey_questions.csv
   * second_scientists_survey_questions.csv
   * third_scientists_survey_questions.csv
+  * regions_master_list.csv :: location of origin recoding for all 3 surveys
+  * survey_one_domain_code.csv :: domain/discipline recoding for all 3 surveys
   
-
-### Multiple factor analysis script of questions from survey 1 grouped by question type (yes/no, likert, multiple choice)
-  * mfa_survey1_grouped_v20190926.R
-  
-### Multiple Factor analysis scripts for each Survey without grouping
-  * mfa_survey1_v20190927.R
-  
-  * mfa_survey2_v20190927.R
-  
-  * mfa_survey3_v20190927.R
-
 ### Plots
 #### Folder containing graphs resulting from the above R scripts (pptx, pdf, png)
-**Old correspondence analysis Plots**. 
-  * ca_*_biplot.png
-  * ca_*_contrib_all.png
-  * ca_*_scree.png
-
-**Correspondence analysis of likert questions from 3 surveys**
-  * ca_likert_*.png
-
-**Multiple factor analysis of all relevant questions from each survey**
-  * mfa_survey1_plots.pdf :: PDF with all plots of survey 1 data in low resolution
-  * mfa_survey1_plots00*.png :: High resolution versions of these plots (scree, biplot, dimensions, loadings)
-mfa_survey2_plots.pdf :: PDF with all plots of survey 2 data in low resolution
-  * mfa_survey2_plots00*.png :: High resolution versions of these plots (scree, biplot, dimensions, loadings)
-mfa_survey3_plots.pdf :: PDF with all plots of survey 3 data in low resolution
-  * mfa_survey3_plots00*.png :: High resolution versions of these plots (scree, biplot, dimensions, loadings)
+  * mfa_surveys_combined_plots.pdf
+  * mfa_surveys23_combined_plots.pdf
+  
+### Scripts
+#### Folder containing common scripts for all the analysis and recoding of each survey
+  * country_codes.R :: countries recoded in data.frame
+  * domain_recode.R :: domains recoded in data.frame
+  * load_date.R :: header script that loads csv data
