@@ -28,6 +28,9 @@ Data from the [3rd scientists survey paper](https://agupubs.onlinelibrary.wiley.
   
 ### Plots and Figures
 #### Folders containing graphs resulting from the above R scripts (pptx, pdf, png)
+
+### Coordinates and Loadings
+  * **all_loadings.csv** contains the coordinates and loadings computed from the **mfa_surveys_combined_v001.R** script on lines 308 to 313.
   
 ### Scripts
 #### Folder containing common scripts for all the analysis and recoding of each survey
