@@ -26,6 +26,11 @@ Data from the [3rd scientists survey paper](https://agupubs.onlinelibrary.wiley.
   * regions_master_list.csv :: location of origin recoding for all 3 surveys
   * survey_one_domain_code.csv :: domain/discipline recoding for all 3 surveys
   
+### CSV Files
+  * **individuals.csv** contains the points from the fviz_mfa_var() biplot.
+  * **correlated_dim1_quali_vars.csv & correlated_dim1_vars_category.csv** most correlated variables information for dimension 1
+  * **correlated_dim2_quali_vars.csv & correlated_dim2_vars_category.csv** most correlated variable information for dimension 2
+
 ### Plots and Figures
 #### Folders containing graphs resulting from the above R scripts (pptx, pdf, png)
 
