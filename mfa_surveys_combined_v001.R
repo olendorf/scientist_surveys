@@ -258,8 +258,13 @@ survey_two_select$survey_label <- "S2"
 survey_three_select$survey_label <- "S3"
 
 # Combine 3 surveys into one data.frame
-colnames(survey_one_select)<- c("16_12_09","06_16_13_1","06_16_13_2","06_16_13_3","06_16_13_4","06_16_13_5","06_16_13_6","06_16_13_7","07_17_14_1","07_17_14_2","07_17_14_3","08_20_16_1","08_20_16_2","08_22_18","09_31_20_1","09_31_20_2","09_31_20_3","09_31_20_4","09_31_20_5","10_32_19_1","10_32_19_2","10_32_19_3","10_32_19_4","10_32_19_5","10_32_19_6","10_32_19_7","10_32_19_8","11_19_15_1","11_19_15_2","11_19_15_3","11_19_15_4","11_19_15_5","11_19_15_6","11_19_15_7","11_19_15_8","11_19_15_9","11_19_15_10",
-                                "11_19_15_11","work_sector","domain","funding_agency","region","survey_label")
+colnames(survey_one_select)<- c("16_12_09","06_16_13_1","06_16_13_2","06_16_13_3","06_16_13_4","06_16_13_5",
+                                "06_16_13_6","06_16_13_7","07_17_14_1","07_17_14_2","07_17_14_3","08_20_16_1",
+                                "08_20_16_2","08_22_18","09_31_20_1","09_31_20_2","09_31_20_3","09_31_20_4",
+                                "09_31_20_5","10_32_19_1","10_32_19_2","10_32_19_3","10_32_19_4","10_32_19_5",
+                                "10_32_19_6","10_32_19_7","10_32_19_8","11_19_15_1","11_19_15_2","11_19_15_3",
+                                "11_19_15_4","11_19_15_5","11_19_15_6","11_19_15_7","11_19_15_8","11_19_15_9",
+                                "11_19_15_10","11_19_15_11","work_sector","domain","funding_agency","region","survey_label")
 colnames(survey_two_select)<- c("16_12_09","06_16_13_1","06_16_13_2","06_16_13_3","06_16_13_4","06_16_13_5","06_16_13_6","06_16_13_7","07_17_14_1","07_17_14_2","07_17_14_3","08_20_16_1","08_20_16_2","08_22_18","09_31_20_1","09_31_20_2","09_31_20_3","09_31_20_4","09_31_20_5","10_32_19_1","10_32_19_2","10_32_19_3","10_32_19_4","10_32_19_5","10_32_19_6","10_32_19_7","10_32_19_8","11_19_15_1","11_19_15_2","11_19_15_3","11_19_15_4","11_19_15_5","11_19_15_6","11_19_15_7","11_19_15_8","11_19_15_9","11_19_15_10",
                                 "11_19_15_11","work_sector","domain","funding_agency","region","survey_label")
 colnames(survey_three_select)<- c("16_12_09","06_16_13_1","06_16_13_2","06_16_13_3","06_16_13_4","06_16_13_5","06_16_13_6","06_16_13_7","07_17_14_1","07_17_14_2","07_17_14_3","08_20_16_1","08_20_16_2","08_22_18","09_31_20_1","09_31_20_2","09_31_20_3","09_31_20_4","09_31_20_5","10_32_19_1","10_32_19_2","10_32_19_3","10_32_19_4","10_32_19_5","10_32_19_6","10_32_19_7","10_32_19_8","11_19_15_1","11_19_15_2","11_19_15_3","11_19_15_4","11_19_15_5","11_19_15_6","11_19_15_7","11_19_15_8","11_19_15_9","11_19_15_10",
@@ -300,11 +305,13 @@ surveys_combined.mfa <- MFA(surveys_combined_limited,
 
 ### Rotate varimax
 # Plot of unrotated loadings
-#unrotated_plot_dim1 <- ggplot(data.frame(surveys_combined.mfa$quali.var$coord[,1])) +
+# unrotated_plot_dim1 <- ggplot(data.frame(surveys_combined.mfa$quali.var$coord[,1])) +
 #  geom_bar(aes(x=surveys_combined.mfa$quali.var$coord[,0]))
 unrotated_plot_dim1 <- barplot(surveys_combined.mfa$quali.var$coord[,1], las=2)
 unrotated_plot_dim2 <- barplot(surveys_combined.mfa$quali.var$coord[,2], las=2)
 coords <- cbind(surveys_combined.mfa$quali.var$coord[,1],surveys_combined.mfa$quali.var$coord[,2]) 
+ind.sum_coord <- facto_summarize(surveys_combined.mfa, element = "ind",result = c("coord", "contrib", "cos2", "coord.partial"))
+ind_coord <- ind.sum$res
 
 # 1) Calculate loadings from coordinates and print loadings
 # 2) Rotate values 
@@ -314,16 +321,37 @@ loadings.mfa <- sweep(surveys_combined.mfa$quali.var$coord,2,
 loadings <- cbind(loadings.mfa[,1],loadings.mfa[,2]) 
 loadings.mfa.rot <- varimax(loadings.mfa)$loadings
 surveys_combined.mfa$quali.var$coord <- loadings.mfa.rot
+ind.sum_load <- facto_summarize(surveys_combined.mfa, element = "ind",result = c("coord", "contrib", "cos2", "coord.partial"))
+ind_load <- ind.sum$res
 
 # Plot of rotated loadings
 rotated_plot_dim1 <- barplot(surveys_combined.mfa$quali.var$coord[,1], las=2)
 rotated_plot_dim2 <- barplot(surveys_combined.mfa$quali.var$coord[,2], las=2)
 rot_loadings <- cbind(surveys_combined.mfa$quali.var$coord[,1],surveys_combined.mfa$quali.var$coord[,2]) 
+ind.sum_rotLoad <- facto_summarize(surveys_combined.mfa, element = "ind",result = c("coord", "contrib", "cos2", "coord.partial"))
+ind_rotLoad <- ind.sum$res
+
+# Identity most correlated variables in given dimension
+res.desc <- dimdesc(surveys_combined.mfa, axes = c(1,2))
+# Description of dimension 1
+res.desc[[1]]
+# Description of dimension 2
+res.desc[[2]]
 
 # Write loadings to csv
 all_loadings <- cbind(coordinates, loadings,rot_loadings)
 colnames(all_loadings) <- c("coord.dim1","coord.dim2","load.dim1","load.dim2","rotLoad.dim1","rotLoad.dim2")
 write.csv(all_loadings,file="all_loadings.csv")
+
+# Write results for individuals to CSV
+ individuals <- cbind(ind_coord, ind_load,ind_rotLoad)
+ write.csv(individuals,file="individuals.csv")
+
+# Wrote list of most correlated variables
+corr_vars_quali <- cbind(res.desc[[1]]$quali, res.desc[[2]]$quali)
+write.csv(corr_vars_quali,file="correlated_quali_vars.csv")
+corr_vars_cat <- cbind(res.desc[[1]]$category, res.desc[[2]]$category)
+write.csv(corr_vars_cat,file="correlated_vars_category.csv")
 
 # Extract row results
 eig.val <- get_eigenvalue(surveys_combined.mfa)
@@ -343,7 +371,7 @@ scree_plot <- fviz_screeplot(surveys_combined.mfa, addlabels = TRUE, ylim = c(0,
   geom_hline(yintercept=if_random, linetype=2, color="red")
 scree_plot
 
-### Barplot of variables
+### Barplots and biplots of individuals
 # Individuals
 ind.mfa_plot <- fviz_mfa_ind(surveys_combined.mfa, 
                              choice="quali.var",
@@ -382,7 +410,7 @@ contrib_plot_dim2 <- fviz_contrib(surveys_combined.mfa,choice="quali.var", axes 
 contrib_plot_dim2_group <- fviz_contrib(surveys_combined.mfa, "group", axes = 2, top=30)
 
 # Export all plots to pdf
-ggexport(plotlist = list(scree_plot, ind.mfa_plot.surveys, ind.mfa_plot.domains, ind.mfa_plot,var.mfa_plot.group, contrib_plot_dim1,contrib_plot_dim2), filename = "mfa_surveys_combined_plots.pdf")
+ggexport(plotlist = list(scree_plot, ind.mfa_plot.surveys, ind.mfa_plot.domains, ind.mfa_plot,var.mfa_plot.group, contrib_plot_dim1,contrib_plot_dim1_group, contrib_plot_dim2, contrib_plot_dim2_group), filename = "mfa_surveys_combined_plots.pdf")
 # ggexport(plotlist = list(s1_histo_before,s2_histo_before,s3_histo_before, scree_plot, var.mfa_plot, var.mfa_plot.group, contrib_plot_dim1,contrib_plot_dim1_group,contrib_plot_dim2,contrib_plot_dim2_group), filename = "mfa_surveys_combined_plots.png", width = 1600, height = 800)
 
 ###############################################################################################
