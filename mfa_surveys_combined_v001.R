@@ -310,8 +310,6 @@ surveys_combined.mfa <- MFA(surveys_combined_limited,
 unrotated_plot_dim1 <- barplot(surveys_combined.mfa$quali.var$coord[,1], las=2)
 unrotated_plot_dim2 <- barplot(surveys_combined.mfa$quali.var$coord[,2], las=2)
 coords <- cbind(surveys_combined.mfa$quali.var$coord[,1],surveys_combined.mfa$quali.var$coord[,2]) 
-ind.sum_coord <- facto_summarize(surveys_combined.mfa, element = "ind",result = c("coord", "contrib", "cos2", "coord.partial"))
-ind_coord <- ind.sum$res
 
 # 1) Calculate loadings from coordinates and print loadings
 # 2) Rotate values 
@@ -321,37 +319,40 @@ loadings.mfa <- sweep(surveys_combined.mfa$quali.var$coord,2,
 loadings <- cbind(loadings.mfa[,1],loadings.mfa[,2]) 
 loadings.mfa.rot <- varimax(loadings.mfa)$loadings
 surveys_combined.mfa$quali.var$coord <- loadings.mfa.rot
-ind.sum_load <- facto_summarize(surveys_combined.mfa, element = "ind",result = c("coord", "contrib", "cos2", "coord.partial"))
-ind_load <- ind.sum$res
 
 # Plot of rotated loadings
 rotated_plot_dim1 <- barplot(surveys_combined.mfa$quali.var$coord[,1], las=2)
 rotated_plot_dim2 <- barplot(surveys_combined.mfa$quali.var$coord[,2], las=2)
 rot_loadings <- cbind(surveys_combined.mfa$quali.var$coord[,1],surveys_combined.mfa$quali.var$coord[,2]) 
-ind.sum_rotLoad <- facto_summarize(surveys_combined.mfa, element = "ind",result = c("coord", "contrib", "cos2", "coord.partial"))
-ind_rotLoad <- ind.sum$res
 
 # Identity most correlated variables in given dimension
-res.desc <- dimdesc(surveys_combined.mfa, axes = c(1,2))
+res.desc <- dimdesc(surveys_combined.mfa)
 # Description of dimension 1
-res.desc[[1]]
+res.desc$Dim.1$quali
+res.desc$Dim.1$category
 # Description of dimension 2
-res.desc[[2]]
+res.desc$Dim.2$quali
+res.desc$Dim.2$category
 
 # Write loadings to csv
 all_loadings <- cbind(coordinates, loadings,rot_loadings)
 colnames(all_loadings) <- c("coord.dim1","coord.dim2","load.dim1","load.dim2","rotLoad.dim1","rotLoad.dim2")
+my_dataframe$dim_1 <- coord.dim1
 write.csv(all_loadings,file="all_loadings.csv")
 
 # Write results for individuals to CSV
- individuals <- cbind(ind_coord, ind_load,ind_rotLoad)
- write.csv(individuals,file="individuals.csv")
+ ind.sum_coord <- facto_summarize(surveys_combined.mfa, element = "ind",result = c("coord", "contrib", "cos2", "coord.partial"))
+ ind_coord <- ind.sum$res
+ # individuals <- ind_coord
+ # write.csv(individuals,file="individuals.csv")
+ surveys_combined_demos_limited$dim_1 <- ind_coord$Dim.1
+ surveys_combined_demos_limited$dim_2 <- ind_coord$Dim.2
 
-# Wrote list of most correlated variables
-corr_vars_quali <- cbind(res.desc[[1]]$quali, res.desc[[2]]$quali)
-write.csv(corr_vars_quali,file="correlated_quali_vars.csv")
-corr_vars_cat <- cbind(res.desc[[1]]$category, res.desc[[2]]$category)
-write.csv(corr_vars_cat,file="correlated_vars_category.csv")
+# Write lists of most correlated variables
+write.csv(res.desc$Dim.1$quali,file="correlated_dim1_quali_vars.csv")
+write.csv(res.desc$Dim.2$quali,file="correlated_dim2_quali_vars.csv")
+write.csv(res.desc$Dim.1$category,file="correlated_dim1_vars_category.csv")
+write.csv(res.desc$Dim.2$category,file="correlated_dim2_vars_category.csv")
 
 # Extract row results
 eig.val <- get_eigenvalue(surveys_combined.mfa)
