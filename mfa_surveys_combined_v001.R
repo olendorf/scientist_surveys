@@ -6,7 +6,8 @@
 
 ### Load all libraries
 library(pacman)
-pacman::p_load(gdata, dplyr, plyr, ggplot2, readxl, FactoMineR, factoextra, ca, gplots, ggpubr, tidyverse, gridExtra)
+pacman::p_load(gdata, dplyr, plyr, ggplot2, readxl, FactoMineR, factoextra, ca, gplots, 
+               ggpubr, tidyverse, gridExtra, patchwork, formattable,data.table)
 
 # Load the data into memory, do a few minor 
 # mods to the data
@@ -115,8 +116,22 @@ survey_one_select[1] <- revalue(as.character(survey_one_select[[1]]),
                                   "commercial"="3", "non-profit"="4",
                                   "other"="5"))
 # 15_11_11 :: Primary funding agency
-survey_two_select[3] <- revalue(as.character(survey_two_select[[3]]),c("6"="7"))
-survey_three_select[3] <- revalue(as.character(survey_three_select[[3]]),c("6"="7"))
+survey_two_select[3] <- revalue(as.character(survey_two_select[[3]]),c("7"="6"))
+survey_two_select[3] <- revalue(as.character(survey_two_select[[3]]),
+                                c("1"="Federal/national government", 
+                                  "2"="State/regional government",
+                                  "3"="Local government",
+                                  "4"="Corporation",
+                                  "5"="Private foundation",
+                                  "6"="Other"))
+survey_three_select[3] <- revalue(as.character(survey_three_select[[3]]),c("7"="6"))
+survey_three_select[3] <- revalue(as.character(survey_three_select[[3]]),
+                                c("1"="Federal/national government", 
+                                  "2"="State/regional government",
+                                  "3"="Local government",
+                                  "4"="Corporation",
+                                  "5"="Private foundation",
+                                  "6"="Other"))
 # 16_12_09 :: Does primary funding agency requires DMP
 survey_one_select[4] <- revalue(as.character(survey_one_select[[4]]),
                                 c("Yes"="1", "No"="2","Don't know"="3"))
@@ -340,13 +355,18 @@ colnames(all_loadings) <- c("coord.dim1","coord.dim2","load.dim1","load.dim2","r
 my_dataframe$dim_1 <- coord.dim1
 write.csv(all_loadings,file="all_loadings.csv")
 
-# Write results for individuals to CSV
+# Extract and write results for individuals to CSV
  ind.sum_coord <- facto_summarize(surveys_combined.mfa, element = "ind",result = c("coord", "contrib", "cos2", "coord.partial"))
  ind_coord <- ind.sum$res
  # individuals <- ind_coord
  # write.csv(individuals,file="individuals.csv")
  surveys_combined_demos_limited$dim_1 <- ind_coord$Dim.1
  surveys_combined_demos_limited$dim_2 <- ind_coord$Dim.2
+ surveys_combined_demos_limited$contrib <- ind_coord$contrib
+   
+ res.aov <- aov(dim_1 ~ survey_label + region, data = surveys_combined_demos_limited)
+ summary(res.aov)
+ plot(res.aov)
 
 # Write lists of most correlated variables
 write.csv(res.desc$Dim.1$quali,file="correlated_dim1_quali_vars.csv")
@@ -414,6 +434,14 @@ contrib_plot_dim2_group <- fviz_contrib(surveys_combined.mfa, "group", axes = 2,
 ggexport(plotlist = list(scree_plot, ind.mfa_plot.surveys, ind.mfa_plot.domains, ind.mfa_plot,var.mfa_plot.group, contrib_plot_dim1,contrib_plot_dim1_group, contrib_plot_dim2, contrib_plot_dim2_group), filename = "mfa_surveys_combined_plots.pdf")
 # ggexport(plotlist = list(s1_histo_before,s2_histo_before,s3_histo_before, scree_plot, var.mfa_plot, var.mfa_plot.group, contrib_plot_dim1,contrib_plot_dim1_group,contrib_plot_dim2,contrib_plot_dim2_group), filename = "mfa_surveys_combined_plots.png", width = 1600, height = 800)
 
+###################################
+#         ANOVA & MANOVA          #
+###################################
+# ANOVA of Dimenson 1
+source("scripts/anovaDim1_surveyComp.R")
+
+# MANOVA
+source("scripts/manova_surveyComp.R")
 ###############################################################################################
 #                                           TOOLS                                             #
 ###############################################################################################
@@ -445,3 +473,4 @@ ncol(survey3_counts)
 survey123_counts <- rbind(survey1_counts,survey2_counts,survey3_counts)
 
 write.csv(survey123_counts,"survey123_counts.csv", row.names = TRUE)
+
