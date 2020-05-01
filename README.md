@@ -29,6 +29,7 @@ Data from the [3rd scientists survey paper](https://agupubs.onlinelibrary.wiley.
             * **statsSurveyComp.R** MANOVAs and biplots
 
 ### CSV results files are in the **data** folder
+  * **surveys_combined_demos.csv** is the MAIN RESULTS SPREADSHEET    
   * **individuals.csv** contains the points from the fviz_mfa_var() biplot.
   * **correlated_dim1_quali_vars.csv & correlated_dim1_vars_category.csv** most correlated variables information for dimension 1
   * **correlated_dim2_quali_vars.csv & correlated_dim2_vars_category.csv** most correlated variable information for dimension 2
