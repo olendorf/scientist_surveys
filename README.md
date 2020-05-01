@@ -13,32 +13,24 @@ Data from the [3rd scientists survey paper](https://agupubs.onlinelibrary.wiley.
   * Survey data used in this paper is available on [Dryad](https://datadryad.org/stash/dataset/doi:10.5061/dryad.sv6t740)
 
 ### Main multiple factor analysis script for all common survey questions combined
-  * mfa_surveys_combined_v001.R 
+  * main.R
+        * References data in the **scripts** folder
+            * **load_data.R** Load data from original CSV file
+                * **first_scientists_survey.CSV**
+                * **second_scientists_survey.CSV**
+                * **third_scientists_survey.CSV**
+            * **country_codes.R** align country codes between surveys
+            * **domain_recode.R** align domain codes between surveys
+            * **cleanSurveys.R** align questions and answer types between surveys
+            * **combineSurveys.R** combine dataframes for MFA
+            * **multiFactorAnalysis.R** perform MFA and extract data
+            * **mainPlots.R** generate plots from MFA
+            * **biplotAnalysis.R** generate biplots comparing Qs
+            * **statsSurveyComp.R** MANOVAs and biplots
 
-### Data
-#### Folder containing survey data from all three surveys and related questions
-  * first_scientists_survey.csv
-  * second_scientists_survey.csv
-  * third_scientists_survey.csv
-  * first_scientists_survey_questions.csv
-  * second_scientists_survey_questions.csv
-  * third_scientists_survey_questions.csv
-  * regions_master_list.csv :: location of origin recoding for all 3 surveys
-  * survey_one_domain_code.csv :: domain/discipline recoding for all 3 surveys
-  
-### CSV Files
+### CSV results files are in the **data** folder
   * **individuals.csv** contains the points from the fviz_mfa_var() biplot.
   * **correlated_dim1_quali_vars.csv & correlated_dim1_vars_category.csv** most correlated variables information for dimension 1
   * **correlated_dim2_quali_vars.csv & correlated_dim2_vars_category.csv** most correlated variable information for dimension 2
-
-### Plots and Figures
-#### Folders containing graphs resulting from the above R scripts (pptx, pdf, png)
-
-### Coordinates and Loadings
-  * **all_loadings.csv** contains the coordinates and loadings computed from the **mfa_surveys_combined_v001.R** script on lines 308 to 313.
-  
-### Scripts
-#### Folder containing common scripts for all the analysis and recoding of each survey
-  * country_codes.R :: countries recoded in data.frame
-  * domain_recode.R :: domains recoded in data.frame
-  * load_date.R :: header script that loads csv data
+  * **MANOVA_dim1.csv** DIM1 MANOVA results between surveys and significant MFA questions
+  * **MANOVA_dim2.csv** DIM2 MANOVA results between surveys and significant MFA questions
