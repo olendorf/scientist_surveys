@@ -1,26 +1,27 @@
 # MFA Guide :: http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/116-mfa-multiple-factor-analysis-in-r-essentials/
-# FMAD Guide :: http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/115-famd-factor-analysis-of-mixed-data-in-r-essentials/ 
-# Rotation in Factominer :: http://factominer.free.fr/question/FAQ.html 
-# Install libraries if need be
-# install.packages(c("pacman"))
+# FMAD Guide :: http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/115-famd-factor-analysis-of-mixed-data-in-r-essentials/
+# Rotation in Factominer :: http://factominer.free.fr/question/FAQ.html
+
+# Install pacman if need be
+install.packages(c("pacman"))
 
 library(pacman)
-pacman::p_load(gdata, dplyr, plyr, ggplot2, readxl, FactoMineR, factoextra, ca, gplots, 
+pacman::p_load(gdata, dplyr, plyr, ggplot2, readxl, FactoMineR, factoextra, ca, gplots,
                ggpubr, tidyverse, gridExtra, patchwork, formattable,data.table)
 
-# Load the data into memory, do a few minor 
+# Load the data into memory, do a few minor
 # mods to the data
 source("scripts/load_data.R")
 
-# Recode the three sureys to get the general regions 
+# Recode the three sureys to get the general regions
 # based on the country
 source("scripts/country_codes.R")
 
 # Create the figure to show regional representation
 # of respondents by survey
-# source("scripts/region_count_figure.R")  
+# source("scripts/region_count_figure.R")
 
-# Recode the respondent's domain so that the three 
+# Recode the respondent's domain so that the three
 # surveys' data is comparable.
 source("scripts/domain_recode.R")
 
@@ -61,8 +62,8 @@ source("scripts/mainPlots.R")
 source("scripts/biplotAnalysis.R")
 
 # PLOTS: MANOVA and boxplots for influential DIM1 & DIM2 questions
-# CSV files of MANOVA tables, 
-#         ./data/MANOVA_dim1.csv 
+# CSV files of MANOVA tables,
+#         ./data/MANOVA_dim1.csv
 #         ./data/MANOVA_dim2.csv
 source("scripts/statsSurveyComp.R")
 
@@ -73,4 +74,3 @@ source("scripts/statsSurveyComp.R")
 #         ./data/correlated_dim1_vars_category.csv
 #         ./data/correlated_dim2_vars_category.csv
 # source("scripts/printLoadings.R")
-
