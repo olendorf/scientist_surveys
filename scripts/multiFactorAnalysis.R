@@ -30,3 +30,8 @@ ind_coord <- ind.sum$res
 surveys_combined_demos$dim_1 <- ind_coord$Dim.1
 surveys_combined_demos$dim_2 <- ind_coord$Dim.2
 surveys_combined_demos$contrib <- ind_coord$contrib
+
+write.csv(surveys_combined_demos, file="./data/surveys_combined_demos.csv")
+
+
+

@@ -214,7 +214,7 @@ survey_three_select <- subset(survey_three_select, na_count < 5)
 
 # Remove na_count row from surveys and re-index rows
 survey_one_select <- subset(survey_one_select, select= -na_count)
-rownames(survey_two_select) <- 1:nrow(survey_one_select)
+rownames(survey_one_select) <- 1:nrow(survey_one_select)
 survey_two_select <- subset(survey_two_select, select= -na_count)
 rownames(survey_two_select) <- 1:nrow(survey_two_select)
 survey_three_select <- subset(survey_three_select, select= -na_count)

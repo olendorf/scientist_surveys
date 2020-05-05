@@ -69,5 +69,5 @@ source("scripts/statsSurveyComp.R")
 #         ./data/correlated_dim2_quali_vars.csv
 #         ./data/correlated_dim1_vars_category.csv
 #         ./data/correlated_dim2_vars_category.csv
-# source("scripts/printLoadings.R")
+#source("scripts/printLoadings.R")
 

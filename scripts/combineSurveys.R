@@ -48,3 +48,4 @@ surveys_combined_demos$work_sector[surveys_combined_demos$work_sector == "5"] <-
 # Backup surveys_combined
 surveys_combined.backup <- surveys_combined
 surveys_combined_demos.backup <- surveys_combined_demos
+

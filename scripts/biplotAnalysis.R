@@ -216,9 +216,9 @@ ggexport(plotlist = list(ind.mfa_plot.10_32_19_2,ind.mfa_plot.10_32_19_3,ind.mfa
                          ind.mfa_plot.11_19_15_1,ind.mfa_plot.11_19_15_9,ind.mfa_plot.10_32_19_4,
                          ind.mfa_plot.11_19_15_4,ind.mfa_plot.11_19_15_8,ind.mfa_plot.10_32_19_1,
                          ind.mfa_plot.11_19_15_6,ind.mfa_plot.11_19_15_7,ind.mfa_plot.10_32_19_8), 
-         filename = "./plots/mfa_dim1_interpretation.pdf")
+         filename = "plots/mfa_dim1_interpretation.pdf")
 ggexport(plotlist = list(ind.mfa_plot.07_17_14_2,ind.mfa_plot.07_17_14_3,ind.mfa_plot.07_17_14_1,
                          ind.mfa_plot.08_20_16_2,ind.mfa_plot.08_22_18,ind.mfa_plot.08_20_16_1, 
                          ind.mfa_plot.09_31_20_1,ind.mfa_plot.06_16_13_2,ind.mfa_plot.06_16_13_4,
                          ind.mfa_plot.06_16_13_1,ind.mfa_plot.09_31_20_3), 
-         filename = "./plots/mfa_dim2_interpretation.pdf")
+         filename = "plots/mfa_dim2_interpretation.pdf")
