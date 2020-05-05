@@ -14,7 +14,7 @@ Data from the [3rd scientists survey paper](https://agupubs.onlinelibrary.wiley.
 
 ### Main multiple factor analysis script for all common survey questions combined
   * **main.R**
-        * References data in the **scripts** folder  
+        * Pulls code from the **scripts** folder  
             * **load_data.R** Load data from original CSV file  
                 * **first_scientists_survey.CSV**  
                 * **second_scientists_survey.CSV**
