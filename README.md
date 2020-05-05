@@ -13,7 +13,7 @@ Data from the [3rd scientists survey paper](https://agupubs.onlinelibrary.wiley.
   * Survey data used in this paper is available on [Dryad](https://datadryad.org/stash/dataset/doi:10.5061/dryad.sv6t740)
 
 ### Main multiple factor analysis script for all common survey questions combined
-  * factorMain.R
+  * **main.R**
         * References data in the **scripts** folder  
             * **load_data.R** Load data from original CSV file  
                 * **first_scientists_survey.CSV**  
