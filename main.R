@@ -6,7 +6,7 @@
 
 library(pacman)
 pacman::p_load(gdata, dplyr, plyr, ggplot2, readxl, FactoMineR, factoextra, ca, gplots, 
-               ggpubr, tidyverse, gridExtra, patchwork, formattable,data.table)
+               ggpubr, tidyverse, gridExtra, patchwork, formattable,data.table,psych)
 
 # Load the data into memory, do a few minor 
 # mods to the data
@@ -35,6 +35,7 @@ source("scripts/cleanSurveys.R")
 #       4) Combine dataframe for factor analysis
 #       5) Change work sector from numbers to proper labels
 #       6) Backup surveys_combined & surveys_combined_demos as .backup
+#       7) Move Law domain into Other
 source("scripts/combineSurveys.R")
 
 # Limit work sector and domain

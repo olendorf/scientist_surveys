@@ -45,6 +45,9 @@ surveys_combined_demos$work_sector[surveys_combined_demos$work_sector == "3"] <-
 surveys_combined_demos$work_sector[surveys_combined_demos$work_sector == "4"] <- "Non-Profit";
 surveys_combined_demos$work_sector[surveys_combined_demos$work_sector == "5"] <- "Other"
 
+# Change Law domain to Other
+surveys_combined_demos$domain[surveys_combined_demos$domain == 'Law'] <- 'Other'
+
 # Backup surveys_combined
 surveys_combined.backup <- surveys_combined
 surveys_combined_demos.backup <- surveys_combined_demos

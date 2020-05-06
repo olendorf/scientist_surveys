@@ -1,12 +1,20 @@
 ## DIM1 & DIM2 MANOVAs
-dim1_surveyLabel <- aov(dim_1 ~ survey_label*(`10_32_19_2`+`10_32_19_3`+`11_19_15_11`+
+### DIM1
+dim1_sigq_survey_label <- aov(dim_1 ~ survey_label*(`10_32_19_2`+`10_32_19_3`+`11_19_15_11`+
                                                `10_32_19_6`+`11_19_15_5`+`11_19_15_10`+
                                                `11_19_15_1`+`11_19_15_9`+`10_32_19_4`+
                                                `11_19_15_4`+`11_19_15_8`+`10_32_19_1`+
                                                `11_19_15_6`+`11_19_15_7`+`10_32_19_8`), 
                        data = surveys_combined_demos)
-dim1_surveyLabel_table <- formattable(data.frame(unclass(summary(dim1_surveyLabel)), 
+dim1_sigq_survey_label_table <- formattable(data.frame(unclass(summary(dim1_sigq_survey_label)), 
                                           check.names = FALSE, stringsAsFactors = FALSE))
+
+dim1_survey_label <- aov(dim_1 ~ survey_label, data = surveys_combined_demos)
+summary(dim1_survey_label)
+TukeyHSD(dim1_survey_label)
+describeBy(dim1_survey_label$dim_1,dim1_survey_label$survey_label)
+
+### DIM2
 dim2_surveyLabel <- aov(dim_2 ~ survey_label*(`07_17_14_2`+`07_17_14_3`+`07_17_14_1`+
                                               `08_20_16_2`+`08_22_18`+`08_20_16_1`+
                                               `09_31_20_1`+`06_16_13_2`+`06_16_13_4`+
@@ -14,7 +22,9 @@ dim2_surveyLabel <- aov(dim_2 ~ survey_label*(`07_17_14_2`+`07_17_14_3`+`07_17_1
                         data = surveys_combined_demos)
 dim2_surveyLabel_table <- formattable(data.frame(unclass(summary(dim2_surveyLabel)), 
                                                  check.names = FALSE, stringsAsFactors = FALSE))
-write.csv(dim1_surveyLabel_table, file = "./data/MANOVA_dim1.csv")
+
+
+write.csv(dim1_sigq_survey_label_table, file = "./data/MANOVA_dim1.csv")
 write.csv(dim2_surveyLabel_table, file = "./data/MANOVA_dim2.csv")
 
 #summary(s_anova_two_way)
