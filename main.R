@@ -6,7 +6,7 @@
 
 library(pacman)
 pacman::p_load(gdata, dplyr, plyr, ggplot2, readxl, FactoMineR, factoextra, ca, gplots, 
-               ggpubr, tidyverse, gridExtra, patchwork, formattable,data.table,psych)
+               ggpubr, tidyverse, gridExtra, patchwork, formattable,data.table,psych,ggrepel)
 
 # Load the data into memory, do a few minor 
 # mods to the data
