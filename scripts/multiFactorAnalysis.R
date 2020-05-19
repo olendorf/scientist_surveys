@@ -1,6 +1,4 @@
 # Perform Multiple Factpr Analysis (MFA)
-# num_cols <- ncol(survey_combined)
-# num_cols <- as.numeric(num_cols)
 surveys_combined.mfa <- MFA(surveys_combined,
                             group = c(1,1,1,1,1,1,1,1,1,1,
                                       1,1,1,1,1,1,1,1,1,1,
@@ -30,8 +28,7 @@ ind_coord <- ind.sum$res
 surveys_combined_demos$dim_1 <- ind_coord$Dim.1
 surveys_combined_demos$dim_2 <- ind_coord$Dim.2
 surveys_combined_demos$contrib <- ind_coord$contrib
-
-write.csv(surveys_combined_demos, file="./data/surveys_combined_demos.csv")
+# write.csv(surveys_combined_demos, file="./data/surveys_combined_demos.csv")
 
 
 
