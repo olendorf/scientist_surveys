@@ -13,7 +13,7 @@ Data from the [3rd scientists survey paper](https://agupubs.onlinelibrary.wiley.
   * Survey data used in this paper is available on [Dryad](https://datadryad.org/stash/dataset/doi:10.5061/dryad.sv6t740)
 
 ### Main multiple factor analysis script for all common survey questions combined  
-    * **main.R**  
+* **main.R**  
          * Pulls code from the **scripts** folder  
               * **load_data.R** Load data from original CSV file  
                    * **first_scientists_survey.CSV**  
@@ -33,12 +33,12 @@ Data from the [3rd scientists survey paper](https://agupubs.onlinelibrary.wiley.
          * **statsSurveyComp.R** MANOVAs and biplots   
 
 ### **data** folder  
-    * **country_codes** folder  
+* **country_codes** folder  
          * **regions_master_list.csv** list of regions included in cleanSurveys  
-    * **domains** folder   
+* **domains** folder   
          * **domain_recodes.csv** recoding of domains for combined survey  
          * **recoded_domain_mapping.csv** aggregate domains for combined survey analysis    
          * **survey_one_domain_code.csv** recode domains in 1st survey  
-    * **first_scientists_survey.csv** data from 1st survey  
-    * **second_scientists_survey.csv** data from 2nd survey  
-  * **third_scientists_survey.csv** data from 3rd survey  
+* **first_scientists_survey.csv** data from 1st survey  
+* **second_scientists_survey.csv** data from 2nd survey  
+* **third_scientists_survey.csv** data from 3rd survey  
