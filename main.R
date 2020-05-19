@@ -4,10 +4,6 @@
 #             Install & Load libraries               #
 ######################################################
 # Set up CRAN mirror
-r = getOption("repos")
-r["CRAN"] = "http://cran.us.r-project.org"
-options(repos = r)
-
 is_installed <- function(package_name) is.element(package_name, installed.packages()[,1])
 
 # If a package is not installed, install it. Then load the package.
