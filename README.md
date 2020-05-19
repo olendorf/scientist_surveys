@@ -31,6 +31,8 @@ Data from the [3rd scientists survey paper](https://agupubs.onlinelibrary.wiley.
     * **mainPlots.R** generate plots from MFA   
     * **biplotAnalysis.R** generate biplots comparing Qs   
     * **statsSurveyComp.R** MANOVAs and biplots   
+    * **printLoadings.R** export MFA results to spreadsheets
+    * **limitDomainRegion.R** restrict regions (EuroRussia, USACanada, AustraliaNZ) & domains (Natural/Physical Science)
 
 ### **data** folder  
 * **country_codes** folder  
