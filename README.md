@@ -14,11 +14,11 @@ Data from the [3rd scientists survey paper](https://agupubs.onlinelibrary.wiley.
 
 ### Main multiple factor analysis script for all common survey questions combined  
 * **main.R**  
-         * Pulls code from the **scripts** folder  
-              * **load_data.R** Load data from original CSV file  
-                   * **first_scientists_survey.CSV**  
-                   * **second_scientists_survey.CSV**  
-                   * **third_scientists_survey.CSV**  
+  * Pulls code from the **scripts** folder  
+     * **load_data.R** Load data from original CSV file  
+        * **first_scientists_survey.CSV**  
+        * **second_scientists_survey.CSV**  
+        * **third_scientists_survey.CSV**  
          * **country_codes.R** align country codes between surveys    
               * **data/country_codes/regions_master_list.csv**  
          * **domain_recode.R** align domain codes between surveys    
@@ -27,18 +27,22 @@ Data from the [3rd scientists survey paper](https://agupubs.onlinelibrary.wiley.
          * **cleanSurveys.R** align questions and answer types between surveys   
          * **combineSurveys.R** combine dataframes for MFA   
          * **multiFactorAnalysis.R** perform MFA and extract data  
-    * ARCHIVE   
-         * **mainPlots.R** generate plots from MFA   
-         * **biplotAnalysis.R** generate biplots comparing Qs   
-         * **statsSurveyComp.R** MANOVAs and biplots   
+  * ARCHIVE (scripts/archive)  
+    * **mainPlots.R** generate plots from MFA   
+    * **biplotAnalysis.R** generate biplots comparing Qs   
+    * **statsSurveyComp.R** MANOVAs and biplots   
 
 ### **data** folder  
 * **country_codes** folder  
-         * **regions_master_list.csv** list of regions included in cleanSurveys  
+    * **regions_master_list.csv** list of regions included in cleanSurveys  
 * **domains** folder   
-         * **domain_recodes.csv** recoding of domains for combined survey  
-         * **recoded_domain_mapping.csv** aggregate domains for combined survey analysis    
-         * **survey_one_domain_code.csv** recode domains in 1st survey  
+    * **domain_recodes.csv** recoding of domains for combined survey  
+    * **recoded_domain_mapping.csv** aggregate domains for combined survey analysis    
+    * **survey_one_domain_code.csv** recode domains in 1st survey  
+* questions (questions for all 3 surveys)
+    * **first_scientists_survey_questions.csv**
+    * **second_scientists_survey_questions.csv**
+    * **third_scientists_survey_questions.csv**
 * **first_scientists_survey.csv** data from 1st survey  
 * **second_scientists_survey.csv** data from 2nd survey  
 * **third_scientists_survey.csv** data from 3rd survey  
