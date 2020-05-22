@@ -23,7 +23,7 @@ Data from the [3rd scientists survey paper](https://agupubs.onlinelibrary.wiley.
               * **data/country_codes/regions_master_list.csv**  
          * **domain_recode.R** align domain codes between surveys    
               * **data/domains/survey_one_domain_code.csv**  
-              * **"data/domains/recoded_domain_mapping.csv**  
+              * **data/domains/recoded_domain_mapping.csv**  
          * **cleanSurveys.R** align questions and answer types between surveys   
          * **combineSurveys.R** combine dataframes for MFA   
          * **multiFactorAnalysis.R** perform MFA and extract data  
