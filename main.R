@@ -3,10 +3,28 @@
 # Rotation in Factominer :: http://factominer.free.fr/question/FAQ.html 
 # Install libraries if need be
 # install.packages(c("pacman"))
-
+# 
+# is_installed <- function(package_name) is.element(package_name, installed.packages()[,1])
+# 
+# # If a package is not installed, install it. Then load the package.
+# install_and_load <- function(package_name) {
+#   if(!is_installed(package_name)) {
+#     install.packages(package_name)
+#   }
+#   library(package_name, character.only = TRUE)
+# }
+# 
+# install_packages <- function(packages) {
+#   for(package in packages) {
+#     install_and_load(package)
+#   }
+# }
+# 
+# install_packages(c("gdata", "dplyr", "plyr", "ggplot2","readxl", "FactoMineR", "factoextra", "ca", "gplots", 
+#                  "ggpubr", "gridExtra", "patchwork", "formattable", "data.table,psych", "RColorBrewer"))
 library(pacman)
-pacman::p_load(gdata, dplyr, plyr, ggplot2, readxl, FactoMineR, factoextra, ca, gplots, 
-               ggpubr, tidyverse, gridExtra, patchwork, formattable,data.table,psych)
+pacman::p_load(gdata, dplyr, plyr, ggplot2, ggthemes, readxl, FactoMineR, factoextra, ca, gplots,
+                ggpubr, tidyverse, gridExtra, patchwork, formattable,data.table,psych)
 
 # Load the data into memory, do a few minor 
 # mods to the data
@@ -62,7 +80,7 @@ source("scripts/biplotAnalysis.R")
 # CSV files of MANOVA tables, 
 #         ./data/MANOVA_dim1.csv 
 #         ./data/MANOVA_dim2.csv
-source("scripts/statsSurveyComp.R")
+# source("scripts/statsSurveyComp.R")
 
 # Print loadings to /data/all_loadings.csv
 # Print list  of most correlated variables to
