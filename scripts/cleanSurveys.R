@@ -199,7 +199,7 @@ survey_two_select$na_count <- apply(survey_two_select, 1, function(x) sum(is.na(
 # Survey 3
 survey_three_select$na_count <- apply(survey_three_select, 1, function(x) sum(is.na(x)))
 
-# Generater historgrams with number of NA values for each survey
+# Generater histograms with number of NA values for each survey
 s1_histo_before <- ggplot(survey_one_select, aes(x=na_count))+
   geom_histogram(color="darkblue", fill="lightblue" ,binwidth=1)
 s2_histo_before <- ggplot(survey_two_select, aes(na_count))+

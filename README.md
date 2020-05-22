@@ -12,26 +12,39 @@ Data from the [3rd scientists survey paper](https://agupubs.onlinelibrary.wiley.
 
   * Survey data used in this paper is available on [Dryad](https://datadryad.org/stash/dataset/doi:10.5061/dryad.sv6t740)
 
-### Main multiple factor analysis script for all common survey questions combined
-  * **main.R**
-        * Pulls code from the **scripts** folder  
-            * **load_data.R** Load data from original CSV file  
-                * **first_scientists_survey.CSV**  
-                * **second_scientists_survey.CSV**
-                * **third_scientists_survey.CSV**  
-            * **country_codes.R** align country codes between surveys    
-            * **domain_recode.R** align domain codes between surveys    
-            * **cleanSurveys.R** align questions and answer types between surveys   
-            * **combineSurveys.R** combine dataframes for MFA   
-            * **multiFactorAnalysis.R** perform MFA and extract data   
-            * **mainPlots.R** generate plots from MFA   
-            * **biplotAnalysis.R** generate biplots comparing Qs   
-            * **statsSurveyComp.R** MANOVAs and biplots   
+### Main multiple factor analysis script for all common survey questions combined  
+* **main.R**  
+  * Pulls code from the **scripts** folder  
+     * **load_data.R** Load data from original CSV file  
+        * **first_scientists_survey.CSV**  
+        * **second_scientists_survey.CSV**  
+        * **third_scientists_survey.CSV**  
+         * **country_codes.R** align country codes between surveys    
+              * **data/country_codes/regions_master_list.csv**  
+         * **domain_recode.R** align domain codes between surveys    
+              * **data/domains/survey_one_domain_code.csv**  
+              * **"data/domains/recoded_domain_mapping.csv**  
+         * **cleanSurveys.R** align questions and answer types between surveys   
+         * **combineSurveys.R** combine dataframes for MFA   
+         * **multiFactorAnalysis.R** perform MFA and extract data  
+  * ARCHIVE (scripts/archive)  
+    * **mainPlots.R** generate plots from MFA   
+    * **biplotAnalysis.R** generate biplots comparing Qs   
+    * **statsSurveyComp.R** MANOVAs and biplots   
+    * **printLoadings.R** export MFA results to spreadsheets
+    * **limitDomainRegion.R** restrict regions (EuroRussia, USACanada, AustraliaNZ) & domains (Natural/Physical Science)
 
-### CSV results files are in the **data** folder
-  * **surveys_combined_demos.csv** is the MAIN RESULTS SPREADSHEET    
-  * **individuals.csv** contains the points from the fviz_mfa_var() biplot.
-  * **correlated_dim1_quali_vars.csv & correlated_dim1_vars_category.csv** most correlated variables information for dimension 1
-  * **correlated_dim2_quali_vars.csv & correlated_dim2_vars_category.csv** most correlated variable information for dimension 2
-  * **MANOVA_dim1.csv** DIM1 MANOVA results between surveys and significant MFA questions
-  * **MANOVA_dim2.csv** DIM2 MANOVA results between surveys and significant MFA questions
+### **data** folder  
+* **country_codes** folder  
+    * **regions_master_list.csv** list of regions included in cleanSurveys  
+* **domains** folder   
+    * **domain_recodes.csv** recoding of domains for combined survey  
+    * **recoded_domain_mapping.csv** aggregate domains for combined survey analysis    
+    * **survey_one_domain_code.csv** recode domains in 1st survey  
+* questions (questions for all 3 surveys)
+    * **first_scientists_survey_questions.csv**
+    * **second_scientists_survey_questions.csv**
+    * **third_scientists_survey_questions.csv**
+* **first_scientists_survey.csv** data from 1st survey  
+* **second_scientists_survey.csv** data from 2nd survey  
+* **third_scientists_survey.csv** data from 3rd survey  

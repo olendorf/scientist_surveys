@@ -12,7 +12,6 @@ colnames(survey_one)[colnames(survey_one)=="Q20"] <- "country_code"
 colnames(survey_two)[colnames(survey_two)=="Q6"] <- "country_code"
 colnames(survey_three)[colnames(survey_three)=="Q5"] <- "country_code"
 
-
 survey_one$survey <- 1
 survey_two$survey <- 2
 survey_three$survey <- 3
