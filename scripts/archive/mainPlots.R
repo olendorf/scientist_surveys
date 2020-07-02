@@ -12,7 +12,7 @@ var.mfa <- get_mfa_var(surveys_combined.mfa, "group")
 ### Screeplot
 eig.val <- get_eigenvalue(surveys_combined.mfa)
 if_random <- 100/(ncol(surveys_combined)-1)
-scree_plot <- fviz_screeplot(surveys_combined.mfa, addlabels = TRUE, ylim = c(0, 5)) + 
+scree_plot <- fviz_screeplot(surveys_combined.mfa, addlabels = TRUE, ylim = c(0, 10)) + 
   geom_hline(yintercept=if_random, linetype=2, color="red")
 scree_plot
 

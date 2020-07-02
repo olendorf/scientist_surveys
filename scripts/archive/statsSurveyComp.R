@@ -144,7 +144,7 @@ ggexport(plotlist = list(dims_region, dims_work_sector, dims_domain,
                          dims_funding_agency), filename = "./plots/dims_point.pdf")
 
 ######################################################
-#   Boxplots of demographic data for DIM1 and DIM2   #
+#    Boxplots of demographic data for DIM and DIM2   #
 ######################################################
 theme_boxplots <-   theme(plot.title = element_text(face="bold",size=24),
                           legend.position = "none",

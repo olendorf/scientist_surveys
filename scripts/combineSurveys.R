@@ -52,9 +52,3 @@ surveys_combined_demos$domain[surveys_combined_demos$domain == 'Law'] <- 'Other'
 surveys_combined.backup <- surveys_combined
 surveys_combined_demos.backup <- surveys_combined_demos
 
-# Number of individuals and questions
-#nrow(subset(surveys_combined_demos,survey_label=="S1"))
-#nrow(subset(surveys_combined_demos,survey_label=="S2"))
-#nrow(subset(surveys_combined_demos,survey_label=="S3"))
-#ncol(surveys_combined)
-
