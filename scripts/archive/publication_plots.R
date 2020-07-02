@@ -101,7 +101,7 @@ region_plot_dim_2 <- ggplot(
                                     width = 0.2,
                                     position = dodge
                                   ) + 
-                     labs(x = "Survey", y = "Satisfaction with Resource", color="Region") +
+                     labs(x = "Survey", y = "Satisfaction with Resources", color="Region") +
                      ggtitle("Satisfaction with Resources") + 
                      scale_color_brewer(palette = "Dark2") + 
                      theme_minimal() + right_plot_theme 
@@ -262,7 +262,7 @@ work_sector_plot_dim_2 <- ggplot(
                                           size = 1, 
                                           width = 0.2, 
                                           position = dodge) + 
-                          labs(x = "Survey", y = "Satisfaction with Resource", color="Work Sector") +
+                          labs(x = "Survey", y = "Satisfaction with Resources", color="Work Sector") +
                           ggtitle("Satisfaction with Resources") + 
                           scale_color_brewer(palette = "Dark2") + 
                           theme_minimal() + right_plot_theme + theme(legend.position = c(.76, .80))
@@ -348,7 +348,7 @@ funding_agency_plot_dim_2 <- ggplot(
                                               width = 0.2,
                                               position = dodge
                                           ) +  
-                             labs(x = "Survey", y = "Satisfaction with Resource", color="Funding Agency") +
+                             labs(x = "Survey", y = "Satisfaction with Resources", color="Funding Agency") +
                              ggtitle("Satisfaction with Resources") + 
                              scale_color_brewer(palette = "Dark2")  + 
                              theme_minimal() + right_plot_theme + theme(legend.position = c(.76, .80))
