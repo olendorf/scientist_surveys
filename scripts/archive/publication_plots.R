@@ -240,7 +240,7 @@ work_sector_plot_dim_1 <- ggplot(
                           labs(x = "Work Sector", y = "Willingness to Share", color="Work Sector") +
                           ggtitle("Willingness to Share") + 
                           scale_color_brewer(palette = "Dark2") + 
-                          theme_minimal() + right_plot_theme
+                          theme_minimal() + left_plot_theme
 #work_sector_plot_dim_1
 
 work_sector_plot_dim_2 <- ggplot(
@@ -265,7 +265,7 @@ work_sector_plot_dim_2 <- ggplot(
                           labs(x = "Survey", y = "Satisfaction with Resource", color="Work Sector") +
                           ggtitle("Satisfaction with Resources") + 
                           scale_color_brewer(palette = "Dark2") + 
-                          theme_minimal() + left_plot_theme
+                          theme_minimal() + right_plot_theme + theme(legend.position = c(.76, .80))
 #work_sector_plot_dim_2
 
 work_sector_grid_plot <- ( work_sector_plot_dim_1 | work_sector_plot_dim_2 )
@@ -296,9 +296,9 @@ funding_agency_summary$se_dim_2 <- sqrt(funding_agency_summary$var_dim_2/funding
 names(funding_agency_summary)[names(funding_agency_summary) == "funding_agency_recoded"] <- "funding_agency"
 funding_agency_summary$funding_agency <- factor(funding_agency_summary$funding_agency, 
                                          levels = c("Academic institution","Corporation",                    
-                                                    "Federal/national government",                          
+                                                    "Federal/national gov.",                          
                                                     "Private foundation","Self supported",                 
-                                                    "State/regional/local government","Other"))
+                                                    "State/regional/local gov.","Other"))
 
 ##################################################
 #          Create FUNDING AGENCY plots           #
@@ -325,7 +325,7 @@ funding_agency_plot_dim_1 <- ggplot(
                              labs(x = "Funding Agency", y = "Willingness to Share", color="Funding Agency") +
                              ggtitle("Willingness to Share") + 
                              scale_color_brewer(palette = "Dark2")  + 
-                             theme_minimal() + right_plot_theme + theme(legend.position = c(.85, .15))
+                             theme_minimal() + left_plot_theme
 # funding_agency_plot_dim_1
 
 funding_agency_plot_dim_2 <- ggplot(
@@ -351,7 +351,7 @@ funding_agency_plot_dim_2 <- ggplot(
                              labs(x = "Survey", y = "Satisfaction with Resource", color="Funding Agency") +
                              ggtitle("Satisfaction with Resources") + 
                              scale_color_brewer(palette = "Dark2")  + 
-                             theme_minimal() + left_plot_theme
+                             theme_minimal() + right_plot_theme + theme(legend.position = c(.76, .80))
 #funding_agency_plot_dim_2
 
 funding_agency_grid_plot <- ( funding_agency_plot_dim_1 | funding_agency_plot_dim_2 )
