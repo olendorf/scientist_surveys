@@ -89,6 +89,8 @@ survey_one_select[1] <- revalue(as.character(survey_one_select[[1]]),
                                   "commercial"="3", "non-profit"="4",
                                   "other"="5"))
 # 15_11_11 :: Primary funding agency
+survey_one_select[3] <- revalue(as.character(survey_one_select[[3]]),
+                                c("Academic institution"="Other"))
 survey_two_select[3] <- revalue(as.character(survey_two_select[[3]]),c("7"="6"))
 survey_two_select[3] <- revalue(as.character(survey_two_select[[3]]),
                                 c("1"="Federal/national government", 
