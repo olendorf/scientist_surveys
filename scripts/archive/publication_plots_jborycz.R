@@ -366,7 +366,7 @@ funding_agency_plot_dim_2 <- ggplot(
                              labs(x = "Survey", y = "Satisfaction with Resources", color="Funding Agency") +
                              ggtitle("") + 
                              scale_color_brewer(palette = "Dark2")  + 
-                             theme_minimal() + right_plot_theme + theme(legend.position = c(.76, .80))
+                             theme_minimal() + right_plot_theme #+ theme(legend.position = c(.76, .80))
 #funding_agency_plot_dim_2
 
 funding_agency_grid_plot <- ( funding_agency_plot_dim_1 | funding_agency_plot_dim_2 ) + 
