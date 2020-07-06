@@ -12,6 +12,8 @@ surveys_combined_demos$survey_label <- ordered(surveys_combined_demos$survey_lab
 surveys_combined_demos$dim_1 <- surveys_combined_demos$dim_1 * -1
 no_region_na <- surveys_combined_demos[which(!is.na(surveys_combined_demos$region)), ]
 
+library(grid)
+
 
 region_summary <- no_region_na %>% 
                     dplyr::group_by(region, survey_label) %>% 
@@ -40,11 +42,12 @@ region_plot_dim_1 <- ggplot(
                                      width = 0.2, 
                                      position = dodge
                                    ) + 
-                     labs(x = "Survey", y = "Willingness to Share") +
+                     labs(x = element_blank(), y = "Willingness to Share") +
+                     ylim(-2, 2) + 
                      ggtitle("Willingness to Share") + 
                      scale_color_brewer(palette = "Dark2") + 
                      theme_minimal() + 
-                     theme(legend.position = "none", plot.title = element_text(hjust = 0.5))
+                     theme(legend.position = "none", plot.title = element_text(hjust = 0.5), aspect.ratio = 3/4)
 region_plot_dim_1
 
 region_plot_dim_2 <- ggplot(
@@ -67,22 +70,32 @@ region_plot_dim_2 <- ggplot(
                                     width = 0.2,
                                     position = dodge
                                   ) + 
-                     labs(x = "Survey", y = "Satisfaction with Resource", color="Region") +
+                     labs(x = element_blank(), y = "Satisfaction with Resources", color="Region") +
                      ggtitle("Satisfaction with Resources") + 
                      scale_color_brewer(palette = "Dark2") + 
                      theme_minimal() + 
-                     theme(legend.position = c(.85, .20), plot.title = element_text(hjust = 0.5))  
+                     theme(legend.position = c(.85, .20), plot.title = element_text(hjust = 0.5), aspect.ratio = 3/4)  
 region_plot_dim_2
+
+region_grob_dim_1 <- ggplotGrob(region_plot_dim_1)
+region_grob_dim_2 <- ggplotGrob(region_plot_dim_2)
+
 region_grid_plot <- grid.arrange(
-                                    region_plot_dim_1, 
-                                    region_plot_dim_2, 
+                                    arrangeGrob(region_grob_dim_1), 
+                                    arrangeGrob(region_grob_dim_2), 
                                     nrow = 1, 
                                     top=textGrob(
-                                                  "By Region and Survey\n",
-                                                  gp=gpar(fontsize=20,font=3)
-                                                )
+                                                  "Changes In Region By Survey\n",
+                                                  gp=gpar(fontsize=20,font=3),
+                                                  vjust = 2.0
+                                                ),
+                                    bottom = textGrob(
+                                                        "Survey\n", 
+                                                        gp = gpar(fontsize = 12),
+                                                        vjust = -1.8
+                                                      )
                                 )
-
+ggsave("plots/region_grid_plot.png", region_grid_plot)
 
 #######################################################################################
 #######################################################################################
@@ -122,10 +135,15 @@ domain_plot_dim_1 <- ggplot(
                                       position = dodge
                                     ) + 
                      labs(x = "Domain", y = "Willingness to Share", color="Domain") +
+                     ylim(-2, 2) +
                      ggtitle("Willingness to Share") + 
                      scale_color_brewer(palette = "Dark2") +  
                      theme_minimal() + 
-                     theme(legend.position = "none", plot.title = element_text(hjust = 0.5))
+                     theme(
+                           legend.position = "none", 
+                           plot.title = element_text(hjust = 0.5), 
+                           aspect.ratio = 3/4
+                          )
 
 domain_plot_dim_1
 
@@ -153,19 +171,34 @@ domain_plot_dim_2 <- ggplot(
                      ggtitle("Satisfaction Resources") + 
                      scale_color_brewer(palette = "Dark2") +
                      theme_minimal() + 
-                     theme(legend.position = c(.80, .18), plot.title = element_text(hjust = 0.5)) 
+                     theme(
+                            legend.position = c(.80, .18), 
+                            plot.title = element_text(hjust = 0.5),
+                            aspect.ratio = 3/4
+                          ) 
 
 domain_plot_dim_2
 
+
+domain_grob_dim_1 <- ggplotGrob(domain_plot_dim_1)
+domain_grob_dim_2 <- ggplotGrob(domain_plot_dim_2)
+
 domain_grid_plot <- grid.arrange(
-                                    domain_plot_dim_1, 
-                                    domain_plot_dim_2, 
-                                    nrow = 1, 
-                                    top=textGrob(
-                                      "By Domain and Survey\n",
-                                      gp=gpar(fontsize=20,font=3)
-                                    )
+                                  arrangeGrob(domain_grob_dim_1), 
+                                  arrangeGrob(domain_grob_dim_2), 
+                                  nrow = 1, 
+                                  top=textGrob(
+                                    "Changes In Domain By Survey\n",
+                                    gp=gpar(fontsize=20,font=3),
+                                    vjust = 2.0
+                                  ),
+                                  bottom = textGrob(
+                                    "Survey\n", 
+                                    gp = gpar(fontsize = 12),
+                                    vjust = -1.8
                                   )
+                                )
+ggsave("plots/domain_grid_plot.png", domain_grid_plot)
 
 
 #######################################################################################
@@ -205,6 +238,7 @@ work_sector_plot_dim_1 <- ggplot(
                                                 width = 0.2,
                                                 position = dodge) + 
                           labs(x = "Work Sector", y = "Willingness to Share", color="Work Sector") +
+                          ylim(-2, 2) +
                           ggtitle("Willingness to Share") + 
                           scale_color_brewer(palette = "Dark2") + 
                           theme_minimal() +
@@ -239,18 +273,26 @@ work_sector_plot_dim_2 <- ggplot(
                           theme(legend.position = c(.80, .80), plot.title = element_text(hjust = 0.5)) 
 work_sector_plot_dim_2
 
+
+work_sector_grob_dim_1 <- ggplotGrob(work_sector_plot_dim_1)
+work_sector_grob_dim_2 <- ggplotGrob(work_sector_plot_dim_2)
+
 work_sector_grid_plot <- grid.arrange(
-                                        work_sector_plot_dim_1, 
-                                        work_sector_plot_dim_2, 
-                                        nrow = 1, 
-                                        top=textGrob(
-                                          "By Work Sector and Survey\n",
-                                          gp=gpar(fontsize=20,font=3)
-                                        )
-                                      )
-
-
-
+  arrangeGrob(work_sector_grob_dim_1), 
+  arrangeGrob(work_sector_grob_dim_2), 
+  nrow = 1, 
+  top=textGrob(
+    "Changes In work_sector By Survey\n",
+    gp=gpar(fontsize=20,font=3),
+    vjust = 2.0
+  ),
+  bottom = textGrob(
+    "Survey\n", 
+    gp = gpar(fontsize = 12),
+    vjust = -1.8
+  )
+)
+ggsave("plots/work_sector_grid_plot.png", work_sector_grid_plot)
 #######################################################################################
 #######################################################################################
 
@@ -289,6 +331,7 @@ funding_agency_plot_dim_1 <- ggplot(
                                               width = 0.2,
                                               position = dodge) + 
                              labs(x = "Funding Agency", y = "Willingness to Share", color="Funding Agency") +
+                             ylim(-2, 2) + 
                              ggtitle("Willingness to Share") + 
                              scale_color_brewer(palette = "Dark2")  + 
                              theme_minimal() + 
@@ -324,12 +367,24 @@ funding_agency_plot_dim_2 <- ggplot(
                              theme(legend.position = c(0.80, 0.75), plot.title = element_text(hjust = 0.5))
 funding_agency_plot_dim_2
 
+
+
+funding_agency_grob_dim_1 <- ggplotGrob(funding_agency_plot_dim_1)
+funding_agency_grob_dim_2 <- ggplotGrob(funding_agency_plot_dim_2)
+
 funding_agency_grid_plot <- grid.arrange(
-                                            funding_agency_plot_dim_1, 
-                                            funding_agency_plot_dim_2, 
-                                            nrow = 1, 
-                                            top=textGrob(
-                                              "By Funding Agency and Survey\n",
-                                              gp=gpar(fontsize=20,font=3)
-                                            )
-                                          )
+                                  arrangeGrob(funding_agency_grob_dim_1), 
+                                  arrangeGrob(funding_agency_grob_dim_2), 
+                                  nrow = 1, 
+                                  top=textGrob(
+                                                "Changes In funding_agency By Survey\n",
+                                                gp=gpar(fontsize=20,font=3),
+                                                vjust = 2.0
+                                  ),
+                                  bottom = textGrob(
+                                                    "Survey\n", 
+                                                    gp = gpar(fontsize = 12),
+                                                    vjust = -1.8
+                                  )
+                                )
+ggsave("plots/funding_agency_grid_plot.png", funding_agency_grid_plot)
