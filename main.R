@@ -90,7 +90,8 @@ source("scripts/multiFactorAnalysis.R")
 # source("scripts/archive/statsSurveyComp.R")
  
 # PLOTS: Create dimension 1 and 2 average plots used in publication
-source("scripts/archive/publication_plots.R")
+ source("scripts/archive/publication_plots_jborycz.R")
+# source("scripts/archive/publication_plots_rkolendo.R")
 
 # Print loadings to /data/all_loadings.csv
 # Print list  of most correlated variables to
