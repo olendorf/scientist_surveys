@@ -3,30 +3,25 @@
 
 # Rotation in Factominer :: http://factominer.free.fr/question/FAQ.html 
 # Install libraries if need be
-# install.packages(c("pacman"))
 # 
-# is_installed <- function(package_name) is.element(package_name, installed.packages()[,1])
-# 
-# # If a package is not installed, install it. Then load the package.
-# install_and_load <- function(package_name) {
-#   if(!is_installed(package_name)) {
-#     install.packages(package_name)
-#   }
-#   library(package_name, character.only = TRUE)
-# }
-# 
-# install_packages <- function(packages) {
-#   for(package in packages) {
-#     install_and_load(package)
-#   }
-# }
-# 
-# install_packages(c("gdata", "dplyr", "plyr", "ggplot2","readxl", "FactoMineR", "factoextra", "ca", "gplots", 
-#                  "ggpubr", "grid", "gridExtra", "patchwork", "formattable", "data.table,psych", "RColorBrewer"))
-library(pacman)
-pacman::p_load(gdata, dplyr, plyr, ggplot2, ggthemes, readxl, FactoMineR, factoextra, ca, gplots,
-                ggpubr, tidyverse, gridExtra, patchwork, formattable,data.table,psych)
+is_installed <- function(package_name) is.element(package_name, installed.packages()[,1])
 
+# If a package is not installed, install it. Then load the package.
+install_and_load <- function(package_name) {
+  if(!is_installed(package_name)) {
+    install.packages(package_name)
+  }
+  library(package_name, character.only = TRUE)
+}
+
+install_packages <- function(packages) {
+  for(package in packages) {
+    install_and_load(package)
+  }
+}
+ 
+ install_packages(c("gdata", "dplyr", "plyr", "ggplot2","readxl", "FactoMineR", "factoextra", "ca", "gplots", 
+                  "ggpubr", "grid", "gridExtra", "patchwork", "formattable", "data.table","psych", "RColorBrewer"))
 
 ######################################################
 #                     Main scripts                   #
@@ -66,16 +61,10 @@ source("scripts/cleanSurveys.R")
 #       3) Create dataframe that includes demographic data (surveys_combined_demos)
 #       4) Combine dataframe for factor analysis
 #       5) Change work sector from numbers to proper labels
-#       6) Backup surveys_combined & surveys_combined_demos as .backup
-#       7) Move Law domain into Other
+#       6) Move Law domain into Other
+#       7) Correct funding agency
+#       8) Backup surveys_combined & surveys_combined_demos as .backup
 source("scripts/combineSurveys.R")
-
-surveys_combined_demos$funding_agency_recoded <- surveys_combined_demos$funding_agency
-surveys_combined_demos[which(surveys_combined_demos$funding_agency == "Combined funding sources"), ]$funding_agency_recoded <- "Other"
-surveys_combined_demos[which(surveys_combined_demos$funding_agency == "International institution"), ]$funding_agency_recoded <- "Other"
-surveys_combined_demos[which(surveys_combined_demos$funding_agency == "Local government"), ]$funding_agency_recoded <- "State/regional/local government"
-surveys_combined_demos[which(surveys_combined_demos$funding_agency == "State/regional government"), ]$funding_agency_recoded <- "State/regional/local government"
-
 
 # Perform Multi-Factor Analysis
 #       1) Perform MFA
@@ -83,5 +72,38 @@ surveys_combined_demos[which(surveys_combined_demos$funding_agency == "State/reg
 #       3) OPTIONAL: Export main dataframe (data/surveys_combined_demos.csv)
 #       4) OPTIONAL: Export scree plot and biplot (plots/scree_biplot.pdf)
 source("scripts/multiFactorAnalysis.R")
+ 
+##################################################
+#                    ARCHIVE                     #
+##################################################
+# PLOTS: Generate scree, contribution, biplots & export as mfa_surveys_combined_plots.pdf
+# source("scripts/archive/mainPlots.R")
+ 
+# PLOTS: Generate biplots of primary influential DIM1 & DIM2 questions
+#         Print biplots as mfa_dim1_interpretation.pdf & mfa_dim2_interpretation.pdf
+# source("scripts/archive/biplotAnalysis.R")
+ 
+# PLOTS: MANOVA and boxplots for influential DIM1 & DIM2 questions
+# CSV files of MANOVA tables, 
+#         ./data/MANOVA_dim1.csv 
+#         ./data/MANOVA_dim2.csv
+# source("scripts/archive/statsSurveyComp.R")
+ 
+# PLOTS: Create dimension 1 and 2 average plots used in publication
+source("scripts/archive/publication_plots.R")
+
+# Print loadings to /data/all_loadings.csv
+# Print list  of most correlated variables to
+#         ./data/correlated_dim1_quali_vars.csv
+#         ./data/correlated_dim2_quali_vars.csv
+#         ./data/correlated_dim1_vars_category.csv
+#         ./data/correlated_dim2_vars_category.csv
+# source("scripts/archive/printLoadings.R")
+
+# Limit work sector and domain
+#       1) Limit dataframe limited to:
+#                Regions: EuroRussia, USACanada, AustraliaNZ
+#                Domains: Natural science, Physical science
+# source("scripts/archive/limitDomainRegion.R")
 
 

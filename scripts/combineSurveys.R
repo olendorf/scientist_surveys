@@ -48,7 +48,17 @@ surveys_combined_demos$work_sector[surveys_combined_demos$work_sector == "5"] <-
 # Change Law domain to Other
 surveys_combined_demos$domain[surveys_combined_demos$domain == 'Law'] <- 'Other'
 
+# Correct funding agency
+surveys_combined_demos$funding_agency_recoded <- surveys_combined_demos$funding_agency
+surveys_combined_demos[which(surveys_combined_demos$funding_agency == "Combined funding sources"), ]$funding_agency_recoded <- "Other"
+surveys_combined_demos[which(surveys_combined_demos$funding_agency == "International institution"), ]$funding_agency_recoded <- "Other"
+surveys_combined_demos[which(surveys_combined_demos$funding_agency == "Federal/national government"), ]$funding_agency_recoded <- "Federal/national gov."
+surveys_combined_demos[which(surveys_combined_demos$funding_agency == "Local government"), ]$funding_agency_recoded <- "State/regional/local gov."
+surveys_combined_demos[which(surveys_combined_demos$funding_agency == "State/regional government"), ]$funding_agency_recoded <- "State/regional/local gov."
+
 # Backup surveys_combined
 surveys_combined.backup <- surveys_combined
 surveys_combined_demos.backup <- surveys_combined_demos
+
+
 
