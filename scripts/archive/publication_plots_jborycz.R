@@ -272,7 +272,7 @@ work_sector_plot_dim_2 <- ggplot(
                                           size = 1, 
                                           width = 0.2, 
                                           position = dodge) + 
-                          ylim(-2, 2) +
+                          coord_cartesian(ylim=c(-2, 2)) +
                           labs(x = "Survey", y = "Satisfaction with Resources", color="Work Sector") +
                           ggtitle("") + 
                           scale_color_brewer(palette = "Dark2") + 
