@@ -100,48 +100,48 @@ theme_point <- theme(plot.title = element_text(face="bold",size=24),
                       axis.text.y = element_text(color="black",size=16, angle=0),
                       axis.title.y = element_text(color="black",size=12, angle=90))
 dims_region <- ggplot() +
-  geom_text(survey_dim_means, mapping=aes(x = -dim1_mean, y = dim2_mean, label = survey_label),color = "Black",
+  geom_text(survey_dim_means, mapping=aes(x = dim1_mean, y = dim2_mean, label = survey_label),color = "Black",
             fontface="bold", size=4) +
-  geom_point(region_dim_means,mapping=aes(x = -dim1_mean, y = dim2_mean, color = region)) +
+  geom_point(region_dim_means,mapping=aes(x = dim1_mean, y = dim2_mean, color = region)) +
   geom_vline(xintercept=0, linetype="dashed", color = "black") +
   geom_hline(yintercept=0, linetype="dashed", color = "black") +
-  geom_text_repel(region_dim_means,mapping=aes(x = -dim1_mean, y = dim2_mean, 
+  geom_text_repel(region_dim_means,mapping=aes(x = dim1_mean, y = dim2_mean, 
                         label = paste("(",region,",",survey_label,")"),
                         color = region), size=4) +
   scale_x_continuous() + scale_y_continuous() + theme_classic() +
   labs(title="", x="Willingness to share their data", 
        y="Satisfaction with personal/institutional data sharing practices",fill="Region",caption="") + theme_point
 dims_work_sector <- ggplot() +
-  geom_text(survey_dim_means, mapping=aes(x = -dim1_mean, y = dim2_mean, label = survey_label),color = "Black",
+  geom_text(survey_dim_means, mapping=aes(x = dim1_mean, y = dim2_mean, label = survey_label),color = "Black",
             fontface="bold", size=4) +
-  geom_point(work_sector_dim_means,mapping=aes(x = -dim1_mean, y = dim2_mean, color = work_sector)) +
+  geom_point(work_sector_dim_means,mapping=aes(x = dim1_mean, y = dim2_mean, color = work_sector)) +
   geom_vline(xintercept=0, linetype="dashed", color = "black") +
   geom_hline(yintercept=0, linetype="dashed", color = "black") +
-  geom_text_repel(work_sector_dim_means,mapping=aes(x = -dim1_mean, y = dim2_mean, 
+  geom_text_repel(work_sector_dim_means,mapping=aes(x = dim1_mean, y = dim2_mean, 
                                                label = paste("(",work_sector,",",survey_label,")"),
                                                color = work_sector), size=4) +
   scale_x_continuous() + scale_y_continuous() + theme_classic() +
   labs(title="", x="Willingness to share their data", 
        y="Satisfaction with personal/institutional data sharing practices",fill="Work Sector",caption="") + theme_point
 dims_domain <- ggplot() +
-  geom_text(survey_dim_means, mapping=aes(x = -dim1_mean, y = dim2_mean, label = survey_label),color = "Black",
+  geom_text(survey_dim_means, mapping=aes(x = dim1_mean, y = dim2_mean, label = survey_label),color = "Black",
             fontface="bold", size=4) +
-  geom_point(domain_dim_means,mapping=aes(x = -dim1_mean, y = dim2_mean, color = domain)) +
+  geom_point(domain_dim_means,mapping=aes(x = dim1_mean, y = dim2_mean, color = domain)) +
   geom_vline(xintercept=0, linetype="dashed", color = "black") +
   geom_hline(yintercept=0, linetype="dashed", color = "black") +
-  geom_text_repel(domain_dim_means,mapping=aes(x = -dim1_mean, y = dim2_mean, 
+  geom_text_repel(domain_dim_means,mapping=aes(x = dim1_mean, y = dim2_mean, 
                                                     label = paste("(",domain,",",survey_label,")"),
                                                     color = domain), size=4) +
   scale_x_continuous() + scale_y_continuous() + theme_classic() +
   labs(title="", x="Willingness to share their data", 
        y="Satisfaction with personal/institutional data sharing practices",fill="Domain",caption="") + theme_point
 dims_funding_agency <- ggplot() +
-  geom_text(survey_dim_means, mapping=aes(x = -dim1_mean, y = dim2_mean, label = survey_label),color = "Black",
+  geom_text(survey_dim_means, mapping=aes(x = dim1_mean, y = dim2_mean, label = survey_label),color = "Black",
             fontface="bold", size=4) +
-  geom_point(funding_agency_dim_means,mapping=aes(x = -dim1_mean, y = dim2_mean, color = funding_agency)) +
+  geom_point(funding_agency_dim_means,mapping=aes(x = dim1_mean, y = dim2_mean, color = funding_agency)) +
   geom_vline(xintercept=0, linetype="dashed", color = "black") +
   geom_hline(yintercept=0, linetype="dashed", color = "black") +
-  geom_text_repel(funding_agency_dim_means,mapping=aes(x = -dim1_mean, y = dim2_mean, 
+  geom_text_repel(funding_agency_dim_means,mapping=aes(x = dim1_mean, y = dim2_mean, 
                                                     label = paste("(",funding_agency,",",survey_label,")"),
                                                     color = funding_agency), size=4) +
   scale_x_continuous() + scale_y_continuous() + theme_classic() +

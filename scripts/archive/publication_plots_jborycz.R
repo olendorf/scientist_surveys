@@ -15,11 +15,6 @@ surveys_combined_demos[which(surveys_combined_demos$survey_label == "S3"), ]$sur
 surveys_combined_demos$survey_label <- ordered(surveys_combined_demos$survey_label, levels = c("One", "Two", "Three"))
 
 ##################################################
-#               Reverse dimension 1              #
-##################################################
-surveys_combined_demos$dim_1 <- surveys_combined_demos$dim_1 * -1
-
-##################################################
 #        Create left and right plot themes       #
 ##################################################
 left_plot_theme <- theme(legend.position = "none", 

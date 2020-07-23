@@ -25,9 +25,10 @@ ind_coord <- ind.sum$res
 # write.csv(individuals,file="individuals.csv")
 
 # Includes all demos and regions
-surveys_combined_demos$dim_1 <- ind_coord$Dim.1
+surveys_combined_demos$dim_1 <- -ind_coord$Dim.1
 surveys_combined_demos$dim_2 <- ind_coord$Dim.2
 surveys_combined_demos$contrib <- ind_coord$contrib
+# Reversed dim1 1st value -0.75683...
 # write.csv(surveys_combined_demos, file="./data/surveys_combined_demos.csv")
 
 

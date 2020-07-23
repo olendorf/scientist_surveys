@@ -17,7 +17,7 @@ surveys_combined_demos$survey_label <- ordered(surveys_combined_demos$survey_lab
 ##################################################
 #               Reverse dimension 1              #
 ##################################################
-surveys_combined_demos$dim_1 <- surveys_combined_demos$dim_1 * -1
+# surveys_combined_demos$dim_1 <- surveys_combined_demos$dim_1 * -1
 no_region_na <- surveys_combined_demos[which(!is.na(surveys_combined_demos$region)), ]
 
 <<<<<<< HEAD:scripts/publication_plots.R

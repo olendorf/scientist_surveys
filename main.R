@@ -70,8 +70,9 @@ source("scripts/combineSurveys.R")
 # Perform Multi-Factor Analysis
 #       1) Perform MFA
 #       2) Add computed DIM1, DIM2, and total contributions to surveys_combined_demos
-#       3) OPTIONAL: Export main dataframe (data/surveys_combined_demos.csv)
-#       4) OPTIONAL: Export scree plot and biplot (plots/scree_biplot.pdf)
+#       3) Take DIM1*-1 to align with DIM2
+#       4) OPTIONAL: Export main dataframe (data/surveys_combined_demos.csv)
+#       5) OPTIONAL: Export scree plot and biplot (plots/scree_biplot.pdf)
 source("scripts/multiFactorAnalysis.R")
  
 ##################################################
