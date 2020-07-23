@@ -383,3 +383,113 @@ ggexport(plotlist = list(funding_agency_grid_plot), filename = "plots/funding_ag
 #                                              gp=gpar(fontsize=20,font=3)
 #                                            )
 #                                          )
+
+##################################################
+#            DIM1 vs DIM2 by domain              #
+##################################################
+theme_regression <- theme(plot.title = element_text(face="bold",size=24),
+                     legend.position = "none",
+                     legend.key.size = unit(0.5, "cm"),
+                     legend.title = element_blank(),
+                     legend.text=element_text(size=6),
+                     strip.text = element_text(color="black",size=14, angle=0),
+                     axis.text.x = element_text(color="black",size=14, angle=0),
+                     axis.title.x = element_text(face="bold",color="black",size=16, angle=0),
+                     axis.text.y = element_text(color="black",size=14, angle=0),
+                     axis.title.y = element_text(face="bold",color="black",size=16, angle=90))
+
+my.formula <- y ~ x
+region_dim1_2_reg <- ggplot(na.omit(subset(surveys_combined_demos)),
+                                 mapping=aes(x = dim_1, y = dim_2,color = region)) +
+  geom_point() +
+  facet_wrap(~ region,nrow=2) + 
+  geom_smooth(method="lm",color = "black") + 
+  stat_poly_eq(aes(label = paste("atop(", ..eq.label..,",",..rr.label..,")",sep = "")), 
+               label.x.npc = "left", label.y.npc = 0.99,
+               formula = my.formula, parse = TRUE, size = 6,color="red") + 
+  geom_vline(xintercept=0, linetype="dashed", color = "black") +
+  geom_hline(yintercept=0, linetype="dashed", color = "black") +
+  scale_x_continuous() + scale_y_continuous() + theme_classic() +
+  labs(title="", x="Willingness to share", 
+       y="Satisfaction with resources",fill="Region",caption="") + theme_regression
+
+my.formula <- y ~ x
+domain_dim1_2_reg <- ggplot(na.omit(subset(surveys_combined_demos,domain!="Other")),
+                            mapping=aes(x = dim_1, y = dim_2,color = domain)) +
+  geom_point() +
+  facet_wrap(~ domain,nrow=2) + 
+  geom_smooth(method="lm",color = "black") + 
+  stat_poly_eq(aes(label = paste("atop(", ..eq.label..,",",..rr.label..,")",sep = "")), 
+               label.x.npc = "left", label.y.npc = 0.99,
+               formula = my.formula, parse = TRUE, size = 6,color="red") + 
+  geom_vline(xintercept=0, linetype="dashed", color = "black") +
+  geom_hline(yintercept=0, linetype="dashed", color = "black") +
+  scale_x_continuous() + scale_y_continuous() + theme_classic() +
+  labs(title="", x="Willingness to share", 
+       y="Satisfaction with resources",fill="Domain",caption="") + theme_regression
+
+my.formula <- y ~ x
+work_sector_dim1_2_reg <- ggplot(na.omit(subset(surveys_combined_demos,work_sector!="Other")),
+                            mapping=aes(x = dim_1, y = dim_2,color = work_sector)) +
+  geom_point() +
+  facet_wrap(~ work_sector,nrow=2) + 
+  geom_smooth(method="lm",color = "black") + 
+  stat_poly_eq(aes(label = paste("atop(", ..eq.label..,",",..rr.label..,")",sep = "")), 
+               label.x.npc = "left", label.y.npc = 0.99,
+               formula = my.formula, parse = TRUE, size = 6,color="red") + 
+  geom_vline(xintercept=0, linetype="dashed", color = "black") +
+  geom_hline(yintercept=0, linetype="dashed", color = "black") +
+  scale_x_continuous() + scale_y_continuous() + theme_classic() +
+  labs(title="", x="Willingness to share", 
+       y="Satisfaction with resources",fill="Work sector",caption="") + theme_regression
+
+my.formula <- y ~ x
+funding_agency_dim1_2_reg <- ggplot(na.omit(subset(surveys_combined_demos,funding_agency_recoded!="Other")),
+                                 mapping=aes(x = dim_1, y = dim_2,color = funding_agency_recoded)) +
+  geom_point() +
+  facet_wrap(~ funding_agency_recoded,nrow=2) + 
+  geom_smooth(method="lm",color = "black") + 
+  stat_poly_eq(aes(label = paste("atop(", ..eq.label..,",",..rr.label..,")",sep = "")), 
+               label.x.npc = "left", label.y.npc = 0.99,
+               formula = my.formula, parse = TRUE, size = 6,color="red") + 
+  geom_vline(xintercept=0, linetype="dashed", color = "black") +
+  geom_hline(yintercept=0, linetype="dashed", color = "black") +
+  scale_x_continuous() + scale_y_continuous() + theme_classic() +
+  labs(title="", x="Willingness to share", 
+       y="Satisfaction with resources",fill="Funding agency",caption="") + theme_regression
+
+ggexport(plotlist = list(region_dim1_2_reg,domain_dim1_2_reg,work_sector_dim1_2_reg,funding_agency_dim1_2_reg),
+         filename = "plots/dim1_2_regs.png",height=650,width=900)
+
+##################################################
+#    Group boxplot of domain and work_sector     #
+##################################################
+scd <- subset(subset(surveys_combined_demos,work_sector!="Other" & domain!="Other"),
+              select=c(domain,work_sector,dim_1,dim_2))
+
+theme_boxplot <- theme(plot.title = element_text(face="bold",size=24),
+                       legend.position = "right",
+                       legend.key.size = unit(1, "cm"),
+                       legend.title = element_blank(),
+                       legend.text=element_text(size=14),
+                       strip.text = element_text(color="black",size=14, angle=0),
+                       axis.text.x = element_text(color="black",size=14, angle=0),
+                       axis.title.x = element_text(face="bold",color="black",size=16, angle=0),
+                       axis.text.y = element_text(color="black",size=14, angle=0),
+                       axis.title.y = element_text(face="bold",color="black",size=16, angle=90))
+
+dim1_domain_work_sector_boxplot <- ggplot(na.omit(scd),mapping=aes(x = domain, y = dim_1,fill=work_sector)) +
+  geom_boxplot() +
+  scale_x_discrete() + scale_y_continuous() + theme_classic() +
+  labs(title="", x="Domain", 
+       y="Willingness to share",fill="Work sector",caption="") + theme_boxplot
+
+dim2_domain_work_sector_boxplot <- ggplot(na.omit(scd),mapping=aes(x = domain, y = dim_2,fill=work_sector)) +
+  geom_boxplot() +
+  scale_x_discrete() + scale_y_continuous() + theme_classic() +
+  labs(title="", x="Domain", 
+       y="Satisfaction with resources",fill="Work sector",caption="") + theme_boxplot
+
+ggexport(plotlist = list(dim1_domain_work_sector_boxplot,dim2_domain_work_sector_boxplot),
+         filename = "plots/domain_work_sector_boxplot.png",height=650,width=900)
+

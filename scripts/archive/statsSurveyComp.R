@@ -53,6 +53,15 @@ dim2_funding_agency <- aov(dim_2 ~ funding_agency*survey_label, data = surveys_c
 summary(dim2_funding_agency)
 TukeyHSD(dim2_funding_agency)
 
+# Interactions 
+dim1_d_ws <- aov(dim_1 ~ domain*work_sector, data = surveys_combined_demos)
+summary(dim1_d_ws)
+TukeyHSD(dim1_d_ws)
+
+dim2_d_ws <- aov(dim_2 ~ domain*work_sector, data = surveys_combined_demos)
+summary(dim2_d_ws)
+TukeyHSD(dim2_d_ws)
+
 ######################################################
 #      Summary dataframes for geom_point plots       #
 ######################################################
