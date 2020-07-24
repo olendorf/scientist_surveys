@@ -402,6 +402,10 @@ region_dim1_2_reg <- ggplot(na.omit(subset(surveys_combined_demos)),
   stat_poly_eq(aes(label = paste("atop(", ..eq.label..,",",..rr.label..,")",sep = "")), 
                label.x.npc = "left", label.y.npc = 0.99,
                formula = my.formula, parse = TRUE, size = 6,color="red") + 
+  stat_fit_glance(method.args = list(formula = my.formula),
+                  geom = 'text', aes(label = paste("P-value = ",signif(..p.value.., digits = 3), 
+                                                   sep = "")),label.x = -1.9,
+                  label.y = 9, color="red",size = 6) + 
   geom_vline(xintercept=0, linetype="dashed", color = "black") +
   geom_hline(yintercept=0, linetype="dashed", color = "black") +
   scale_x_continuous() + scale_y_continuous() + theme_classic() +
@@ -417,6 +421,10 @@ domain_dim1_2_reg <- ggplot(na.omit(subset(surveys_combined_demos,domain!="Other
   stat_poly_eq(aes(label = paste("atop(", ..eq.label..,",",..rr.label..,")",sep = "")), 
                label.x.npc = "left", label.y.npc = 0.99,
                formula = my.formula, parse = TRUE, size = 6,color="red") + 
+  stat_fit_glance(method.args = list(formula = my.formula),
+                  geom = 'text', aes(label = paste("P-value = ",signif(..p.value.., digits = 3), 
+                                                   sep = "")),label.x = -1.9,
+                  label.y = 9, color="red",size = 6) + 
   geom_vline(xintercept=0, linetype="dashed", color = "black") +
   geom_hline(yintercept=0, linetype="dashed", color = "black") +
   scale_x_continuous() + scale_y_continuous() + theme_classic() +
@@ -432,6 +440,10 @@ work_sector_dim1_2_reg <- ggplot(na.omit(subset(surveys_combined_demos,work_sect
   stat_poly_eq(aes(label = paste("atop(", ..eq.label..,",",..rr.label..,")",sep = "")), 
                label.x.npc = "left", label.y.npc = 0.99,
                formula = my.formula, parse = TRUE, size = 6,color="red") + 
+  stat_fit_glance(method.args = list(formula = my.formula),
+                  geom = 'text', aes(label = paste("P-value = ",signif(..p.value.., digits = 3), 
+                                                   sep = "")),label.x = -1.9,
+                  label.y = 9, color="red",size = 6) + 
   geom_vline(xintercept=0, linetype="dashed", color = "black") +
   geom_hline(yintercept=0, linetype="dashed", color = "black") +
   scale_x_continuous() + scale_y_continuous() + theme_classic() +
@@ -447,14 +459,120 @@ funding_agency_dim1_2_reg <- ggplot(na.omit(subset(surveys_combined_demos,fundin
   stat_poly_eq(aes(label = paste("atop(", ..eq.label..,",",..rr.label..,")",sep = "")), 
                label.x.npc = "left", label.y.npc = 0.99,
                formula = my.formula, parse = TRUE, size = 6,color="red") + 
+  stat_fit_glance(method.args = list(formula = my.formula),
+                  geom = 'text', aes(label = paste("P-value = ",signif(..p.value.., digits = 3), 
+                                                   sep = "")),label.x = -1.9,
+                  label.y = 9, color="red",size = 6) + 
   geom_vline(xintercept=0, linetype="dashed", color = "black") +
   geom_hline(yintercept=0, linetype="dashed", color = "black") +
   scale_x_continuous() + scale_y_continuous() + theme_classic() +
   labs(title="", x="Willingness to share", 
        y="Satisfaction with resources",fill="Funding agency",caption="") + theme_regression
 
-ggexport(plotlist = list(region_dim1_2_reg,domain_dim1_2_reg,work_sector_dim1_2_reg,funding_agency_dim1_2_reg),
+ggexport(plotlist = list(region_dim1_2_reg,domain_dim1_2_reg,
+                         work_sector_dim1_2_reg,funding_agency_dim1_2_reg),
          filename = "plots/dim1_2_regs.png",height=650,width=900)
+
+##################################################
+#            Demographics by survey              #
+##################################################
+my.formula <- y ~ x
+USACanada_dim1_2_survey <- ggplot(na.omit(subset(surveys_combined_demos,region=="USACanada")),
+                                  mapping=aes(x = dim_1, y = dim_2,color = survey_label)) +
+  geom_point() +
+  facet_wrap(~ survey_label,nrow=1) + 
+  geom_smooth(method="lm",color = "black") + 
+  stat_poly_eq(aes(label = paste("atop(", ..eq.label..,",",..rr.label..,")",sep = "")), 
+               label.x.npc = "left", label.y.npc = 0.99,
+               formula = my.formula, parse = TRUE, size = 6,color="red") + 
+  stat_fit_glance(method.args = list(formula = my.formula),
+                  geom = 'text', aes(label = paste("P-value = ",signif(..p.value.., digits = 3), 
+                                                   sep = "")),label.x = -1.9,
+                  label.y = 6, color="red",size = 6) + 
+  geom_vline(xintercept=0, linetype="dashed", color = "black") +
+  geom_hline(yintercept=0, linetype="dashed", color = "black") +
+  scale_x_continuous() + scale_y_continuous() + theme_classic() +
+  labs(title="Region = USACanada", x="Willingness to share", 
+       y="Satisfaction with resources",fill="Region",caption="") + theme_regression
+
+my.formula <- y ~ x
+Academic_dim1_2_survey <- ggplot(na.omit(subset(surveys_combined_demos,work_sector=="Academic")),
+                                  mapping=aes(x = dim_1, y = dim_2,color = survey_label)) +
+  geom_point() +
+  facet_wrap(~ survey_label,nrow=1) + 
+  geom_smooth(method="lm",color = "black") + 
+  stat_poly_eq(aes(label = paste("atop(", ..eq.label..,",",..rr.label..,")",sep = "")), 
+               label.x.npc = "left", label.y.npc = 0.99,
+               formula = my.formula, parse = TRUE, size = 6,color="red") + 
+  stat_fit_glance(method.args = list(formula = my.formula),
+                  geom = 'text', aes(label = paste("P-value = ",signif(..p.value.., digits = 3), 
+                                                   sep = "")),label.x = -1.9,
+                  label.y = 9, color="red",size = 6) + 
+  geom_vline(xintercept=0, linetype="dashed", color = "black") +
+  geom_hline(yintercept=0, linetype="dashed", color = "black") +
+  scale_x_continuous() + scale_y_continuous() + theme_classic() +
+  labs(title="Work sector = Academic", x="Willingness to share", 
+       y="Satisfaction with resources",fill="Academic",caption="") + theme_regression
+
+my.formula <- y ~ x
+Government_dim1_2_survey <- ggplot(na.omit(subset(surveys_combined_demos,work_sector=="Government")),
+                                 mapping=aes(x = dim_1, y = dim_2,color = survey_label)) +
+  geom_point() +
+  facet_wrap(~ survey_label,nrow=1) + 
+  geom_smooth(method="lm",color = "black") + 
+  stat_poly_eq(aes(label = paste("atop(", ..eq.label..,",",..rr.label..,")",sep = "")), 
+               label.x.npc = "left", label.y.npc = 0.99,
+               formula = my.formula, parse = TRUE, size = 6,color="red") + 
+  stat_fit_glance(method.args = list(formula = my.formula),
+                  geom = 'text', aes(label = paste("P-value = ",signif(..p.value.., digits = 3), 
+                                                   sep = "")),label.x = -1.9,
+                  label.y = 5, color="red",size = 6) + 
+  geom_vline(xintercept=0, linetype="dashed", color = "black") +
+  geom_hline(yintercept=0, linetype="dashed", color = "black") +
+  scale_x_continuous() + scale_y_continuous() + theme_classic() +
+  labs(title="Work sector = Government", x="Willingness to share", 
+       y="Satisfaction with resources",fill="Government",caption="") + theme_regression
+
+my.formula <- y ~ x
+Physical_science_dim1_2_survey <- ggplot(na.omit(subset(surveys_combined_demos,domain=="Physical science")),
+                                 mapping=aes(x = dim_1, y = dim_2,color = survey_label)) +
+  geom_point() +
+  facet_wrap(~ survey_label,nrow=1) + 
+  geom_smooth(method="lm",color = "black") + 
+  stat_poly_eq(aes(label = paste("atop(", ..eq.label..,",",..rr.label..,")",sep = "")), 
+               label.x.npc = "left", label.y.npc = 0.99,
+               formula = my.formula, parse = TRUE, size = 6,color="red") + 
+  stat_fit_glance(method.args = list(formula = my.formula),
+                  geom = 'text', aes(label = paste("P-value = ",signif(..p.value.., digits = 3), 
+                                                   sep = "")),label.x = -1.9,
+                  label.y = 9, color="red",size = 6) + 
+  geom_vline(xintercept=0, linetype="dashed", color = "black") +
+  geom_hline(yintercept=0, linetype="dashed", color = "black") +
+  scale_x_continuous() + scale_y_continuous() + theme_classic() +
+  labs(title="Domain = Physical science", x="Willingness to share", 
+       y="Satisfaction with resources",fill="Physical science",caption="") + theme_regression
+
+my.formula <- y ~ x
+Funding_agency_dim1_2_survey <- ggplot(na.omit(subset(surveys_combined_demos,funding_agency_recoded=="Federal/national gov.")),
+                                         mapping=aes(x = dim_1, y = dim_2,color = survey_label)) +
+  geom_point() +
+  facet_wrap(~ survey_label,nrow=1) + 
+  geom_smooth(method="lm",color = "black") + 
+  stat_poly_eq(aes(label = paste("atop(", ..eq.label..,",",..rr.label..,")",sep = "")), 
+               label.x.npc = "left", label.y.npc = 0.99,
+               formula = my.formula, parse = TRUE, size = 6,color="red") + 
+  stat_fit_glance(method.args = list(formula = my.formula),
+                  geom = 'text', aes(label = paste("P-value = ",signif(..p.value.., digits = 3), 
+                                                   sep = "")),label.x = -1.9,
+                  label.y = 9, color="red",size = 6) + 
+  geom_vline(xintercept=0, linetype="dashed", color = "black") +
+  geom_hline(yintercept=0, linetype="dashed", color = "black") +
+  scale_x_continuous() + scale_y_continuous() + theme_classic() +
+  labs(title="Funding agency = Federal national/gov.", x="Willingness to share", 
+       y="Satisfaction with resources",fill="Federal national/gov.",caption="") + theme_regression
+
+ggexport(plotlist = list(USACanada_dim1_2_survey,Academic_dim1_2_survey,Government_dim1_2_survey,
+                         Physical_science_dim1_2_survey,Funding_agency_dim1_2_survey), filename = "plots/dim1_2_survey_regs.png",height=400,width=900)
 
 ##################################################
 #    Group boxplot of domain and work_sector     #
