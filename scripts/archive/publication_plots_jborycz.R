@@ -9,10 +9,10 @@ surveys_combined_demos$region <- as.factor(surveys_combined_demos$region)
 ##################################################
 #             Change survey labels               #
 ##################################################
-surveys_combined_demos[which(surveys_combined_demos$survey_label == "S1"), ]$survey_label <- "One"
-surveys_combined_demos[which(surveys_combined_demos$survey_label == "S2"), ]$survey_label <- "Two"
-surveys_combined_demos[which(surveys_combined_demos$survey_label == "S3"), ]$survey_label <- "Three"
-surveys_combined_demos$survey_label <- ordered(surveys_combined_demos$survey_label, levels = c("One", "Two", "Three"))
+surveys_combined_demos[which(surveys_combined_demos$survey_label == "S1"), ]$survey_label <- "2011"
+surveys_combined_demos[which(surveys_combined_demos$survey_label == "S2"), ]$survey_label <- "2015"
+surveys_combined_demos[which(surveys_combined_demos$survey_label == "S3"), ]$survey_label <- "2019"
+surveys_combined_demos$survey_label <- ordered(surveys_combined_demos$survey_label, levels = c("2011", "2015", "2019"))
 
 ##################################################
 #        Create left and right plot themes       #
@@ -20,17 +20,19 @@ surveys_combined_demos$survey_label <- ordered(surveys_combined_demos$survey_lab
 left_plot_theme <- theme(legend.position = "none", 
                          plot.title = element_text(face="bold",size=24,hjust = 0.5),
                          axis.text.x = element_text(color="black",size=16, angle=0),
-                         axis.title.x = element_text(face="bold",color="black",size=20, angle=0),
+                         axis.title.x = element_blank(),
+                         axis.line.y = element_line(size = 1, colour = "black", linetype=1),
                          axis.text.y = element_text(color="black",size=16, angle=0),
                          axis.title.y = element_text(face="bold",color="black",size=20, angle=90))
 
-right_plot_theme <- theme(legend.position = c(.80, .18), 
+right_plot_theme <- theme(legend.position = c(.7, .18), 
                           plot.title = element_text(face="bold",size=24,hjust = 0.5),
                           legend.key.size = unit(0.5, "cm"),
                           legend.title = element_text(face="bold",size=16),
-                          legend.text=element_text(size=14),
+                          legend.text=element_text(size=20),
                           axis.text.x = element_text(color="black",size=16, angle=0),
-                          axis.title.x = element_text(face="bold",color="black",size=20, angle=0),
+                          axis.title.x = element_blank(),
+                          axis.line.y = element_line(size = 1, colour = "black", linetype=1),
                           axis.text.y = element_text(color="black",size=16, angle=0),
                           axis.title.y = element_text(face="bold",color="black",size=20, angle=90))
 
@@ -61,7 +63,8 @@ region_plot_dim_1 <- ggplot(
                                   color = region)
                             ) + 
                      geom_point(size = 4, aes(color = region), position = dodge) + 
-                     geom_line(size = 1, position = dodge) +
+                     geom_line(size = 1, linetype = "dashed", alpha=0.4, position = dodge) +
+                     geom_hline(yintercept=0, color = "black", size=1) + 
                      geom_errorbar(
                                      aes(
                                           ymin = mean_dim_1 - se_dim_1, 
@@ -71,7 +74,7 @@ region_plot_dim_1 <- ggplot(
                                      position = dodge
                                    ) + 
                      ylim(-2, 2) + 
-                     labs(x = "Survey", y = "Willingness to Share") +
+                     labs(y = "Willingness to Share") +
 #                     ggtitle("Changes in region by survey") + 
                      scale_color_brewer(palette = "Dark2") + 
                      theme_minimal() + left_plot_theme
@@ -88,7 +91,8 @@ region_plot_dim_2 <- ggplot(
                                   )
                               ) +
                      geom_point(size = 4, aes(color = region), position = dodge) + 
-                     geom_line(size = 1, position = dodge) +  
+                     geom_line(size = 1, linetype = "dashed", alpha=0.4, position = dodge) +
+                     geom_hline(yintercept=0, color = "black", size=1) + 
                      geom_errorbar(
                                     aes(
                                           ymin = mean_dim_2 - se_dim_2, 
@@ -99,15 +103,15 @@ region_plot_dim_2 <- ggplot(
                                     position = dodge
                                   ) + 
                      ylim(-2, 2) + 
-                     labs(x = "Survey", y = "Satisfaction with Resources", color="Region") +
+                     labs(y = "Satisfaction with Resources", color="Region") +
                      ggtitle("") + 
                      scale_color_brewer(palette = "Dark2") + 
                      theme_minimal() + right_plot_theme 
 #region_plot_dim_2
 region_grid_plot <- ( region_plot_dim_1 | region_plot_dim_2 ) + 
-  plot_annotation(title = 'Changes in region by survey',
-                  theme = theme(plot.title=element_text(face="bold",size=24,hjust = 0.5)))
-ggexport(plotlist = list(region_grid_plot), filename = "plots/region_survey.png",height=650,width=900)
+  plot_annotation(caption = 'Survey Publication Year',
+                  theme = theme(plot.caption=element_text(face="bold",color="black",size=20, angle=0,hjust = 0.5)))
+ggexport(plotlist = list(region_grid_plot), filename = "plots/region_survey.png", height=650,width=900)
 
 
 #region_grid_plot <- grid.arrange(
@@ -148,7 +152,8 @@ domain_plot_dim_1 <- ggplot(
                                   )
                             ) + 
                      geom_point(size = 4, aes(color = domain), position = dodge) + 
-                     geom_line(size = 1, position = dodge) + 
+                     geom_line(size = 1, linetype = "dashed", alpha=0.4, position = dodge) +
+                     geom_hline(yintercept=0, color = "black", size=1) + 
                      geom_errorbar(
                                       aes(
                                             ymin = mean_dim_1 - se_dim_1, 
@@ -175,7 +180,8 @@ domain_plot_dim_2 <- ggplot(
                                   )
                             ) + 
                      geom_point(size = 4, aes(color = domain), position = dodge) + 
-                     geom_line(size = 1, position = dodge) + 
+                     geom_line(size = 1, linetype = "dashed", alpha=0.4, position = dodge) +
+                     geom_hline(yintercept=0, color = "black", size=1) + 
                      geom_errorbar(
                                       aes(
                                             ymin = mean_dim_2 - se_dim_2, 
@@ -191,8 +197,8 @@ domain_plot_dim_2 <- ggplot(
 # domain_plot_dim_2
 
 domain_grid_plot <- ( domain_plot_dim_1 | domain_plot_dim_2 ) + 
-  plot_annotation(title = 'Changes in domain by survey',
-                  theme = theme(plot.title=element_text(face="bold",size=24,hjust = 0.5)))
+  plot_annotation(caption = 'Survey Publication Year',
+                  theme = theme(plot.caption=element_text(face="bold",color="black",size=20, angle=0,hjust = 0.5)))
 ggexport(plotlist = list(domain_grid_plot), filename = "plots/domain_survey.png",height=650,width=900)
 
 #domain_grid_plot <- grid.arrange(
@@ -233,7 +239,8 @@ work_sector_plot_dim_1 <- ggplot(
                                       )
                                 ) + 
                           geom_point(size = 4, aes(color = work_sector), position = dodge) + 
-                          geom_line(size = 1, position = dodge) + 
+                          geom_line(size = 1, linetype = "dashed", alpha=0.4, position = dodge) +
+                          geom_hline(yintercept=0, color = "black", size=1) + 
                           geom_errorbar(
                                           aes(
                                                 ymin = mean_dim_1 - se_dim_1, 
@@ -258,7 +265,8 @@ work_sector_plot_dim_2 <- ggplot(
                                         )
                                   ) +
                           geom_point(size = 4, aes(color = work_sector), position = dodge) + 
-                          geom_line(size = 1, position = dodge) + 
+                          geom_line(size = 1, linetype = "dashed", alpha=0.4, position = dodge) +
+                          geom_hline(yintercept=0, color = "black", size=1) + 
                           geom_errorbar(
                                           aes(
                                                 ymin = mean_dim_2 - se_dim_2, 
@@ -275,8 +283,8 @@ work_sector_plot_dim_2 <- ggplot(
 #work_sector_plot_dim_2
 
 work_sector_grid_plot <- ( work_sector_plot_dim_1 | work_sector_plot_dim_2 ) + 
-  plot_annotation(title = 'Changes in work sector by survey',
-                  theme = theme(plot.title=element_text(face="bold",size=24,hjust = 0.5)))
+  plot_annotation(caption = 'Survey Publication Year',
+                  theme = theme(plot.caption=element_text(face="bold",color="black",size=20, angle=0,hjust = 0.5)))
 ggexport(plotlist = list(work_sector_grid_plot), filename = "plots/work_sector_survey.png",height=650,width=900)
 
 #work_sector_grid_plot <- grid.arrange(
@@ -321,7 +329,8 @@ funding_agency_plot_dim_1 <- ggplot(
                                           )
                                     ) +
                              geom_point(size = 4, aes(color = funding_agency), position = dodge) + 
-                             geom_line(size = 1, position = dodge) + 
+                             geom_line(size = 1, linetype = "dashed", alpha=0.4, position = dodge) +
+                             geom_hline(yintercept=0, color = "black", size=1) + 
                              geom_errorbar(
                                               aes(
                                                     ymin = mean_dim_1 - se_dim_1, 
@@ -347,7 +356,8 @@ funding_agency_plot_dim_2 <- ggplot(
                                           )
                                     ) +
                              geom_point(size = 4, aes(color = funding_agency), position = dodge) + 
-                             geom_line(size = 1, position = dodge) +
+                             geom_line(size = 1, linetype = "dashed", alpha=0.4, position = dodge) +
+                             geom_hline(yintercept=0, color = "black", size=1) + 
                              geom_errorbar(
                                               aes(
                                                     ymin = mean_dim_2 - se_dim_2, 
@@ -365,8 +375,8 @@ funding_agency_plot_dim_2 <- ggplot(
 #funding_agency_plot_dim_2
 
 funding_agency_grid_plot <- ( funding_agency_plot_dim_1 | funding_agency_plot_dim_2 ) + 
-  plot_annotation(title = 'Changes in funding agency by survey',
-                  theme = theme(plot.title=element_text(face="bold",size=24,hjust = 0.5)))
+  plot_annotation(caption = 'Survey Publication Year',
+                  theme = theme(plot.caption=element_text(face="bold",color="black",size=20, angle=0,hjust = 0.5)))
 ggexport(plotlist = list(funding_agency_grid_plot), filename = "plots/funding_agency_survey.png",height=650,width=900)
 
 #funding_agency_grid_plot <- grid.arrange(
@@ -382,6 +392,47 @@ ggexport(plotlist = list(funding_agency_grid_plot), filename = "plots/funding_ag
 ##################################################
 #            DIM1 vs DIM2 by domain              #
 ##################################################
+reg1 <- lm(region_summary$mean_dim_1 ~ region_summary$mean_dim_2)
+reg1 <- lm(region_summary$mean_dim_1 ~ region_summary$mean_dim_2,weights=region_summary$n)
+summary(reg1)
+with(region_summary, plot(mean_dim_1, mean_dim_2))
+abline(reg1)
+summary(lm(domain_summary$mean_dim_1 ~ domain_summary$mean_dim_2))
+summary(lm(work_sector_summary$mean_dim_1 ~ work_sector_summary$mean_dim_2))
+summary(lm(funding_agency_summary$mean_dim_1 ~ funding_agency_summary$mean_dim_2))
+
+theme_avg <- theme(plot.title = element_text(face="bold",size=24),
+                   legend.position = "bottom",
+                   legend.title = element_text(size=12),
+                   legend.text=element_text(size=12),
+                   legend.key.size = unit(0.5, "cm"),
+                   axis.text.x = element_text(color="black",size=12, angle=0),
+                   axis.title.x = element_text(color="black",size=16, angle=0),
+                   axis.text.y = element_text(color="black",size=12, angle=0),
+                   axis.title.y = element_text(color="black",size=16, angle=90))
+avg_dim1_2_region <- ggplot() +
+#  geom_point(region_summary,mapping=aes(x = mean_dim_1, y = mean_dim_2, 
+#                                              color = region)) +
+  geom_smooth(region_summary, method="lm", formula=y ~ x,
+              mapping=aes(x = mean_dim_1, y = mean_dim_2,weight=n)) +
+  stat_poly_eq(region_summary, mapping=aes(x = mean_dim_1, y = mean_dim_2, weight=n, label = paste("atop(", ..eq.label..,",",..rr.label..,")",sep = "")), 
+               label.x.npc = "right", label.y.npc = 0.95,
+               formula = y  ~x, parse = TRUE, size = 8,color="red") + 
+  geom_text(region_summary,mapping=aes(x = mean_dim_1, y = mean_dim_2, 
+                                                  label=survey_label),color="black",size=4) +
+  geom_ellipse(region_summary,mapping=aes(x0 = mean_dim_1, y0 = mean_dim_2, a = se_dim_1, 
+                                         b = se_dim_2, angle = 0,
+                                         fill=paste(region),color=paste(region)),alpha=0.50) +
+  scale_x_continuous() + scale_y_continuous() + theme_classic() +
+  labs(title="", x="PC1", 
+       y="PC2",color="Region",fill="Region",
+       size="",caption="") + theme_avg
+ggexport(plotlist = list(avg_dim1_2_region),
+         filename = "plots/dim1_dim2_weighted.png",height=700,width=700)
+
+##################################################
+#            DIM1 vs DIM2 by domain              #
+##################################################
 theme_regression <- theme(plot.title = element_text(face="bold",size=24),
                      legend.position = "none",
                      legend.key.size = unit(0.5, "cm"),
@@ -392,6 +443,7 @@ theme_regression <- theme(plot.title = element_text(face="bold",size=24),
                      axis.title.x = element_text(face="bold",color="black",size=16, angle=0),
                      axis.text.y = element_text(color="black",size=14, angle=0),
                      axis.title.y = element_text(face="bold",color="black",size=16, angle=90))
+
 
 my.formula <- y ~ x
 region_dim1_2_reg <- ggplot(na.omit(subset(surveys_combined_demos)),
