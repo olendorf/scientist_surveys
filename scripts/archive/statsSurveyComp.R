@@ -1,5 +1,5 @@
 ###########################
-#   DIM1 & DIM2 MANOVAs   #
+#   DIM1 & DIM2 ANOVAs   #
 ###########################
 # DIM1 ANOVAs
 # Survey
@@ -7,60 +7,202 @@ dim1_survey_label <- aov(dim_1 ~ survey_label, data = surveys_combined_demos)
 summary(dim1_survey_label)
 TukeyHSD(dim1_survey_label)
 
+#############################
+#  Generate TukeyHSD tables #
+############################# 
+# ANOVA
+dim1_work_sector <- aov(dim_1 ~ work_sector, data = surveys_combined_demos)
+dim1_domain <- aov(dim_1 ~ domain, data = surveys_combined_demos)
+dim1_region <- aov(dim_1 ~ region, data = surveys_combined_demos)
+dim1_funding_agency <- aov(dim_1 ~ funding_agency_recoded, data = surveys_combined_demos)
+dim2_work_sector <- aov(dim_2 ~ work_sector, data = surveys_combined_demos)
+dim2_domain <- aov(dim_2 ~ domain, data = surveys_combined_demos)
+dim2_region <- aov(dim_2 ~ region, data = surveys_combined_demos)
+dim2_funding_agency <- aov(dim_2 ~ funding_agency_recoded, data = surveys_combined_demos)
+dim1_work_sector_survey <- aov(dim_1 ~ survey_label*work_sector, data = surveys_combined_demos)
+dim1_domain_survey <- aov(dim_1 ~ survey_label*domain, data = surveys_combined_demos)
+dim1_region_survey <- aov(dim_1 ~ survey_label*region, data = surveys_combined_demos)
+dim1_funding_agency_survey <- aov(dim_1 ~ survey_label*funding_agency_recoded, data = surveys_combined_demos)
+dim2_work_sector_survey <- aov(dim_2 ~ survey_label*work_sector, data = surveys_combined_demos)
+dim2_domain_survey <- aov(dim_2 ~ survey_label*domain, data = surveys_combined_demos)
+dim2_region_survey <- aov(dim_2 ~ survey_label*region, data = surveys_combined_demos)
+dim2_funding_agency_survey <- aov(dim_2 ~ survey_label*funding_agency_recoded, data = surveys_combined_demos)
+
+# TukeyHSD
+dim1_work_sector_thsd <- TukeyHSD(dim1_work_sector)
+dim1_domain_thsd <- TukeyHSD(dim1_domain)
+dim1_region_thsd <- TukeyHSD(dim1_region)
+dim1_funding_agency_thsd <- TukeyHSD(dim1_funding_agency)
+dim2_work_sector_thsd <- TukeyHSD(dim2_work_sector)
+dim2_domain_thsd <- TukeyHSD(dim2_domain)
+dim2_region_thsd <- TukeyHSD(dim2_region)
+dim2_funding_agency_thsd <- TukeyHSD(dim2_funding_agency)
+dim1_work_sector_survey_thsd <- TukeyHSD(dim1_work_sector_survey)
+dim1_domain_survey_thsd <- TukeyHSD(dim1_domain_survey)
+dim1_region_survey_thsd <- TukeyHSD(dim1_region_survey)
+dim1_funding_agency_survey_thsd <- TukeyHSD(dim1_funding_agency_survey)
+dim2_work_sector_survey_thsd <- TukeyHSD(dim2_work_sector_survey)
+dim2_domain_survey_thsd <- TukeyHSD(dim2_domain_survey)
+dim2_region_survey_thsd <- TukeyHSD(dim2_region_survey)
+dim2_funding_agency_survey_thsd <- TukeyHSD(dim2_funding_agency_survey)
+
+# Save to CSV
+write.csv(dim1_work_sector_thsd$work_sector, file = "data/tukeyhsd/dim1_work_sector_thsd.csv")
+write.csv(dim1_domain_thsd$domain, file = "data/tukeyhsd/dim1_domain_thsd.csv")
+write.csv(dim1_region_thsd$region, file = "data/tukeyhsd/dim1_region_thsd.csv")
+write.csv(dim1_funding_agency_thsd$funding_agency, file = "data/tukeyhsd/dim1_funding_agency_thsd.csv")
+write.csv(dim2_work_sector_thsd$work_sector, file = "data/tukeyhsd/dim2_work_sector_thsd.csv")
+write.csv(dim2_domain_thsd$domain, file = "data/tukeyhsd/dim2_domain_thsd.csv")
+write.csv(dim2_region_thsd$region, file = "data/tukeyhsd/dim2_region_thsd.csv")
+write.csv(dim2_funding_agency_thsd$funding_agency, file = "data/tukeyhsd/dim2_funding_agency_thsd.csv")
+write.csv(dim1_work_sector_survey_thsd$`survey_label:work_sector`, file = "data/tukeyhsd/dim1_work_sector_survey_thsd.csv")
+write.csv(dim1_domain_survey_thsd$`survey_label:domain`, file = "data/tukeyhsd/dim1_domain_survey_thsd.csv")
+write.csv(dim1_region_survey_thsd$`survey_label:region`, file = "data/tukeyhsd/dim1_region_survey_thsd.csv")
+write.csv(dim1_funding_agency_survey_thsd$`survey_label:funding_agency`, file = "data/tukeyhsd/dim1_funding_agency_survey_thsd.csv")
+write.csv(dim2_work_sector_survey_thsd$`survey_label:work_sector`, file = "data/tukeyhsd/dim2_work_sector_survey_thsd.csv")
+write.csv(dim2_domain_survey_thsd$`survey_label:domain`, file = "data/tukeyhsd/dim2_domain_survey_thsd.csv")
+write.csv(dim2_region_survey_thsd$`survey_label:region`, file = "data/tukeyhsd/dim2_region_survey_thsd.csv")
+write.csv(dim2_funding_agency_survey_thsd$`survey_label:funding_agency`, file = "data/tukeyhsd/dim2_funding_agency_survey_thsd.csv")
+
+# Compute means
+## Total
+surveys_means_work_sector <- surveys_combined_demos %>% group_by(work_sector) %>% 
+  mutate(dim1_mean=mean(dim_1),dim2_mean=mean(dim_2)) %>% summarize(variable=work_sector, dim1_mean, dim2_mean) %>% distinct()
+surveys_means_domain <- surveys_combined_demos %>% group_by(domain) %>% 
+  mutate(dim1_mean=mean(dim_1),dim2_mean=mean(dim_2)) %>% summarize(variable=domain, dim1_mean, dim2_mean) %>% distinct()
+surveys_means_region <- surveys_combined_demos %>% group_by(region) %>% 
+  mutate(dim1_mean=mean(dim_1),dim2_mean=mean(dim_2)) %>% summarize(variable=region, dim1_mean, dim2_mean) %>% distinct()
+surveys_means_funding_agency <- surveys_combined_demos %>% group_by(funding_agency_recoded) %>% 
+  mutate(dim1_mean=mean(dim_1),dim2_mean=mean(dim_2)) %>% summarize(variable=funding_agency_recoded, dim1_mean, dim2_mean) %>% distinct()
+
+## By survey
+surveys_means_work_sector_survey <- surveys_combined_demos %>% group_by(work_sector,survey_label) %>% 
+  mutate(dim1_mean=mean(dim_1),dim2_mean=mean(dim_2)) %>% summarize(variable=work_sector,survey_label,dim1_mean, dim2_mean) %>% distinct()
+surveys_means_domain_survey <- surveys_combined_demos %>% group_by(domain,survey_label) %>% 
+  mutate(dim1_mean=mean(dim_1),dim2_mean=mean(dim_2)) %>% summarize(variable=domain,survey_label,dim1_mean, dim2_mean) %>% distinct()
+surveys_means_region_survey <- surveys_combined_demos %>% group_by(region,survey_label) %>% 
+  mutate(dim1_mean=mean(dim_1),dim2_mean=mean(dim_2)) %>% summarize(variable=region,survey_label, dim1_mean, dim2_mean) %>% distinct()
+surveys_means_funding_agency_survey <- surveys_combined_demos %>% group_by(funding_agency_recoded,survey_label) %>% 
+  mutate(dim1_mean=mean(dim_1),dim2_mean=mean(dim_2)) %>% summarize(variable=funding_agency_recoded,survey_label,dim1_mean, dim2_mean) %>% distinct()
+
+# Combine
+survey_means_all <- rbind(surveys_means_work_sector,surveys_means_domain,surveys_means_region,surveys_means_funding_agency)
+survey_means_bysurvey <- rbind(surveys_means_work_sector_survey,surveys_means_domain_survey,
+                          surveys_means_region_survey,surveys_means_funding_agency_survey)
+
+# Save to CSV
+#write.csv(survey_means_all, file = "data/tukeyhsd/survey_means_all.csv")
+#write.csv(survey_means_bysurvey, file = "data/tukeyhsd/survey_means_bysurvey.csv")
+
 # Work sector
-dim1_work_sector <- aov(dim_1 ~ work_sector*survey_label, data = surveys_combined_demos)
+dim1_work_sector <- aov(dim_1 ~ survey_label*work_sector, data = surveys_combined_demos)
+dim1_work_sector <- aov(dim_1 ~ work_sector, data = surveys_combined_demos)
+dim2_work_sector <- aov(dim_2 ~ survey_label*work_sector, data = surveys_combined_demos)
+dim2_work_sector <- aov(dim_2 ~ work_sector, data = surveys_combined_demos)
 summary(dim1_work_sector)
 TukeyHSD(dim1_work_sector)
-
-# Domain
-dim1_domain <- aov(dim_1 ~ domain*survey_label, data = surveys_combined_demos)
-summary(dim1_domain)
-TukeyHSD(dim1_domain)
-
-# Region
-dim1_region <- aov(dim_1 ~ region*survey_label, data = surveys_combined_demos)
-summary(dim1_region)
-TukeyHSD(dim1_region)
-
-# Funding agency
-dim1_funding_agency <- aov(dim_1 ~ funding_agency*survey_label, data = surveys_combined_demos)
-summary(dim1_funding_agency)
-TukeyHSD(dim1_funding_agency)
-
-# DIM2 ANOVAs
-# Survey
-dim2_survey_label <- aov(dim_2 ~ survey_label, data = surveys_combined_demos)
-summary(dim2_survey_label)
-TukeyHSD(dim2_survey_label)
-
-# Work sector
-dim2_work_sector <- aov(dim_2 ~ work_sector*survey_label, data = surveys_combined_demos)
-summary(dim2_work_sector)
 TukeyHSD(dim2_work_sector)
 
 # Domain
-dim2_domain <- aov(dim_2 ~ domain*survey_label, data = surveys_combined_demos)
-summary(dim2_domain)
+dim1_domain <- aov(dim_1 ~ survey_label*domain, data = surveys_combined_demos)
+dim2_domain <- aov(dim_2 ~ survey_label*domain, data = surveys_combined_demos)
+dim1_domain <- aov(dim_1 ~ domain, data = surveys_combined_demos)
+dim2_domain <- aov(dim_2 ~ domain, data = surveys_combined_demos)
+TukeyHSD(dim1_domain)
 TukeyHSD(dim2_domain)
 
 # Region
-dim2_region <- aov(dim_2 ~ region*survey_label, data = surveys_combined_demos)
-summary(dim2_region)
+## Change aov to lm
+dim1_region <- aov(dim_1 ~survey_label*region, data = surveys_combined_demos)
+dim2_region <- aov(dim_2 ~survey_label*region, data = surveys_combined_demos)
+dim1_region <- aov(dim_1 ~region, data = surveys_combined_demos)
+dim2_region <- aov(dim_2 ~region, data = surveys_combined_demos)
+TukeyHSD(dim1_region)
 TukeyHSD(dim2_region)
 
 # Funding agency
-dim2_funding_agency <- aov(dim_2 ~ funding_agency*survey_label, data = surveys_combined_demos)
-summary(dim2_funding_agency)
+dim1_funding_agency <- aov(dim_1 ~ survey_label*funding_agency_recoded, data = surveys_combined_demos)
+dim1_funding_agency <- aov(dim_1 ~ funding_agency_recoded, data = surveys_combined_demos)
+dim2_funding_agency <- aov(dim_2 ~ survey_label*funding_agency_recoded, data = surveys_combined_demos)
+dim2_funding_agency <- aov(dim_2 ~ funding_agency_recoded, data = surveys_combined_demos)
+TukeyHSD(dim1_funding_agency)
 TukeyHSD(dim2_funding_agency)
 
-# Interactions 
-dim1_d_ws <- aov(dim_1 ~ domain*work_sector, data = surveys_combined_demos)
-summary(dim1_d_ws)
-TukeyHSD(dim1_d_ws)
+# Count respondent demographics
+# Survey 1
+nrow(subset(surveys_combined_demos,survey_label=="2011"))
+nrow(subset(surveys_combined_demos,survey_label=="2011" & region=="AfricaMENA"))
+nrow(subset(surveys_combined_demos,survey_label=="2011" & region=="AsiaSEAsia"))
+nrow(subset(surveys_combined_demos,survey_label=="2011" & region=="AustraliaNZ"))
+nrow(subset(surveys_combined_demos,survey_label=="2011" & region=="EuroRussia"))
+nrow(subset(surveys_combined_demos,survey_label=="2011" & region=="LatinAmerica"))
+nrow(subset(surveys_combined_demos,survey_label=="2011" & region=="USACanada"))
+nrow(subset(surveys_combined_demos,survey_label=="2011" & domain=="Natural science"))
+nrow(subset(surveys_combined_demos,survey_label=="2011" & domain=="Physical science"))
+nrow(subset(surveys_combined_demos,survey_label=="2011" & domain=="Information science"))
+nrow(subset(surveys_combined_demos,survey_label=="2011" & domain=="Social science"))
+nrow(subset(surveys_combined_demos,survey_label=="2011" & domain=="Other"))
+nrow(subset(surveys_combined_demos,survey_label=="2011" & work_sector=="Academic"))
+nrow(subset(surveys_combined_demos,survey_label=="2011" & work_sector=="Commercial"))
+nrow(subset(surveys_combined_demos,survey_label=="2011" & work_sector=="Government"))
+nrow(subset(surveys_combined_demos,survey_label=="2011" & work_sector=="Non-Profit"))
+nrow(subset(surveys_combined_demos,survey_label=="2011" & work_sector=="Other"))
+nrow(subset(surveys_combined_demos,survey_label=="2011" & funding_agency_recoded=="Corporation"))
+nrow(subset(surveys_combined_demos,survey_label=="2011" & funding_agency_recoded=="Federal/national gov."))
+nrow(subset(surveys_combined_demos,survey_label=="2011" & funding_agency_recoded=="Private foundation"))
+nrow(subset(surveys_combined_demos,survey_label=="2011" & funding_agency_recoded=="State/regional/local gov."))
+nrow(subset(surveys_combined_demos,survey_label=="2011" & funding_agency_recoded=="Other"))
 
-dim2_d_ws <- aov(dim_2 ~ domain*work_sector, data = surveys_combined_demos)
-summary(dim2_d_ws)
-TukeyHSD(dim2_d_ws)
+# Survey 2
+nrow(subset(surveys_combined_demos,survey_label=="2015"))
+nrow(subset(surveys_combined_demos,survey_label=="2015" & region=="AfricaMENA"))
+nrow(subset(surveys_combined_demos,survey_label=="2015" & region=="AsiaSEAsia"))
+nrow(subset(surveys_combined_demos,survey_label=="2015" & region=="AustraliaNZ"))
+nrow(subset(surveys_combined_demos,survey_label=="2015" & region=="EuroRussia"))
+nrow(subset(surveys_combined_demos,survey_label=="2015" & region=="LatinAmerica"))
+nrow(subset(surveys_combined_demos,survey_label=="2015" & region=="USACanada"))
+nrow(subset(surveys_combined_demos,survey_label=="2015" & domain=="Natural science"))
+nrow(subset(surveys_combined_demos,survey_label=="2015" & domain=="Physical science"))
+nrow(subset(surveys_combined_demos,survey_label=="2015" & domain=="Information science"))
+nrow(subset(surveys_combined_demos,survey_label=="2015" & domain=="Social science"))
+nrow(subset(surveys_combined_demos,survey_label=="2015" & domain=="Other"))
+nrow(subset(surveys_combined_demos,survey_label=="2015" & work_sector=="Academic"))
+nrow(subset(surveys_combined_demos,survey_label=="2015" & work_sector=="Commercial"))
+nrow(subset(surveys_combined_demos,survey_label=="2015" & work_sector=="Government"))
+nrow(subset(surveys_combined_demos,survey_label=="2015" & work_sector=="Non-Profit"))
+nrow(subset(surveys_combined_demos,survey_label=="2015" & work_sector=="Other"))
+nrow(subset(surveys_combined_demos,survey_label=="2015" & funding_agency_recoded=="Corporation"))
+nrow(subset(surveys_combined_demos,survey_label=="2015" & funding_agency_recoded=="Federal/national gov."))
+nrow(subset(surveys_combined_demos,survey_label=="2015" & funding_agency_recoded=="Private foundation"))
+nrow(subset(surveys_combined_demos,survey_label=="2015" & funding_agency_recoded=="State/regional/local gov."))
+nrow(subset(surveys_combined_demos,survey_label=="2015" & funding_agency_recoded=="Other"))
+
+# Survey 3
+nrow(subset(surveys_combined_demos,survey_label=="2019"))
+nrow(subset(surveys_combined_demos,survey_label=="2019" & region=="AfricaMENA"))
+nrow(subset(surveys_combined_demos,survey_label=="2019" & region=="AsiaSEAsia"))
+nrow(subset(surveys_combined_demos,survey_label=="2019" & region=="AustraliaNZ"))
+nrow(subset(surveys_combined_demos,survey_label=="2019" & region=="EuroRussia"))
+nrow(subset(surveys_combined_demos,survey_label=="2019" & region=="LatinAmerica"))
+nrow(subset(surveys_combined_demos,survey_label=="2019" & region=="USACanada"))
+nrow(subset(surveys_combined_demos,survey_label=="2019" & domain=="Natural science"))
+nrow(subset(surveys_combined_demos,survey_label=="2019" & domain=="Physical science"))
+nrow(subset(surveys_combined_demos,survey_label=="2019" & domain=="Information science"))
+nrow(subset(surveys_combined_demos,survey_label=="2019" & domain=="Social science"))
+nrow(subset(surveys_combined_demos,survey_label=="2019" & domain=="Other"))
+nrow(subset(surveys_combined_demos,survey_label=="2019" & work_sector=="Academic"))
+nrow(subset(surveys_combined_demos,survey_label=="2019" & work_sector=="Commercial"))
+nrow(subset(surveys_combined_demos,survey_label=="2019" & work_sector=="Government"))
+nrow(subset(surveys_combined_demos,survey_label=="2019" & work_sector=="Non-Profit"))
+nrow(subset(surveys_combined_demos,survey_label=="2019" & work_sector=="Other"))
+nrow(subset(surveys_combined_demos,survey_label=="2019" & funding_agency_recoded=="Corporation"))
+nrow(subset(surveys_combined_demos,survey_label=="2019" & funding_agency_recoded=="Federal/national gov."))
+nrow(subset(surveys_combined_demos,survey_label=="2019" & funding_agency_recoded=="Private foundation"))
+nrow(subset(surveys_combined_demos,survey_label=="2019" & funding_agency_recoded=="State/regional/local gov."))
+nrow(subset(surveys_combined_demos,survey_label=="2019" & funding_agency_recoded=="Other"))
+
+# Regression of DIM1 and DIM2 
+summary(lm(surveys_combined_demos$dim_1 ~ surveys_combined_demos$dim_2))
 
 ######################################################
 #      Summary dataframes for geom_point plots       #

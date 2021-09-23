@@ -22,7 +22,7 @@ install_packages <- function(packages) {
  
  install_packages(c("gdata", "ggpmisc","dplyr", "plyr", "tidyr","ggplot2","readxl", "FactoMineR", "factoextra", 
                     "ca", "gplots","ggrepel","ggpubr", "grid", "gridExtra", "patchwork", "formattable", 
-                    "data.table","psych", "RColorBrewer"))
+                    "data.table","psych", "RColorBrewer", "ggforce"))
 
 ######################################################
 #                     Main scripts                   #
@@ -94,7 +94,7 @@ source("scripts/multiFactorAnalysis.R")
 # PLOTS: Create dimension 1 and 2 average plots used in publication
 # Find correlations between dim1 and dim2 for all demographics
 # Generate box plot of domain*work_sector
- source("scripts/archive/publication_plots_jborycz.R")
+# source("scripts/archive/publication_plots_jborycz.R")
 # source("scripts/archive/publication_plots_rkolendo.R")
 
 # Print loadings to /data/all_loadings.csv
