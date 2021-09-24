@@ -18,7 +18,9 @@ surveys_combined_demos$survey_label <- ordered(surveys_combined_demos$survey_lab
 #        Create left and right plot themes       #
 ##################################################
 left_plot_theme <- theme(legend.position = "none", 
+                         plot.tag.position = c(.05, .95),
                          plot.title = element_text(face="bold",size=24,hjust = 0.5),
+                         plot.tag = element_text(face="bold",size=24,hjust = 0.5),
                          axis.text.x = element_text(color="black",size=16, angle=0),
                          axis.title.x = element_blank(),
                          axis.line.y = element_line(size = 1, colour = "black", linetype=1),
@@ -26,7 +28,9 @@ left_plot_theme <- theme(legend.position = "none",
                          axis.title.y = element_text(face="bold",color="black",size=20, angle=90))
 
 right_plot_theme <- theme(legend.position = c(.7, .18), 
+                          plot.tag.position = c(.05, .95),
                           plot.title = element_text(face="bold",size=24,hjust = 0.5),
+                          plot.tag = element_text(face="bold",size=24,hjust = 0.5),
                           legend.key.size = unit(0.5, "cm"),
                           legend.title = element_text(face="bold",size=16),
                           legend.text=element_text(size=20),
@@ -62,9 +66,9 @@ region_plot_dim_1 <- ggplot(
                                   group = region, 
                                   color = region)
                             ) + 
-                     geom_point(size = 4, aes(color = region), position = dodge) + 
-                     geom_line(size = 1, linetype = "dashed", alpha=0.4, position = dodge) +
-                     geom_hline(yintercept=0, color = "black", size=1) + 
+                     geom_point(size = 4, aes(color = region, shape=region), position = dodge) + 
+                     geom_line(size = 1, linetype = "dashed", position = dodge) +
+                     geom_hline(yintercept=0, color = "black", size=1) +
                      geom_errorbar(
                                      aes(
                                           ymin = mean_dim_1 - se_dim_1, 
@@ -74,9 +78,16 @@ region_plot_dim_1 <- ggplot(
                                      position = dodge
                                    ) + 
                      ylim(-2, 2) + 
-                     labs(y = "Willingness to Share") +
+                     labs(y = "Willingness to Share",tag = "A") +
 #                     ggtitle("Changes in region by survey") + 
-                     scale_color_brewer(palette = "Dark2") + 
+                     scale_color_manual(labels = c("Africa & Middle East","Asia & Southeast Asia",
+                                                   "Australia & New Zealand","Europe & Russia",
+                                                   "Latin America","USA & Canada"),
+                                        values = c("#67001F","#B2182B","#D6604D",
+                                                   "#4393C3","#2166AC","#053061"), guide="legend") +
+                     scale_shape_discrete(labels = c("Africa & Middle East","Asia & Southeast Asia",
+                                                     "Australia & New Zealand","Europe & Russia",
+                                                     "Latin America","USA & Canada"), guide="legend") +
                      theme_minimal() + left_plot_theme
 #region_plot_dim_1
 #region_summary
@@ -90,8 +101,8 @@ region_plot_dim_2 <- ggplot(
                                     color = region
                                   )
                               ) +
-                     geom_point(size = 4, aes(color = region), position = dodge) + 
-                     geom_line(size = 1, linetype = "dashed", alpha=0.4, position = dodge) +
+                     geom_point(size = 4, aes(color = region, shape=region), position = dodge) + 
+                     geom_line(size = 1, linetype = "dashed", position = dodge) +
                      geom_hline(yintercept=0, color = "black", size=1) + 
                      geom_errorbar(
                                     aes(
@@ -103,10 +114,17 @@ region_plot_dim_2 <- ggplot(
                                     position = dodge
                                   ) + 
                      ylim(-2, 2) + 
-                     labs(y = "Satisfaction with Resources", color="Region") +
+                     labs(y = "Satisfaction with Resources", tag="B", color="Region", shape="Region") +
                      ggtitle("") + 
-                     scale_color_brewer(palette = "Dark2") + 
-                     theme_minimal() + right_plot_theme 
+                     scale_color_manual(labels = c("Africa & Middle East","Asia & Southeast Asia",
+                                                   "Australia & New Zealand","Europe & Russia",
+                                                  "Latin America","USA & Canada"),
+                                        values = c("#67001F","#B2182B","#D6604D",
+                                                   "#4393C3","#2166AC","#053061"), guide="legend") +
+                     scale_shape_discrete(labels = c("Africa & Middle East","Asia & Southeast Asia",
+                                                     "Australia & New Zealand","Europe & Russia",
+                                                     "Latin America","USA & Canada"), guide="legend") +
+                     theme_minimal() + right_plot_theme + theme(legend.position = c(.65, .14)) 
 #region_plot_dim_2
 region_grid_plot <- ( region_plot_dim_1 | region_plot_dim_2 ) + 
   plot_annotation(caption = 'Survey Publication Year',
@@ -151,8 +169,8 @@ domain_plot_dim_1 <- ggplot(
                                     color = domain
                                   )
                             ) + 
-                     geom_point(size = 4, aes(color = domain), position = dodge) + 
-                     geom_line(size = 1, linetype = "dashed", alpha=0.4, position = dodge) +
+                     geom_point(size = 4, aes(color = domain,shape=domain), position = dodge) + 
+                     geom_line(size = 1, linetype = "dashed", position = dodge) +
                      geom_hline(yintercept=0, color = "black", size=1) + 
                      geom_errorbar(
                                       aes(
@@ -164,9 +182,11 @@ domain_plot_dim_1 <- ggplot(
                                       position = dodge
                                     ) + 
                      ylim(-2, 2) + 
-                     labs(x = "Survey", y = "Willingness to Share", color="Domain") +
+                     labs(x = "Survey", y = "Willingness to Share",tag="A",color="Domain",shape="Domain") +
  #                    ggtitle("Changes in domain by survey") + 
-                     scale_color_brewer(palette = "Dark2") +  
+                     scale_color_manual(values = c("#67001F","#B2182B","#D6604D",
+                                                   "#2166AC","#053061"), guide="legend") +
+                     scale_shape_discrete(guide="legend") +
                      theme_minimal() + left_plot_theme
 # domain_plot_dim_1
 
@@ -179,8 +199,8 @@ domain_plot_dim_2 <- ggplot(
                                     color = domain
                                   )
                             ) + 
-                     geom_point(size = 4, aes(color = domain), position = dodge) + 
-                     geom_line(size = 1, linetype = "dashed", alpha=0.4, position = dodge) +
+                     geom_point(size = 4, aes(color = domain,shape=domain), position = dodge) + 
+                     geom_line(size = 1, linetype = "dashed", position = dodge) +
                      geom_hline(yintercept=0, color = "black", size=1) + 
                      geom_errorbar(
                                       aes(
@@ -190,9 +210,11 @@ domain_plot_dim_2 <- ggplot(
                                       width = 0.2, 
                                       position = dodge) + 
                      ylim(-2, 2) + 
-                     labs(x = "Survey", y = "Satisfaction with Resources", color="Domain") +
+                     labs(x = "Survey", y = "Satisfaction with Resources",tag="B",color="Domain",shape="Domain") +
                      ggtitle("") + 
-                     scale_color_brewer(palette = "Dark2") +
+                     scale_color_manual(values = c("#67001F","#B2182B","#D6604D",
+                                                   "#2166AC","#053061"), guide="legend") +
+                     scale_shape_discrete(guide="legend") +
                      theme_minimal() + right_plot_theme
 # domain_plot_dim_2
 
@@ -238,8 +260,8 @@ work_sector_plot_dim_1 <- ggplot(
                                         color = work_sector
                                       )
                                 ) + 
-                          geom_point(size = 4, aes(color = work_sector), position = dodge) + 
-                          geom_line(size = 1, linetype = "dashed", alpha=0.4, position = dodge) +
+                          geom_point(size = 4, aes(color = work_sector,shape=work_sector), position = dodge) + 
+                          geom_line(size = 1, linetype = "dashed", position = dodge) +
                           geom_hline(yintercept=0, color = "black", size=1) + 
                           geom_errorbar(
                                           aes(
@@ -249,9 +271,11 @@ work_sector_plot_dim_1 <- ggplot(
                                                 width = 0.2,
                                                 position = dodge) + 
                           ylim(-2, 2) +
-                          labs(x = "Survey", y = "Willingness to Share", color="Work Sector") +
+                          labs(x = "Survey", y = "Willingness to Share",tag="A",color="Work Sector",shape="Work Sector") +
 #                          ggtitle("Changes in work sector by survey") + 
-                          scale_color_brewer(palette = "Dark2") + 
+                          scale_color_manual(values = c("#67001F","#B2182B","#D6604D",
+                                                        "#2166AC","#053061"), guide="legend") +
+                          scale_shape_discrete(guide="legend") +
                           theme_minimal() + left_plot_theme
 #work_sector_plot_dim_1
 
@@ -264,8 +288,8 @@ work_sector_plot_dim_2 <- ggplot(
                                           color = work_sector
                                         )
                                   ) +
-                          geom_point(size = 4, aes(color = work_sector), position = dodge) + 
-                          geom_line(size = 1, linetype = "dashed", alpha=0.4, position = dodge) +
+                          geom_point(size = 4, aes(color = work_sector, shape=work_sector), position = dodge) + 
+                          geom_line(size = 1, linetype = "dashed", position = dodge) +
                           geom_hline(yintercept=0, color = "black", size=1) + 
                           geom_errorbar(
                                           aes(
@@ -276,9 +300,11 @@ work_sector_plot_dim_2 <- ggplot(
                                           width = 0.2, 
                                           position = dodge) + 
                           coord_cartesian(ylim=c(-2, 2)) +
-                          labs(x = "Survey", y = "Satisfaction with Resources", color="Work Sector") +
+                          labs(x = "Survey", y = "Satisfaction with Resources",tag="B",color="Work Sector",shape="Work Sector") +
                           ggtitle("") + 
-                          scale_color_brewer(palette = "Dark2") + 
+                          scale_color_manual(values = c("#67001F","#B2182B","#D6604D",
+                                                        "#2166AC","#053061"), guide="legend") +
+                          scale_shape_discrete(guide="legend") +
                           theme_minimal() + right_plot_theme #+ theme(legend.position = c(.76, .80))
 #work_sector_plot_dim_2
 
@@ -328,8 +354,8 @@ funding_agency_plot_dim_1 <- ggplot(
                                             color = funding_agency
                                           )
                                     ) +
-                             geom_point(size = 4, aes(color = funding_agency), position = dodge) + 
-                             geom_line(size = 1, linetype = "dashed", alpha=0.4, position = dodge) +
+                             geom_point(size = 4, aes(color = funding_agency,shape=funding_agency), position = dodge) + 
+                             geom_line(size = 1, linetype = "dashed", position = dodge) +
                              geom_hline(yintercept=0, color = "black", size=1) + 
                              geom_errorbar(
                                               aes(
@@ -340,9 +366,18 @@ funding_agency_plot_dim_1 <- ggplot(
                                               width = 0.2,
                                               position = dodge) + 
                              ylim(-2, 2) +
-                             labs(x = "Survey", y = "Willingness to Share", color="Funding Agency") +
+                             labs(x = "Survey", y = "Willingness to Share",tag="A", color="Funding Agency",shape="Funding Agency") +
 #                             ggtitle("Changes in funding agency by survey") + 
-                             scale_color_brewer(palette = "Dark2")  + 
+                             scale_color_manual(labels = c("Academic","Corporation",                    
+                                                           "Federal & national government",                          
+                                                           "Private foundation","Self supported",                 
+                                                           "State, regional, &local government","Other"),
+                                                values = c("#67001F","#B2182B","#D6604D",
+                                                           "#4393C3","#2166AC","#053061"), guide="legend") +
+                             scale_shape_discrete(labels = c("Academic","Corporation",                    
+                                                             "Federal & national government",                          
+                                                             "Private foundation","Self supported",                 
+                                                             "State, regional, &local government","Other"), guide="legend") +
                              theme_minimal() + left_plot_theme
 # funding_agency_plot_dim_1
 
@@ -355,8 +390,8 @@ funding_agency_plot_dim_2 <- ggplot(
                                             color = funding_agency
                                           )
                                     ) +
-                             geom_point(size = 4, aes(color = funding_agency), position = dodge) + 
-                             geom_line(size = 1, linetype = "dashed", alpha=0.4, position = dodge) +
+                             geom_point(size = 4, aes(color = funding_agency,shape=funding_agency), position = dodge) + 
+                             geom_line(size = 1, linetype = "dashed", position = dodge) +
                              geom_hline(yintercept=0, color = "black", size=1) + 
                              geom_errorbar(
                                               aes(
@@ -368,10 +403,19 @@ funding_agency_plot_dim_2 <- ggplot(
                                               position = dodge
                                           ) +  
                              ylim(-2, 2) +
-                             labs(x = "Survey", y = "Satisfaction with Resources", color="Funding Agency") +
+                             labs(x = "Survey", y = "Satisfaction with Resources",tag="B", color="Funding Agency",shape="Funding Agency") +
                              ggtitle("") + 
-                             scale_color_brewer(palette = "Dark2")  + 
-                             theme_minimal() + right_plot_theme #+ theme(legend.position = c(.76, .80))
+                             scale_color_manual(labels = c("Academic","Corporation",                    
+                                                           "Federal & national government",                          
+                                                           "Private foundation","Self supported",                 
+                                                           "State, regional, &local government","Other"),
+                                                values = c("#67001F","#B2182B","#D6604D",
+                                                           "#4393C3","#2166AC","#053061"), guide="legend") +
+                             scale_shape_discrete(labels = c("Academic","Corporation",                    
+                                                             "Federal & national government",                          
+                                                             "Private foundation","Self supported",                 
+                                                             "State, regional, &local government","Other"), guide="legend") +
+                             theme_minimal() + right_plot_theme + theme(legend.position = c(.60, .14))
 #funding_agency_plot_dim_2
 
 funding_agency_grid_plot <- ( funding_agency_plot_dim_1 | funding_agency_plot_dim_2 ) + 
