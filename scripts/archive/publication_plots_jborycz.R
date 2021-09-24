@@ -337,9 +337,9 @@ funding_agency_summary$se_dim_1 <- sqrt(funding_agency_summary$var_dim_1/funding
 funding_agency_summary$se_dim_2 <- sqrt(funding_agency_summary$var_dim_2/funding_agency_summary$n)
 names(funding_agency_summary)[names(funding_agency_summary) == "funding_agency_recoded"] <- "funding_agency"
 funding_agency_summary$funding_agency <- factor(funding_agency_summary$funding_agency, 
-                                         levels = c("Academic institution","Corporation",                    
+                                         levels = c("Corporation",                    
                                                     "Federal/national gov.",                          
-                                                    "Private foundation","Self supported",                 
+                                                    "Private foundation",                 
                                                     "State/regional/local gov.","Other"))
 
 ##################################################
@@ -368,19 +368,18 @@ funding_agency_plot_dim_1 <- ggplot(
                              ylim(-2, 2) +
                              labs(x = "Survey", y = "Willingness to Share",tag="A", color="Funding Agency",shape="Funding Agency") +
 #                             ggtitle("Changes in funding agency by survey") + 
-                             scale_color_manual(labels = c("Academic","Corporation",                    
+                             scale_color_manual(labels = c("Corporation",                    
                                                            "Federal & national government",                          
-                                                           "Private foundation","Self supported",                 
-                                                           "State, regional, &local government","Other"),
+                                                           "Private foundation",                 
+                                                           "State, regional & local government","Other"),
                                                 values = c("#67001F","#B2182B","#D6604D",
-                                                           "#4393C3","#2166AC","#053061"), guide="legend") +
-                             scale_shape_discrete(labels = c("Academic","Corporation",                    
+                                                           "#2166AC","#053061"), guide="legend") +
+                             scale_shape_discrete(labels = c("Corporation",                    
                                                              "Federal & national government",                          
-                                                             "Private foundation","Self supported",                 
-                                                             "State, regional, &local government","Other"), guide="legend") +
+                                                             "Private foundation",                 
+                                                             "State, regional & local government","Other"), guide="legend") +
                              theme_minimal() + left_plot_theme
 # funding_agency_plot_dim_1
-
 funding_agency_plot_dim_2 <- ggplot(
                                       funding_agency_summary, 
                                       aes(
@@ -405,19 +404,18 @@ funding_agency_plot_dim_2 <- ggplot(
                              ylim(-2, 2) +
                              labs(x = "Survey", y = "Satisfaction with Resources",tag="B", color="Funding Agency",shape="Funding Agency") +
                              ggtitle("") + 
-                             scale_color_manual(labels = c("Academic","Corporation",                    
+                             scale_color_manual(labels = c("Corporation",                    
                                                            "Federal & national government",                          
-                                                           "Private foundation","Self supported",                 
-                                                           "State, regional, &local government","Other"),
+                                                           "Private foundation",                 
+                                                           "State, regional & local government","Other"),
                                                 values = c("#67001F","#B2182B","#D6604D",
-                                                           "#4393C3","#2166AC","#053061"), guide="legend") +
-                             scale_shape_discrete(labels = c("Academic","Corporation",                    
+                                                           "#2166AC","#053061"), guide="legend") +
+                             scale_shape_discrete(labels = c("Corporation",                    
                                                              "Federal & national government",                          
-                                                             "Private foundation","Self supported",                 
-                                                             "State, regional, &local government","Other"), guide="legend") +
-                             theme_minimal() + right_plot_theme + theme(legend.position = c(.60, .14))
+                                                             "Private foundation",                 
+                                                             "State, regional & local government","Other"), guide="legend") +
+                             theme_minimal() + right_plot_theme + theme(legend.position = c(.57, .14))
 #funding_agency_plot_dim_2
-
 funding_agency_grid_plot <- ( funding_agency_plot_dim_1 | funding_agency_plot_dim_2 ) + 
   plot_annotation(caption = 'Survey Publication Year',
                   theme = theme(plot.caption=element_text(face="bold",color="black",size=20, angle=0,hjust = 0.5)))
