@@ -186,10 +186,10 @@ domain_plot_dim_1 <- ggplot(
                                       position = dodge
                                     ) + 
                      ylim(-2, 2) + 
-                     labs(x = "Survey", y = "Willingness to Share",tag="A",color="Domain",shape="Domain") +
+                     labs(x = "Survey", y = "Willingness to Share (mean ± standard error)",tag="A",color="Domain",shape="Domain") +
  #                    ggtitle("Changes in domain by survey") + 
-                     scale_color_manual(values = c("#67001F","#B2182B","#D6604D",
-                                                   "#2166AC","#053061"), guide="legend") +
+                     scale_color_manual(values = c("#67001F","#67001F","#67001F",
+                                                   "#67001F","#67001F"), guide="legend") +
                      scale_shape_discrete(guide="legend") +
                      theme_minimal() + left_plot_theme
 # domain_plot_dim_1
@@ -214,10 +214,10 @@ domain_plot_dim_2 <- ggplot(
                                       width = 0.2, 
                                       position = dodge) + 
                      ylim(-2, 2) + 
-                     labs(x = "Survey", y = "Satisfaction with Resources",tag="B",color="Domain",shape="Domain") +
+                     labs(x = "Survey", y = "Satisfaction with Resources (mean ± standard error)",tag="B",color="Domain",shape="Domain") +
                      ggtitle("") + 
-                     scale_color_manual(values = c("#67001F","#B2182B","#D6604D",
-                                                   "#2166AC","#053061"), guide="legend") +
+                     scale_color_manual(values = c("#67001F","#67001F","#67001F",
+                                                   "#67001F","#67001F"), guide="legend") +
                      scale_shape_discrete(guide="legend") +
                      theme_minimal() + right_plot_theme
 # domain_plot_dim_2
@@ -275,10 +275,10 @@ work_sector_plot_dim_1 <- ggplot(
                                                 width = 0.2,
                                                 position = dodge) + 
                           ylim(-2, 2) +
-                          labs(x = "Survey", y = "Willingness to Share",tag="A",color="Work Sector",shape="Work Sector") +
+                          labs(x = "Survey", y = "Willingness to Share (mean ± standard error)",tag="A",color="Work Sector",shape="Work Sector") +
 #                          ggtitle("Changes in work sector by survey") + 
-                          scale_color_manual(values = c("#67001F","#B2182B","#D6604D",
-                                                        "#2166AC","#053061"), guide="legend") +
+                          scale_color_manual(values = c("#67001F","#67001F","#67001F",
+                                                        "#67001F","#67001F"), guide="legend") +
                           scale_shape_discrete(guide="legend") +
                           theme_minimal() + left_plot_theme
 #work_sector_plot_dim_1
@@ -304,10 +304,10 @@ work_sector_plot_dim_2 <- ggplot(
                                           width = 0.2, 
                                           position = dodge) + 
                           coord_cartesian(ylim=c(-2, 2)) +
-                          labs(x = "Survey", y = "Satisfaction with Resources",tag="B",color="Work Sector",shape="Work Sector") +
+                          labs(x = "Survey", y = "Satisfaction with Resources (mean ± standard error)",tag="B",color="Work Sector",shape="Work Sector") +
                           ggtitle("") + 
-                          scale_color_manual(values = c("#67001F","#B2182B","#D6604D",
-                                                        "#2166AC","#053061"), guide="legend") +
+                          scale_color_manual(values = c("#67001F","#67001F","#67001F",
+                                                        "#67001F","#67001F"), guide="legend") +
                           scale_shape_discrete(guide="legend") +
                           theme_minimal() + right_plot_theme #+ theme(legend.position = c(.76, .80))
 #work_sector_plot_dim_2
@@ -370,14 +370,14 @@ funding_agency_plot_dim_1 <- ggplot(
                                               width = 0.2,
                                               position = dodge) + 
                              ylim(-2, 2) +
-                             labs(x = "Survey", y = "Willingness to Share",tag="A", color="Funding Agency",shape="Funding Agency") +
+                             labs(x = "Survey", y = "Willingness to Share (mean ± standard error)",tag="A", color="Funding Agency",shape="Funding Agency") +
 #                             ggtitle("Changes in funding agency by survey") + 
                              scale_color_manual(labels = c("Corporation",                    
                                                            "Federal & national government",                          
                                                            "Private foundation",                 
                                                            "State, regional & local government","Other"),
-                                                values = c("#67001F","#B2182B","#D6604D",
-                                                           "#2166AC","#053061"), guide="legend") +
+                                                values = c("#67001F","#67001F","#67001F",
+                                                           "#67001F","#67001F"), guide="legend") +
                              scale_shape_discrete(labels = c("Corporation",                    
                                                              "Federal & national government",                          
                                                              "Private foundation",                 
@@ -406,14 +406,14 @@ funding_agency_plot_dim_2 <- ggplot(
                                               position = dodge
                                           ) +  
                              ylim(-2, 2) +
-                             labs(x = "Survey", y = "Satisfaction with Resources",tag="B", color="Funding Agency",shape="Funding Agency") +
+                             labs(x = "Survey", y = "Satisfaction with Resources (mean ± standard error)",tag="B", color="Funding Agency",shape="Funding Agency") +
                              ggtitle("") + 
                              scale_color_manual(labels = c("Corporation",                    
                                                            "Federal & national government",                          
                                                            "Private foundation",                 
                                                            "State, regional & local government","Other"),
-                                                values = c("#67001F","#B2182B","#D6604D",
-                                                           "#2166AC","#053061"), guide="legend") +
+                                                values = c("#67001F","#67001F","#67001F",
+                                                           "#67001F","#67001F"), guide="legend") +
                              scale_shape_discrete(labels = c("Corporation",                    
                                                              "Federal & national government",                          
                                                              "Private foundation",                 
