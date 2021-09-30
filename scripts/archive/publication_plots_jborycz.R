@@ -21,11 +21,12 @@ left_plot_theme <- theme(legend.position = "none",
                          plot.tag.position = c(.05, .95),
                          plot.title = element_text(face="bold",size=24,hjust = 0.5),
                          plot.tag = element_text(face="bold",size=24,hjust = 0.5),
+                         axis.ticks = element_line(size = 1, colour = "black", linetype=1),
                          axis.text.x = element_text(color="black",size=16, angle=0),
                          axis.title.x = element_blank(),
                          axis.line.y = element_line(size = 1, colour = "black", linetype=1),
                          axis.text.y = element_text(color="black",size=16, angle=0),
-                         axis.title.y = element_text(face="bold",color="black",size=20, angle=90))
+                         axis.title.y = element_text(face="bold",color="black",size=16, angle=90))
 
 right_plot_theme <- theme(legend.position = c(.7, .18), 
                           plot.tag.position = c(.05, .95),
@@ -34,11 +35,12 @@ right_plot_theme <- theme(legend.position = c(.7, .18),
                           legend.key.size = unit(0.5, "cm"),
                           legend.title = element_text(face="bold",size=16),
                           legend.text=element_text(size=20),
+                          axis.ticks = element_line(size = 1, colour = "black", linetype=1),
                           axis.text.x = element_text(color="black",size=16, angle=0),
                           axis.title.x = element_blank(),
                           axis.line.y = element_line(size = 1, colour = "black", linetype=1),
                           axis.text.y = element_text(color="black",size=16, angle=0),
-                          axis.title.y = element_text(face="bold",color="black",size=20, angle=90))
+                          axis.title.y = element_text(face="bold",color="black",size=16, angle=90))
 
 ##################################################
 #         Clean REGION data for plotting         #
@@ -77,14 +79,15 @@ region_plot_dim_1 <- ggplot(
                                      width = 0.2, 
                                      position = dodge
                                    ) + 
-                     ylim(-2, 2) + 
-                     labs(y = "Willingness to Share",tag = "A") +
+                     labs(y = "Willingness to Share (mean ± standard error)",tag = "A") +
 #                     ggtitle("Changes in region by survey") + 
+                     scale_y_continuous(breaks=seq(-2,2,1)) +
+                     ylim(-2, 2) + 
                      scale_color_manual(labels = c("Africa & Middle East","Asia & Southeast Asia",
                                                    "Australia & New Zealand","Europe & Russia",
                                                    "Latin America","USA & Canada"),
-                                        values = c("#67001F","#B2182B","#D6604D",
-                                                   "#4393C3","#2166AC","#053061"), guide="legend") +
+                                        values = c("#67001F","#67001F","#67001F",
+                                                   "#67001F","#67001F","#67001F"), guide="legend") +
                      scale_shape_discrete(labels = c("Africa & Middle East","Asia & Southeast Asia",
                                                      "Australia & New Zealand","Europe & Russia",
                                                      "Latin America","USA & Canada"), guide="legend") +
@@ -113,14 +116,15 @@ region_plot_dim_2 <- ggplot(
                                     width = 0.2,
                                     position = dodge
                                   ) + 
-                     ylim(-2, 2) + 
-                     labs(y = "Satisfaction with Resources", tag="B", color="Region", shape="Region") +
+                     labs(y = "Satisfaction with Resources (mean ± standard error)", tag="B", color="Region", shape="Region") +
                      ggtitle("") + 
+                     scale_y_continuous(breaks=seq(-2,2,1)) +
+                     ylim(-2, 2) + 
                      scale_color_manual(labels = c("Africa & Middle East","Asia & Southeast Asia",
                                                    "Australia & New Zealand","Europe & Russia",
                                                   "Latin America","USA & Canada"),
-                                        values = c("#67001F","#B2182B","#D6604D",
-                                                   "#4393C3","#2166AC","#053061"), guide="legend") +
+                                        values = c("#67001F","#67001F","#67001F",
+                                                   "#67001F","#67001F","#67001F"), guide="legend") +
                      scale_shape_discrete(labels = c("Africa & Middle East","Asia & Southeast Asia",
                                                      "Australia & New Zealand","Europe & Russia",
                                                      "Latin America","USA & Canada"), guide="legend") +
