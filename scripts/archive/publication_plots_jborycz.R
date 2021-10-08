@@ -68,7 +68,7 @@ region_plot_dim_1 <- ggplot(
                                   group = region, 
                                   color = region)
                             ) + 
-                     geom_point(size = 4, aes(color = region, shape=region), position = dodge) + 
+                     geom_point(size = 6, aes(color = region, shape=region), position = dodge) + 
                      geom_line(size = 1, linetype = "dashed", position = dodge) +
                      geom_hline(yintercept=0, color = "black", size=1) +
                      geom_errorbar(
@@ -92,8 +92,6 @@ region_plot_dim_1 <- ggplot(
                                                      "Australia & New Zealand","Europe & Russia",
                                                      "Latin America","USA & Canada"), guide="legend") +
                      theme_minimal() + left_plot_theme
-#region_plot_dim_1
-#region_summary
 
 region_plot_dim_2 <- ggplot(
                               region_summary, 
@@ -104,7 +102,7 @@ region_plot_dim_2 <- ggplot(
                                     color = region
                                   )
                               ) +
-                     geom_point(size = 4, aes(color = region, shape=region), position = dodge) + 
+                     geom_point(size = 6, aes(color = region, shape=region), position = dodge) + 
                      geom_line(size = 1, linetype = "dashed", position = dodge) +
                      geom_hline(yintercept=0, color = "black", size=1) + 
                      geom_errorbar(
@@ -135,17 +133,6 @@ region_grid_plot <- ( region_plot_dim_1 | region_plot_dim_2 ) +
                   theme = theme(plot.caption=element_text(face="bold",color="black",size=20, angle=0,hjust = 0.5)))
 ggexport(plotlist = list(region_grid_plot), filename = "plots/region_survey.png", height=650,width=900)
 
-
-#region_grid_plot <- grid.arrange(
-#                                    region_plot_dim_1, 
-#                                    region_plot_dim_2, 
-#                                    nrow = 1, 
-#                                    top=textGrob(
-#                                                  "By Region and Survey\n",
-#                                                  gp=gpar(fontsize=20,font=3)
-#                                                )
-#                                )
-
 ##################################################
 #        Clean DOMAIN data for plotting          #
 ##################################################
@@ -173,7 +160,7 @@ domain_plot_dim_1 <- ggplot(
                                     color = domain
                                   )
                             ) + 
-                     geom_point(size = 4, aes(color = domain,shape=domain), position = dodge) + 
+                     geom_point(size = 6, aes(color = domain,shape=domain), position = dodge) + 
                      geom_line(size = 1, linetype = "dashed", position = dodge) +
                      geom_hline(yintercept=0, color = "black", size=1) + 
                      geom_errorbar(
@@ -203,7 +190,7 @@ domain_plot_dim_2 <- ggplot(
                                     color = domain
                                   )
                             ) + 
-                     geom_point(size = 4, aes(color = domain,shape=domain), position = dodge) + 
+                     geom_point(size = 6, aes(color = domain,shape=domain), position = dodge) + 
                      geom_line(size = 1, linetype = "dashed", position = dodge) +
                      geom_hline(yintercept=0, color = "black", size=1) + 
                      geom_errorbar(
@@ -226,16 +213,6 @@ domain_grid_plot <- ( domain_plot_dim_1 | domain_plot_dim_2 ) +
   plot_annotation(caption = 'Survey Publication Year',
                   theme = theme(plot.caption=element_text(face="bold",color="black",size=20, angle=0,hjust = 0.5)))
 ggexport(plotlist = list(domain_grid_plot), filename = "plots/domain_survey.png",height=650,width=900)
-
-#domain_grid_plot <- grid.arrange(
-#                                    domain_plot_dim_1, 
-#                                    domain_plot_dim_2, 
-#                                    nrow = 1, 
-#                                    top=textGrob(
-#                                      "By Domain and Survey\n",
-#                                      gp=gpar(fontsize=20,font=3)
-#                                    )
-#                                  )
 
 ##################################################
 #      Clean WORK SECTOR data for plotting       #
@@ -264,7 +241,7 @@ work_sector_plot_dim_1 <- ggplot(
                                         color = work_sector
                                       )
                                 ) + 
-                          geom_point(size = 4, aes(color = work_sector,shape=work_sector), position = dodge) + 
+                          geom_point(size = 6, aes(color = work_sector,shape=work_sector), position = dodge) + 
                           geom_line(size = 1, linetype = "dashed", position = dodge) +
                           geom_hline(yintercept=0, color = "black", size=1) + 
                           geom_errorbar(
@@ -292,7 +269,7 @@ work_sector_plot_dim_2 <- ggplot(
                                           color = work_sector
                                         )
                                   ) +
-                          geom_point(size = 4, aes(color = work_sector, shape=work_sector), position = dodge) + 
+                          geom_point(size = 6, aes(color = work_sector, shape=work_sector), position = dodge) + 
                           geom_line(size = 1, linetype = "dashed", position = dodge) +
                           geom_hline(yintercept=0, color = "black", size=1) + 
                           geom_errorbar(
@@ -358,7 +335,7 @@ funding_agency_plot_dim_1 <- ggplot(
                                             color = funding_agency
                                           )
                                     ) +
-                             geom_point(size = 4, aes(color = funding_agency,shape=funding_agency), position = dodge) + 
+                             geom_point(size = 6, aes(color = funding_agency,shape=funding_agency), position = dodge) + 
                              geom_line(size = 1, linetype = "dashed", position = dodge) +
                              geom_hline(yintercept=0, color = "black", size=1) + 
                              geom_errorbar(
@@ -393,7 +370,7 @@ funding_agency_plot_dim_2 <- ggplot(
                                             color = funding_agency
                                           )
                                     ) +
-                             geom_point(size = 4, aes(color = funding_agency,shape=funding_agency), position = dodge) + 
+                             geom_point(size = 6, aes(color = funding_agency,shape=funding_agency), position = dodge) + 
                              geom_line(size = 1, linetype = "dashed", position = dodge) +
                              geom_hline(yintercept=0, color = "black", size=1) + 
                              geom_errorbar(
@@ -424,16 +401,6 @@ funding_agency_grid_plot <- ( funding_agency_plot_dim_1 | funding_agency_plot_di
   plot_annotation(caption = 'Survey Publication Year',
                   theme = theme(plot.caption=element_text(face="bold",color="black",size=20, angle=0,hjust = 0.5)))
 ggexport(plotlist = list(funding_agency_grid_plot), filename = "plots/funding_agency_survey.png",height=650,width=900)
-
-#funding_agency_grid_plot <- grid.arrange(
-#                                            funding_agency_plot_dim_1, 
-#                                            funding_agency_plot_dim_2, 
-#                                            nrow = 1, 
-#                                            top=textGrob(
-#                                              "By Funding Agency and Survey\n",
-#                                              gp=gpar(fontsize=20,font=3)
-#                                            )
-#                                          )
 
 ##################################################
 #            DIM1 vs DIM2 by domain              #
