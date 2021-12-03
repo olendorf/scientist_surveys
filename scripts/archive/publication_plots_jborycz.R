@@ -11,8 +11,8 @@ surveys_combined_demos$region <- as.factor(surveys_combined_demos$region)
 ##################################################
 surveys_combined_demos[which(surveys_combined_demos$survey_label == "S1"), ]$survey_label <- "2011"
 surveys_combined_demos[which(surveys_combined_demos$survey_label == "S2"), ]$survey_label <- "2015"
-surveys_combined_demos[which(surveys_combined_demos$survey_label == "S3"), ]$survey_label <- "2019"
-surveys_combined_demos$survey_label <- ordered(surveys_combined_demos$survey_label, levels = c("2011", "2015", "2019"))
+surveys_combined_demos[which(surveys_combined_demos$survey_label == "S3"), ]$survey_label <- "2020"
+surveys_combined_demos$survey_label <- ordered(surveys_combined_demos$survey_label, levels = c("2011", "2015", "2020"))
 
 ##################################################
 #        Create left and right plot themes       #
