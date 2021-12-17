@@ -9,46 +9,44 @@ surveys_combined_demos$region <- as.factor(surveys_combined_demos$region)
 ##################################################
 #             Change survey labels               #
 ##################################################
-surveys_combined_demos[which(surveys_combined_demos$survey_label == "S1"), ]$survey_label <- "One"
-surveys_combined_demos[which(surveys_combined_demos$survey_label == "S2"), ]$survey_label <- "Two"
-surveys_combined_demos[which(surveys_combined_demos$survey_label == "S3"), ]$survey_label <- "Three"
-surveys_combined_demos$survey_label <- ordered(surveys_combined_demos$survey_label, levels = c("One", "Two", "Three"))
+surveys_combined_demos[which(surveys_combined_demos$survey_label == "S1"), ]$survey_label <- "2011"
+surveys_combined_demos[which(surveys_combined_demos$survey_label == "S2"), ]$survey_label <- "2015"
+surveys_combined_demos[which(surveys_combined_demos$survey_label == "S3"), ]$survey_label <- "2020"
+surveys_combined_demos$survey_label <- ordered(surveys_combined_demos$survey_label, levels = c("2011", "2015", "2020"))
 
-##################################################
-#               Reverse dimension 1              #
-##################################################
-# surveys_combined_demos$dim_1 <- surveys_combined_demos$dim_1 * -1
-no_region_na <- surveys_combined_demos[which(!is.na(surveys_combined_demos$region)), ]
-
-<<<<<<< HEAD:scripts/publication_plots.R
-library(grid)
-
-
-=======
 ##################################################
 #        Create left and right plot themes       #
 ##################################################
 left_plot_theme <- theme(legend.position = "none", 
+                         plot.tag.position = c(.05, .95),
                          plot.title = element_text(face="bold",size=24,hjust = 0.5),
+                         plot.tag = element_text(face="bold",size=24,hjust = 0.5),
+                         axis.ticks = element_line(size = 1, colour = "black", linetype=1),
                          axis.text.x = element_text(color="black",size=16, angle=0),
-                         axis.title.x = element_text(face="bold",color="black",size=20, angle=0),
+                         axis.title.x = element_blank(),
+                         axis.line.y = element_line(size = 1, colour = "black", linetype=1),
                          axis.text.y = element_text(color="black",size=16, angle=0),
-                         axis.title.y = element_text(face="bold",color="black",size=20, angle=90))
+                         axis.title.y = element_text(face="bold",color="black",size=16, angle=90))
 
-right_plot_theme <- theme(legend.position = c(.80, .18), 
+right_plot_theme <- theme(legend.position = c(.7, .18), 
+                          plot.tag.position = c(.05, .95),
                           plot.title = element_text(face="bold",size=24,hjust = 0.5),
+                          plot.tag = element_text(face="bold",size=24,hjust = 0.5),
                           legend.key.size = unit(0.5, "cm"),
                           legend.title = element_text(face="bold",size=16),
-                          legend.text=element_text(size=14),
+                          legend.text=element_text(size=20),
+                          axis.ticks = element_line(size = 1, colour = "black", linetype=1),
                           axis.text.x = element_text(color="black",size=16, angle=0),
-                          axis.title.x = element_text(face="bold",color="black",size=20, angle=0),
+                          axis.title.x = element_blank(),
+                          axis.line.y = element_line(size = 1, colour = "black", linetype=1),
                           axis.text.y = element_text(color="black",size=16, angle=0),
-                          axis.title.y = element_text(face="bold",color="black",size=20, angle=90))
+                          axis.title.y = element_text(face="bold",color="black",size=16, angle=90))
 
 ##################################################
 #         Clean REGION data for plotting         #
 ##################################################
->>>>>>> 5d639ecdaad0780864fc7032417bfd86d70688c9:scripts/archive/publication_plots.R
+no_region_na <- surveys_combined_demos[which(!is.na(surveys_combined_demos$region)), ]
+
 region_summary <- no_region_na %>% 
                     dplyr::group_by(region, survey_label) %>% 
                     dplyr::summarize(
@@ -70,8 +68,9 @@ region_plot_dim_1 <- ggplot(
                                   group = region, 
                                   color = region)
                             ) + 
-                     geom_point(size = 4, aes(color = region), position = dodge) + 
-                     geom_line(size = 1, position = dodge) +
+                     geom_point(size = 6, aes(color = region, shape=region), position = dodge) + 
+                     geom_line(size = 1, linetype = "dashed", position = dodge) +
+                     geom_hline(yintercept=0, color = "black", size=1) +
                      geom_errorbar(
                                      aes(
                                           ymin = mean_dim_1 - se_dim_1, 
@@ -80,19 +79,19 @@ region_plot_dim_1 <- ggplot(
                                      width = 0.2, 
                                      position = dodge
                                    ) + 
-                     labs(x = element_blank(), y = "Willingness to Share") +
+                     labs(y = "Willingness to Share (mean ± standard error)",tag = "A") +
+#                     ggtitle("Changes in region by survey") + 
+                     scale_y_continuous(breaks=seq(-2,2,1)) +
                      ylim(-2, 2) + 
-                     ggtitle("Willingness to Share") + 
-                     scale_color_brewer(palette = "Dark2") + 
-<<<<<<< HEAD:scripts/publication_plots.R
-                     theme_minimal() + 
-                     theme(legend.position = "none", plot.title = element_text(hjust = 0.5), aspect.ratio = 3/4)
-region_plot_dim_1
-=======
+                     scale_color_manual(labels = c("Africa & Middle East","Asia & Southeast Asia",
+                                                   "Australia & New Zealand","Europe & Russia",
+                                                   "Latin America","USA & Canada"),
+                                        values = c("#67001F","#67001F","#67001F",
+                                                   "#67001F","#67001F","#67001F"), guide="legend") +
+                     scale_shape_discrete(labels = c("Africa & Middle East","Asia & Southeast Asia",
+                                                     "Australia & New Zealand","Europe & Russia",
+                                                     "Latin America","USA & Canada"), guide="legend") +
                      theme_minimal() + left_plot_theme
-#region_plot_dim_1
-#region_summary
->>>>>>> 5d639ecdaad0780864fc7032417bfd86d70688c9:scripts/archive/publication_plots.R
 
 region_plot_dim_2 <- ggplot(
                               region_summary, 
@@ -103,8 +102,9 @@ region_plot_dim_2 <- ggplot(
                                     color = region
                                   )
                               ) +
-                     geom_point(size = 4, aes(color = region), position = dodge) + 
-                     geom_line(size = 1, position = dodge) +  
+                     geom_point(size = 6, aes(color = region, shape=region), position = dodge) + 
+                     geom_line(size = 1, linetype = "dashed", position = dodge) +
+                     geom_hline(yintercept=0, color = "black", size=1) + 
                      geom_errorbar(
                                     aes(
                                           ymin = mean_dim_2 - se_dim_2, 
@@ -114,62 +114,28 @@ region_plot_dim_2 <- ggplot(
                                     width = 0.2,
                                     position = dodge
                                   ) + 
-<<<<<<< HEAD:scripts/publication_plots.R
-                     labs(x = element_blank(), y = "Satisfaction with Resources", color="Region") +
-                     ggtitle("Satisfaction with Resources") + 
-                     scale_color_brewer(palette = "Dark2") + 
-                     theme_minimal() + 
-                     theme(legend.position = c(.85, .20), plot.title = element_text(hjust = 0.5), aspect.ratio = 3/4)  
-region_plot_dim_2
-
-region_grob_dim_1 <- ggplotGrob(region_plot_dim_1)
-region_grob_dim_2 <- ggplotGrob(region_plot_dim_2)
-
-region_grid_plot <- grid.arrange(
-                                    arrangeGrob(region_grob_dim_1), 
-                                    arrangeGrob(region_grob_dim_2), 
-                                    nrow = 1, 
-                                    top=textGrob(
-                                                  "Changes In Region By Survey\n",
-                                                  gp=gpar(fontsize=20,font=3),
-                                                  vjust = 2.0
-                                                ),
-                                    bottom = textGrob(
-                                                        "Survey\n", 
-                                                        gp = gpar(fontsize = 12),
-                                                        vjust = -1.8
-                                                      )
-                                )
-ggsave("plots/region_grid_plot.png", region_grid_plot)
-
-#######################################################################################
-#######################################################################################
-
-
-=======
-                     labs(x = "Survey", y = "Satisfaction with Resources", color="Region") +
-                     ggtitle("Satisfaction with Resources") + 
-                     scale_color_brewer(palette = "Dark2") + 
-                     theme_minimal() + right_plot_theme 
+                     labs(y = "Satisfaction with Resources (mean ± standard error)", tag="B", color="Region", shape="Region") +
+                     ggtitle("") + 
+                     scale_y_continuous(breaks=seq(-2,2,1)) +
+                     ylim(-2, 2) + 
+                     scale_color_manual(labels = c("Africa & Middle East","Asia & Southeast Asia",
+                                                   "Australia & New Zealand","Europe & Russia",
+                                                  "Latin America","USA & Canada"),
+                                        values = c("#67001F","#67001F","#67001F",
+                                                   "#67001F","#67001F","#67001F"), guide="legend") +
+                     scale_shape_discrete(labels = c("Africa & Middle East","Asia & Southeast Asia",
+                                                     "Australia & New Zealand","Europe & Russia",
+                                                     "Latin America","USA & Canada"), guide="legend") +
+                     theme_minimal() + right_plot_theme + theme(legend.position = c(.65, .14)) 
 #region_plot_dim_2
-region_grid_plot <- ( region_plot_dim_1 | region_plot_dim_2 )
-ggexport(plotlist = list(region_grid_plot), filename = "plots/region_survey.png",height=650,width=800)
-
-
-#region_grid_plot <- grid.arrange(
-#                                    region_plot_dim_1, 
-#                                    region_plot_dim_2, 
-#                                    nrow = 1, 
-#                                    top=textGrob(
-#                                                  "By Region and Survey\n",
-#                                                  gp=gpar(fontsize=20,font=3)
-#                                                )
-#                                )
+region_grid_plot <- ( region_plot_dim_1 | region_plot_dim_2 ) + 
+  plot_annotation(caption = 'Survey Publication Year',
+                  theme = theme(plot.caption=element_text(face="bold",color="black",size=20, angle=0,hjust = 0.5)))
+ggexport(plotlist = list(region_grid_plot), filename = "plots/region_survey.png", height=650,width=900)
 
 ##################################################
 #        Clean DOMAIN data for plotting          #
 ##################################################
->>>>>>> 5d639ecdaad0780864fc7032417bfd86d70688c9:scripts/archive/publication_plots.R
 no_domain_na <- surveys_combined_demos[which(!is.na(surveys_combined_demos$domain)), ]
 
 domain_summary <- no_domain_na %>% 
@@ -194,8 +160,9 @@ domain_plot_dim_1 <- ggplot(
                                     color = domain
                                   )
                             ) + 
-                     geom_point(size = 4, aes(color = domain), position = dodge) + 
-                     geom_line(size = 1, position = dodge) + 
+                     geom_point(size = 6, aes(color = domain,shape=domain), position = dodge) + 
+                     geom_line(size = 1, linetype = "dashed", position = dodge) +
+                     geom_hline(yintercept=0, color = "black", size=1) + 
                      geom_errorbar(
                                       aes(
                                             ymin = mean_dim_1 - se_dim_1, 
@@ -205,25 +172,14 @@ domain_plot_dim_1 <- ggplot(
                                       width = 0.2, 
                                       position = dodge
                                     ) + 
-                     labs(x = "Domain", y = "Willingness to Share", color="Domain") +
-                     ylim(-2, 2) +
-                     ggtitle("Willingness to Share") + 
-                     scale_color_brewer(palette = "Dark2") +  
-<<<<<<< HEAD:scripts/publication_plots.R
-                     theme_minimal() + 
-                     theme(
-                           legend.position = "none", 
-                           plot.title = element_text(hjust = 0.5), 
-                           aspect.ratio = 3/4
-                          )
-
-domain_plot_dim_1
-
-
-=======
+                     ylim(-2, 2) + 
+                     labs(x = "Survey", y = "Willingness to Share (mean ± standard error)",tag="A",color="Domain",shape="Domain") +
+ #                    ggtitle("Changes in domain by survey") + 
+                     scale_color_manual(values = c("#67001F","#67001F","#67001F",
+                                                   "#67001F","#67001F"), guide="legend") +
+                     scale_shape_discrete(guide="legend") +
                      theme_minimal() + left_plot_theme
 # domain_plot_dim_1
->>>>>>> 5d639ecdaad0780864fc7032417bfd86d70688c9:scripts/archive/publication_plots.R
 
 domain_plot_dim_2 <- ggplot(
                               domain_summary, 
@@ -234,8 +190,9 @@ domain_plot_dim_2 <- ggplot(
                                     color = domain
                                   )
                             ) + 
-                     geom_point(size = 4, aes(color = domain), position = dodge) + 
-                     geom_line(size = 1, position = dodge) + 
+                     geom_point(size = 6, aes(color = domain,shape=domain), position = dodge) + 
+                     geom_line(size = 1, linetype = "dashed", position = dodge) +
+                     geom_hline(yintercept=0, color = "black", size=1) + 
                      geom_errorbar(
                                       aes(
                                             ymin = mean_dim_2 - se_dim_2, 
@@ -243,67 +200,23 @@ domain_plot_dim_2 <- ggplot(
                                       size = 1, 
                                       width = 0.2, 
                                       position = dodge) + 
-                     labs(x = "Survey", y = "Satisfaction with Resources", color="Domain") +
-                     ggtitle("Satisfaction Resources") + 
-                     scale_color_brewer(palette = "Dark2") +
-<<<<<<< HEAD:scripts/publication_plots.R
-                     theme_minimal() + 
-                     theme(
-                            legend.position = c(.80, .18), 
-                            plot.title = element_text(hjust = 0.5),
-                            aspect.ratio = 3/4
-                          ) 
-
-domain_plot_dim_2
-
-
-domain_grob_dim_1 <- ggplotGrob(domain_plot_dim_1)
-domain_grob_dim_2 <- ggplotGrob(domain_plot_dim_2)
-
-domain_grid_plot <- grid.arrange(
-                                  arrangeGrob(domain_grob_dim_1), 
-                                  arrangeGrob(domain_grob_dim_2), 
-                                  nrow = 1, 
-                                  top=textGrob(
-                                    "Changes In Domain By Survey\n",
-                                    gp=gpar(fontsize=20,font=3),
-                                    vjust = 2.0
-                                  ),
-                                  bottom = textGrob(
-                                    "Survey\n", 
-                                    gp = gpar(fontsize = 12),
-                                    vjust = -1.8
-                                  )
-                                )
-ggsave("plots/domain_grid_plot.png", domain_grid_plot)
-
-
-#######################################################################################
-#######################################################################################
-
-
-
-=======
+                     ylim(-2, 2) + 
+                     labs(x = "Survey", y = "Satisfaction with Resources (mean ± standard error)",tag="B",color="Domain",shape="Domain") +
+                     ggtitle("") + 
+                     scale_color_manual(values = c("#67001F","#67001F","#67001F",
+                                                   "#67001F","#67001F"), guide="legend") +
+                     scale_shape_discrete(guide="legend") +
                      theme_minimal() + right_plot_theme
 # domain_plot_dim_2
 
-domain_grid_plot <- ( domain_plot_dim_1 | domain_plot_dim_2 )
-ggexport(plotlist = list(domain_grid_plot), filename = "plots/domain_survey.png",height=650,width=800)
-
-#domain_grid_plot <- grid.arrange(
-#                                    domain_plot_dim_1, 
-#                                    domain_plot_dim_2, 
-#                                    nrow = 1, 
-#                                    top=textGrob(
-#                                      "By Domain and Survey\n",
-#                                      gp=gpar(fontsize=20,font=3)
-#                                    )
-#                                  )
+domain_grid_plot <- ( domain_plot_dim_1 | domain_plot_dim_2 ) + 
+  plot_annotation(caption = 'Survey Publication Year',
+                  theme = theme(plot.caption=element_text(face="bold",color="black",size=20, angle=0,hjust = 0.5)))
+ggexport(plotlist = list(domain_grid_plot), filename = "plots/domain_survey.png",height=650,width=900)
 
 ##################################################
 #      Clean WORK SECTOR data for plotting       #
 ##################################################
->>>>>>> 5d639ecdaad0780864fc7032417bfd86d70688c9:scripts/archive/publication_plots.R
 no_work_sector_na <- surveys_combined_demos[which(!is.na(surveys_combined_demos$work_sector)), ]
 
 work_sector_summary <- no_work_sector_na %>% 
@@ -328,8 +241,9 @@ work_sector_plot_dim_1 <- ggplot(
                                         color = work_sector
                                       )
                                 ) + 
-                          geom_point(size = 4, aes(color = work_sector), position = dodge) + 
-                          geom_line(size = 1, position = dodge) + 
+                          geom_point(size = 6, aes(color = work_sector,shape=work_sector), position = dodge) + 
+                          geom_line(size = 1, linetype = "dashed", position = dodge) +
+                          geom_hline(yintercept=0, color = "black", size=1) + 
                           geom_errorbar(
                                           aes(
                                                 ymin = mean_dim_1 - se_dim_1, 
@@ -337,10 +251,12 @@ work_sector_plot_dim_1 <- ggplot(
                                                 size = 1, 
                                                 width = 0.2,
                                                 position = dodge) + 
-                          labs(x = "Work Sector", y = "Willingness to Share", color="Work Sector") +
                           ylim(-2, 2) +
-                          ggtitle("Willingness to Share") + 
-                          scale_color_brewer(palette = "Dark2") + 
+                          labs(x = "Survey", y = "Willingness to Share (mean ± standard error)",tag="A",color="Work Sector",shape="Work Sector") +
+#                          ggtitle("Changes in work sector by survey") + 
+                          scale_color_manual(values = c("#67001F","#67001F","#67001F",
+                                                        "#67001F","#67001F"), guide="legend") +
+                          scale_shape_discrete(guide="legend") +
                           theme_minimal() + left_plot_theme
 #work_sector_plot_dim_1
 
@@ -353,8 +269,9 @@ work_sector_plot_dim_2 <- ggplot(
                                           color = work_sector
                                         )
                                   ) +
-                          geom_point(size = 4, aes(color = work_sector), position = dodge) + 
-                          geom_line(size = 1, position = dodge) + 
+                          geom_point(size = 6, aes(color = work_sector, shape=work_sector), position = dodge) + 
+                          geom_line(size = 1, linetype = "dashed", position = dodge) +
+                          geom_hline(yintercept=0, color = "black", size=1) + 
                           geom_errorbar(
                                           aes(
                                                 ymin = mean_dim_2 - se_dim_2, 
@@ -363,45 +280,19 @@ work_sector_plot_dim_2 <- ggplot(
                                           size = 1, 
                                           width = 0.2, 
                                           position = dodge) + 
-                          labs(x = "Survey", y = "Satisfaction with Resources", color="Work Sector") +
-                          ggtitle("Satisfaction with Resources") + 
-                          scale_color_brewer(palette = "Dark2") + 
-<<<<<<< HEAD:scripts/publication_plots.R
-                          theme_minimal() +
-                          theme(legend.position = c(.80, .80), plot.title = element_text(hjust = 0.5)) 
-work_sector_plot_dim_2
-
-
-work_sector_grob_dim_1 <- ggplotGrob(work_sector_plot_dim_1)
-work_sector_grob_dim_2 <- ggplotGrob(work_sector_plot_dim_2)
-
-work_sector_grid_plot <- grid.arrange(
-  arrangeGrob(work_sector_grob_dim_1), 
-  arrangeGrob(work_sector_grob_dim_2), 
-  nrow = 1, 
-  top=textGrob(
-    "Changes In work_sector By Survey\n",
-    gp=gpar(fontsize=20,font=3),
-    vjust = 2.0
-  ),
-  bottom = textGrob(
-    "Survey\n", 
-    gp = gpar(fontsize = 12),
-    vjust = -1.8
-  )
-)
-ggsave("plots/work_sector_grid_plot.png", work_sector_grid_plot)
-#######################################################################################
-#######################################################################################
-
-
-
-=======
-                          theme_minimal() + right_plot_theme + theme(legend.position = c(.76, .80))
+                          coord_cartesian(ylim=c(-2, 2)) +
+                          labs(x = "Survey", y = "Satisfaction with Resources (mean ± standard error)",tag="B",color="Work Sector",shape="Work Sector") +
+                          ggtitle("") + 
+                          scale_color_manual(values = c("#67001F","#67001F","#67001F",
+                                                        "#67001F","#67001F"), guide="legend") +
+                          scale_shape_discrete(guide="legend") +
+                          theme_minimal() + right_plot_theme #+ theme(legend.position = c(.76, .80))
 #work_sector_plot_dim_2
 
-work_sector_grid_plot <- ( work_sector_plot_dim_1 | work_sector_plot_dim_2 )
-ggexport(plotlist = list(work_sector_grid_plot), filename = "plots/work_sector_survey.png",height=650,width=800)
+work_sector_grid_plot <- ( work_sector_plot_dim_1 | work_sector_plot_dim_2 ) + 
+  plot_annotation(caption = 'Survey Publication Year',
+                  theme = theme(plot.caption=element_text(face="bold",color="black",size=20, angle=0,hjust = 0.5)))
+ggexport(plotlist = list(work_sector_grid_plot), filename = "plots/work_sector_survey.png",height=650,width=900)
 
 #work_sector_grid_plot <- grid.arrange(
 #                                        work_sector_plot_dim_1, 
@@ -416,7 +307,6 @@ ggexport(plotlist = list(work_sector_grid_plot), filename = "plots/work_sector_s
 ##################################################
 #     Clean FUNDING AGENCY data for plotting     #
 ##################################################
->>>>>>> 5d639ecdaad0780864fc7032417bfd86d70688c9:scripts/archive/publication_plots.R
 no_funding_agency_na <- surveys_combined_demos[which(!is.na(surveys_combined_demos$funding_agency_recoded)), ]
 
 funding_agency_summary <- no_funding_agency_na %>% 
@@ -428,9 +318,9 @@ funding_agency_summary$se_dim_1 <- sqrt(funding_agency_summary$var_dim_1/funding
 funding_agency_summary$se_dim_2 <- sqrt(funding_agency_summary$var_dim_2/funding_agency_summary$n)
 names(funding_agency_summary)[names(funding_agency_summary) == "funding_agency_recoded"] <- "funding_agency"
 funding_agency_summary$funding_agency <- factor(funding_agency_summary$funding_agency, 
-                                         levels = c("Academic institution","Corporation",                    
+                                         levels = c("Corporation",                    
                                                     "Federal/national gov.",                          
-                                                    "Private foundation","Self supported",                 
+                                                    "Private foundation",                 
                                                     "State/regional/local gov.","Other"))
 
 ##################################################
@@ -445,8 +335,9 @@ funding_agency_plot_dim_1 <- ggplot(
                                             color = funding_agency
                                           )
                                     ) +
-                             geom_point(size = 4, aes(color = funding_agency), position = dodge) + 
-                             geom_line(size = 1, position = dodge) + 
+                             geom_point(size = 6, aes(color = funding_agency,shape=funding_agency), position = dodge) + 
+                             geom_line(size = 1, linetype = "dashed", position = dodge) +
+                             geom_hline(yintercept=0, color = "black", size=1) + 
                              geom_errorbar(
                                               aes(
                                                     ymin = mean_dim_1 - se_dim_1, 
@@ -455,13 +346,21 @@ funding_agency_plot_dim_1 <- ggplot(
                                               size = 1, 
                                               width = 0.2,
                                               position = dodge) + 
-                             labs(x = "Funding Agency", y = "Willingness to Share", color="Funding Agency") +
-                             ylim(-2, 2) + 
-                             ggtitle("Willingness to Share") + 
-                             scale_color_brewer(palette = "Dark2")  + 
+                             ylim(-2, 2) +
+                             labs(x = "Survey", y = "Willingness to Share (mean ± standard error)",tag="A", color="Funding Agency",shape="Funding Agency") +
+#                             ggtitle("Changes in funding agency by survey") + 
+                             scale_color_manual(labels = c("Corporation",                    
+                                                           "Federal & national government",                          
+                                                           "Private foundation",                 
+                                                           "State, regional & local government","Other"),
+                                                values = c("#67001F","#67001F","#67001F",
+                                                           "#67001F","#67001F"), guide="legend") +
+                             scale_shape_discrete(labels = c("Corporation",                    
+                                                             "Federal & national government",                          
+                                                             "Private foundation",                 
+                                                             "State, regional & local government","Other"), guide="legend") +
                              theme_minimal() + left_plot_theme
 # funding_agency_plot_dim_1
-
 funding_agency_plot_dim_2 <- ggplot(
                                       funding_agency_summary, 
                                       aes(
@@ -471,8 +370,9 @@ funding_agency_plot_dim_2 <- ggplot(
                                             color = funding_agency
                                           )
                                     ) +
-                             geom_point(size = 4, aes(color = funding_agency), position = dodge) + 
-                             geom_line(size = 1, position = dodge) +
+                             geom_point(size = 6, aes(color = funding_agency,shape=funding_agency), position = dodge) + 
+                             geom_line(size = 1, linetype = "dashed", position = dodge) +
+                             geom_hline(yintercept=0, color = "black", size=1) + 
                              geom_errorbar(
                                               aes(
                                                     ymin = mean_dim_2 - se_dim_2, 
@@ -482,49 +382,22 @@ funding_agency_plot_dim_2 <- ggplot(
                                               width = 0.2,
                                               position = dodge
                                           ) +  
-                             labs(x = "Survey", y = "Satisfaction with Resources", color="Funding Agency") +
-                             ggtitle("Satisfaction with Resources") + 
-                             scale_color_brewer(palette = "Dark2")  + 
-<<<<<<< HEAD:scripts/publication_plots.R
-                             theme_minimal() +
-                             theme(legend.position = c(0.80, 0.75), plot.title = element_text(hjust = 0.5))
-funding_agency_plot_dim_2
-
-
-
-funding_agency_grob_dim_1 <- ggplotGrob(funding_agency_plot_dim_1)
-funding_agency_grob_dim_2 <- ggplotGrob(funding_agency_plot_dim_2)
-
-funding_agency_grid_plot <- grid.arrange(
-                                  arrangeGrob(funding_agency_grob_dim_1), 
-                                  arrangeGrob(funding_agency_grob_dim_2), 
-                                  nrow = 1, 
-                                  top=textGrob(
-                                                "Changes In funding_agency By Survey\n",
-                                                gp=gpar(fontsize=20,font=3),
-                                                vjust = 2.0
-                                  ),
-                                  bottom = textGrob(
-                                                    "Survey\n", 
-                                                    gp = gpar(fontsize = 12),
-                                                    vjust = -1.8
-                                  )
-                                )
-ggsave("plots/funding_agency_grid_plot.png", funding_agency_grid_plot)
-=======
-                             theme_minimal() + right_plot_theme + theme(legend.position = c(.76, .80))
+                             ylim(-2, 2) +
+                             labs(x = "Survey", y = "Satisfaction with Resources (mean ± standard error)",tag="B", color="Funding Agency",shape="Funding Agency") +
+                             ggtitle("") + 
+                             scale_color_manual(labels = c("Corporation",                    
+                                                           "Federal & national government",                          
+                                                           "Private foundation",                 
+                                                           "State, regional & local government","Other"),
+                                                values = c("#67001F","#67001F","#67001F",
+                                                           "#67001F","#67001F"), guide="legend") +
+                             scale_shape_discrete(labels = c("Corporation",                    
+                                                             "Federal & national government",                          
+                                                             "Private foundation",                 
+                                                             "State, regional & local government","Other"), guide="legend") +
+                             theme_minimal() + right_plot_theme + theme(legend.position = c(.57, .14))
 #funding_agency_plot_dim_2
-
-funding_agency_grid_plot <- ( funding_agency_plot_dim_1 | funding_agency_plot_dim_2 )
-ggexport(plotlist = list(funding_agency_grid_plot), filename = "plots/funding_agency_survey.png",height=650,width=800)
-
-#funding_agency_grid_plot <- grid.arrange(
-#                                            funding_agency_plot_dim_1, 
-#                                            funding_agency_plot_dim_2, 
-#                                            nrow = 1, 
-#                                            top=textGrob(
-#                                              "By Funding Agency and Survey\n",
-#                                              gp=gpar(fontsize=20,font=3)
-#                                            )
-#                                          )
->>>>>>> 5d639ecdaad0780864fc7032417bfd86d70688c9:scripts/archive/publication_plots.R
+funding_agency_grid_plot <- ( funding_agency_plot_dim_1 | funding_agency_plot_dim_2 ) + 
+  plot_annotation(caption = 'Survey Publication Year',
+                  theme = theme(plot.caption=element_text(face="bold",color="black",size=20, angle=0,hjust = 0.5)))
+ggexport(plotlist = list(funding_agency_grid_plot), filename = "plots/funding_agency_survey.png",height=650,width=900)

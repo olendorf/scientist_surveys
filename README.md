@@ -27,12 +27,7 @@ Data from the [3rd scientists survey paper](https://agupubs.onlinelibrary.wiley.
          * **cleanSurveys.R** align questions and answer types between surveys   
          * **combineSurveys.R** combine dataframes for MFA   
          * **multiFactorAnalysis.R** perform MFA and extract data  
-  * ARCHIVE (scripts/archive)  
-    * **mainPlots.R** generate plots from MFA   
-    * **biplotAnalysis.R** generate biplots comparing Qs   
-    * **statsSurveyComp.R** MANOVAs and biplots   
-    * **printLoadings.R** export MFA results to spreadsheets
-    * **limitDomainRegion.R** restrict regions (EuroRussia, USACanada, AustraliaNZ) & domains (Natural/Physical Science)
+         * **publication_plots.R** generate publication plots
 
 ### **data** folder  
 * **country_codes** folder  
