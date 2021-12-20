@@ -3,9 +3,9 @@
 .Rapp.history
 
 # Session Data files
-.RData
-.Rproj.user
-scientist_surveys.Rproj
+.RData/
+.Rproj.user/
+scientist_surveys.Rproj/
 
 # Example code in package build process
 *-Ex.R
