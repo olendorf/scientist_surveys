@@ -1,5 +1,17 @@
 # Combined Scientist Survey Factor Analysis
-### Papers and data used in this work
+
+## Authors
+
+Borycz, Joshua D <joshua.d.borycz@vanderbilt.edu>
+Bruce Grant <bwgrant@widener.edu>
+Robert Olendorf <rkolendo@ncsu.edu>
+
+## Data Sources
+
+The data for this analysis was taken from three previous surveys of scientists' attitudes and paractices 
+concerning data management and sharing.
+
+
 Data from the [1st scientists survey paper](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0021101)
 
   * Survey data used in this paper is available on [Dryad](https://datadryad.org/stash/dataset/doi:10.5061/dryad.6t94p)
@@ -11,8 +23,20 @@ Data from the [2nd scientists survey paper](https://journals.plos.org/plosone/ar
 Data from the [3rd scientists survey paper](https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2018EA000461)
 
   * Survey data used in this paper is available on [Dryad](https://datadryad.org/stash/dataset/doi:10.5061/dryad.sv6t740)
+  
+## Usage
 
-### Main multiple factor analysis script for all common survey questions combined  
+To rerun the entire analysis 
+
+```r
+source('path/to/main.R')
+```
+
+The data cleaning, analysis and visualizations are contained in separate files in the `script/` directory.
+
+
+
+## Main multiple factor analysis script for all common survey questions combined  
 * **main.R**  
   * Pulls code from the **scripts** folder  
      * **load_data.R** Load data from original CSV file  
@@ -27,12 +51,7 @@ Data from the [3rd scientists survey paper](https://agupubs.onlinelibrary.wiley.
          * **cleanSurveys.R** align questions and answer types between surveys   
          * **combineSurveys.R** combine dataframes for MFA   
          * **multiFactorAnalysis.R** perform MFA and extract data  
-  * ARCHIVE (scripts/archive)  
-    * **mainPlots.R** generate plots from MFA   
-    * **biplotAnalysis.R** generate biplots comparing Qs   
-    * **statsSurveyComp.R** MANOVAs and biplots   
-    * **printLoadings.R** export MFA results to spreadsheets
-    * **limitDomainRegion.R** restrict regions (EuroRussia, USACanada, AustraliaNZ) & domains (Natural/Physical Science)
+
 
 ### **data** folder  
 * **country_codes** folder  

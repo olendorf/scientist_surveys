@@ -20,9 +20,14 @@ install_packages <- function(packages) {
   }
 }
  
- install_packages(c("gdata", "ggpmisc","dplyr", "plyr", "tidyr","ggplot2","readxl", "FactoMineR", "factoextra", 
-                    "ca", "gplots","ggrepel","ggpubr", "grid", "gridExtra", "patchwork", "formattable", 
-                    "data.table","psych", "RColorBrewer", "ggforce"))
+ # install_packages(c("gdata", "ggpmisc","dplyr", "plyr", "tidyr","ggplot2","readxl", "FactoMineR", "factoextra", 
+ #                    "ca", "gplots","ggrepel","ggpubr", "grid", "gridExtra", "patchwork", "formattable", 
+ #                    "data.table","psych", "RColorBrewer", "ggforce"))
+
+install_packages(c("gdata","dplyr", "plyr", "tidyr","ggplot2","readxl", "FactoMineR", "factoextra", 
+                   "ca", "gplots","ggrepel", "grid", "gridExtra", "patchwork", "formattable", 
+                   "data.table","psych", "RColorBrewer", "ggforce"))
+
 
 ######################################################
 #                     Main scripts                   #
