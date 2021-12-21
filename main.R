@@ -80,40 +80,5 @@ source("scripts/combineSurveys.R")
 #       5) OPTIONAL: Export scree plot and biplot (plots/scree_biplot.pdf)
 source("scripts/multiFactorAnalysis.R")
  
-##################################################
-#                    ARCHIVE                     #
-##################################################
-# PLOTS: Generate scree, contribution, biplots & export as mfa_surveys_combined_plots.pdf
-# source("scripts/archive/mainPlots.R")
- 
-# PLOTS: Generate biplots of primary influential DIM1 & DIM2 questions
-#         Print biplots as mfa_dim1_interpretation.pdf & mfa_dim2_interpretation.pdf
-# source("scripts/archive/biplotAnalysis.R")
- 
-# PLOTS: MANOVA and boxplots for influential DIM1 & DIM2 questions
-# CSV files of MANOVA tables, 
-#         ./data/MANOVA_dim1.csv 
-#         ./data/MANOVA_dim2.csv
-# source("scripts/archive/statsSurveyComp.R")
- 
-# PLOTS: Create dimension 1 and 2 average plots used in publication
-# Find correlations between dim1 and dim2 for all demographics
-# Generate box plot of domain*work_sector
-# source("scripts/archive/publication_plots_jborycz.R")
-# source("scripts/archive/publication_plots_rkolendo.R")
-
-# Print loadings to /data/all_loadings.csv
-# Print list  of most correlated variables to
-#         ./data/correlated_dim1_quali_vars.csv
-#         ./data/correlated_dim2_quali_vars.csv
-#         ./data/correlated_dim1_vars_category.csv
-#         ./data/correlated_dim2_vars_category.csv
-# source("scripts/archive/printLoadings.R")
-
-# Limit work sector and domain
-#       1) Limit dataframe limited to:
-#                Regions: EuroRussia, USACanada, AustraliaNZ
-#                Domains: Natural science, Physical science
-# source("scripts/archive/limitDomainRegion.R")
 
 
