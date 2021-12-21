@@ -80,5 +80,6 @@ source("scripts/combineSurveys.R")
 #       5) OPTIONAL: Export scree plot and biplot (plots/scree_biplot.pdf)
 source("scripts/multiFactorAnalysis.R")
  
-
-
+# Publication plots
+# Generate plots for region, domain, work sector, and funding agency
+source("scripts/publication_plots.R")
