@@ -6,11 +6,21 @@ Scientists attitudes toward sharing over time
 
 ## Authors
 
-Borycz, Joshua D <joshua.d.borycz@vanderbilt.edu>
+Borycz, Joshua D 
 
-Bruce Grant <bwgrant@widener.edu>
+&nbsp;&nbsp;&nbsp;&nbsp;ORCID: 0000-0002-1505-148X
 
-Robert Olendorf <rkolendo@ncsu.edu>
+&nbsp;&nbsp;&nbsp;&nbsp;email: joshua.d.borycz@vanderbilt.edu
+
+Bruce Grant 
+
+&nbsp;&nbsp;&nbsp;&nbsp;email: <bwgrant@widener.edu>
+
+Robert Olendorf 
+
+&nbsp;&nbsp;&nbsp;&nbsp;ORCID: 0000-0003-3353-5637) 
+
+&nbsp;&nbsp;&nbsp;&nbsp;email: rkolendo@ncsu.edu
 
 ## Description
 
