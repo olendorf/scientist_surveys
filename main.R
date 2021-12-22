@@ -19,10 +19,6 @@ install_packages <- function(packages) {
     install_and_load(package)
   }
 }
- 
- # install_packages(c("gdata", "ggpmisc","dplyr", "plyr", "tidyr","ggplot2","readxl", "FactoMineR", "factoextra", 
- #                    "ca", "gplots","ggrepel","ggpubr", "grid", "gridExtra", "patchwork", "formattable", 
- #                    "data.table","psych", "RColorBrewer", "ggforce"))
 
 install_packages(c("gdata","dplyr", "plyr", "tidyr","ggplot2","readxl", "FactoMineR", "factoextra", 
                    "ca", "gplots","ggrepel", "grid", "gridExtra", "patchwork", "formattable", 
@@ -52,6 +48,7 @@ source("scripts/country_codes.R")
 #     "data/domains/survey_one_domain_code.csv"
 #     "data/domains/recoded_domain_mapping.csv"
 source("scripts/domain_recode.R")
+
 
 # Clean the survey data
 #       1) Input questions
