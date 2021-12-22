@@ -50,7 +50,12 @@ stand alone scripts.
 
 The data from the three surveys are in the `data/` directory `<nth>_scientists_survey.csv`.
 
+## Known Issues
 
+On some Macs, the `ggpubr` package won't load properly resulting in an error `could not find function "ggexport"`. There are a few 
+dependencies that fail to install for `ggpubr`. There are ways to install the dependecies as shown in [this blog](https://thecoatlessprofessor.com/programming/cpp/rcpp-rcpparmadillo-and-os-x-mavericks-lgfortran-and-lquadmath-error).
+Alternatively, the `ggexport()` function is not strictly necessary, and is used to build a graphics array. If the graphics array
+isn't needed `ggsave()` will work, or substitute other packages that can generate the graphics array.
 
 ## File Manifest
 
