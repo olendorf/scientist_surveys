@@ -131,7 +131,7 @@ region_plot_dim_2 <- ggplot(
 region_grid_plot <- ( region_plot_dim_1 | region_plot_dim_2 ) + 
   plot_annotation(caption = 'Survey Publication Year',
                   theme = theme(plot.caption=element_text(face="bold",color="black",size=20, angle=0,hjust = 0.5)))
-ggexport(plotlist = list(region_grid_plot), filename = "plots/region_survey.png", height=650,width=900)
+ggsave("plots/region_survey.pdf", plot = region_grid_plot, scale = 1,width = 16,height = 10, dpi = 300,limitsize = TRUE)
 
 ##################################################
 #        Clean DOMAIN data for plotting          #
@@ -212,7 +212,7 @@ domain_plot_dim_2 <- ggplot(
 domain_grid_plot <- ( domain_plot_dim_1 | domain_plot_dim_2 ) + 
   plot_annotation(caption = 'Survey Publication Year',
                   theme = theme(plot.caption=element_text(face="bold",color="black",size=20, angle=0,hjust = 0.5)))
-ggexport(plotlist = list(domain_grid_plot), filename = "plots/domain_survey.png",height=650,width=900)
+ggsave("plots/domain_survey.pdf", plot = domain_grid_plot, scale = 1,width = 16,height = 10, dpi = 300,limitsize = TRUE)
 
 ##################################################
 #      Clean WORK SECTOR data for plotting       #
@@ -292,7 +292,7 @@ work_sector_plot_dim_2 <- ggplot(
 work_sector_grid_plot <- ( work_sector_plot_dim_1 | work_sector_plot_dim_2 ) + 
   plot_annotation(caption = 'Survey Publication Year',
                   theme = theme(plot.caption=element_text(face="bold",color="black",size=20, angle=0,hjust = 0.5)))
-ggexport(plotlist = list(work_sector_grid_plot), filename = "plots/work_sector_survey.png",height=650,width=900)
+ggsave("plots/work_sector_survey.pdf", plot = work_sector_grid_plot, scale = 1,width = 16,height = 10,dpi = 300,limitsize = TRUE)
 
 #work_sector_grid_plot <- grid.arrange(
 #                                        work_sector_plot_dim_1, 
@@ -400,4 +400,4 @@ funding_agency_plot_dim_2 <- ggplot(
 funding_agency_grid_plot <- ( funding_agency_plot_dim_1 | funding_agency_plot_dim_2 ) + 
   plot_annotation(caption = 'Survey Publication Year',
                   theme = theme(plot.caption=element_text(face="bold",color="black",size=20, angle=0,hjust = 0.5)))
-ggexport(plotlist = list(funding_agency_grid_plot), filename = "plots/funding_agency_survey.png",height=650,width=900)
+ggsave("plots/funding_agency_survey.pdf", plot = funding_agency_grid_plot, scale = 1,width = 16,height = 10,dpi = 300,limitsize = TRUE)
