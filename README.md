@@ -28,6 +28,9 @@ This data is derived from three previous surveys performed by members of DataONE
 around data sharing and data management, and also to determine their satisfaction with the resources provided to them for sharing
 and data management. The data and analysis here are a subset of the questions from those three surveys.
 
+## Access
+This can also be accessed on [GitHub](https://github.com/olendorf/scientist_surveys) 
+
 ## Data Sources
 
 The data for this analysis was taken from three previous surveys of scientists' attitudes and paractices 
