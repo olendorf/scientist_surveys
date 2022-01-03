@@ -2,7 +2,7 @@
 
 ## Title
 
-Scientists attitudes toward sharing over time
+Scientists attitudes toward sharing data over time
 
 ## Authors
 
