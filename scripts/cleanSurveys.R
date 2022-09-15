@@ -34,7 +34,8 @@ survey_one_select <- survey_one %>% select(
   Q8_5,
   Q9_1,Q9_2,Q9_3,Q9_4,Q9_5,
   Q10_1,Q10_2,Q10_3,Q10_4,Q10_5,Q10_6,Q10_7,Q10_8,
-  Q11a_1,Q11a_2,Q11a_3,Q11a_4,Q11a_5,Q11a_7,Q11a_8,Q11a_9,Q11a_10,Q11a_11,Q11a_12
+  Q11a_1,Q11a_2,Q11a_3,Q11a_4,Q11a_5,Q11a_7,Q11a_8,Q11a_9,Q11a_10,Q11a_11,Q11a_12,
+  country_code,domain_name
 )
 
 ### Survey 2
@@ -51,7 +52,8 @@ survey_two_select <- survey_two %>% select(
   Q22_1,       
   Q31_1,Q31_2,Q31_3,Q31_4,Q31_5,      
   Q32_1,Q32_2,Q32_3,Q32_4,Q32_5,Q32_6,Q32_7,Q32_8,  
-  Q19_1,Q19_2,Q19_3,Q19_4,Q19_5,Q19_7,Q19_8,Q19_9,Q19_10,Q19_11,Q19_12
+  Q19_1,Q19_2,Q19_3,Q19_4,Q19_5,Q19_7,Q19_8,Q19_9,Q19_10,Q19_11,Q19_12,
+  country_code,domain_name
 )
 
 ### Survey 3
@@ -69,6 +71,7 @@ survey_three_select <- survey_three %>% select(
   Q20_1,Q20_2,Q20_3,Q20_4,Q20_5,
   Q19_1,Q19_2,Q19_3,Q19_4,Q19_5,Q19_6,Q19_7,Q19_8,
   Q15_1,Q15_2,Q15_3,Q15_4,Q15_5,Q15_6,Q15_7,Q15_8,Q15_9,Q15_10,Q15_11,
+  country_code,domain_name
 )
 
 # VITAL! Do not remove!!! Change all to characters
